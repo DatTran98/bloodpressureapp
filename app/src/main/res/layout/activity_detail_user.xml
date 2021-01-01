@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailUserFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dff9fb"
+    android:orientation="vertical"
+    tools:context=".controllers.DetailUserActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#55efc4">
+
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/todo"
+            android:src="@mipmap/blood_pressure_icon_vector" />
+
+        <TextView
+            android:id="@+id/title_detail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/img_view"
+            android:layout_toRightOf="@id/img_view"
+            android:background="#55efc4"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/detail_infor_title"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/title_custom"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_basic_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#55efc4"
+            android:fontFamily="@font/roboto_regular"
+            android:padding="10dp"
+            android:text="@string/basic_detail" />
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_toEndOf="@id/btn_basic_detail"
+            android:layout_toRightOf="@id/btn_basic_detail"
+            android:background="#596275"
+            android:fontFamily="@font/roboto_regular" />
+
+        <Button
+            android:id="@+id/btn_history_pressure"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_toEndOf="@+id/btn_basic_detail"
+            android:layout_toRightOf="@+id/btn_basic_detail"
+            android:background="#55efc4"
+            android:fontFamily="@font/roboto_regular"
+            android:padding="10dp"
+            android:text="@string/history_result" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/user_id_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text=""
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/roboto_regular"
+        android:text="" />
+
+    <FrameLayout
+        android:id="@+id/content_detail"
+        android:layout_width="372dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/list_custom" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp">
+
+        <Button
+            android:id="@+id/btn_edit_user"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@mipmap/btn_edit"
+            android:textSize="10sp"
+            tools:ignore="SmallSp" />
+
+        <Button
+            android:id="@+id/btn_move_to_another_room"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_toEndOf="@id/btn_edit_user"
+            android:layout_toRightOf="@id/btn_edit_user"
+            android:background="@mipmap/btn_move_to"
+            android:textSize="10sp"
+            tools:ignore="SmallSp" />
+    </RelativeLayout>
+
+</LinearLayout>

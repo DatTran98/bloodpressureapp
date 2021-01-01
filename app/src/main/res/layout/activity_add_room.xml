@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailUserFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".controllers.DetailUserActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_custom">
+
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/blood_pressure_icon_vector"
+            android:contentDescription="@string/todo" />
+
+        <TextView
+            android:id="@+id/title_detail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/img_view"
+            android:background="@drawable/btn_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/title_add_room"
+            android:textSize="25sp"
+            android:layout_toRightOf="@id/img_view" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:autofillHints="@string/room_id"
+                android:id="@+id/room_id"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/et_custom"
+                android:focusable="true"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/room_id"
+                android:inputType="text"
+                android:maxLength="20"
+                android:padding="15dp"
+                android:textSize="20sp" />
+
+
+            <EditText
+                android:autofillHints="@string/room_name"
+                android:id="@+id/room_name"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/et_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/room_name"
+                android:inputType="text"
+                android:maxLength="20"
+                android:padding="15dp"
+                android:textSize="20sp"
+                tools:ignore="LabelFor" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_create_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_custom"
+        android:text="@string/create"
+        android:textSize="20sp" />
+</LinearLayout>

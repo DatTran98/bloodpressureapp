@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".controllers.EditUserActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#26a69a">
+
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/blood_pressure_icon_vector"
+            android:contentDescription="@string/todo" />
+
+        <TextView
+            android:id="@+id/title_edit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/img_view"
+            android:background="#26a69a"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/edit_user"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/img_view" />
+    </RelativeLayout>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/indigo_daisy"
+        android:text="@string/app_name"
+        android:textSize="50sp" />
+
+    <TextView
+
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="bold"
+        android:text=""
+        android:textColor="@android:color/holo_red_light"
+        android:layout_marginStart="20dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:verticalScrollbarPosition="left">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/user_id_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:visibility="invisible" />
+            <EditText
+                android:id="@+id/user_id"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/et_custom"
+                android:enabled="false"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/user_id"
+                android:inputType="text"
+                android:maxLength="20"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:autofillHints="@string/user_id" />
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/et_custom"
+                android:enabled="false"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/username"
+                android:inputType="text"
+                android:maxLength="20"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:autofillHints="@string/username" />
+
+            <EditText
+                android:id="@+id/full_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/et_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/full_name"
+                android:inputType="textPersonName"
+                android:maxLength="20"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:autofillHints="@string/full_name" />
+
+            <EditText
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/et_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/age"
+                android:inputType="number"
+                android:maxLength="2"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:autofillHints="@string/age" />
+
+            <EditText
+                android:id="@+id/disease_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/et_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/disease_name"
+                android:inputType="text"
+                android:maxLength="20"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:autofillHints="" />
+
+            <EditText
+                android:id="@+id/tel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/et_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/tel"
+                android:inputType="phone"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:autofillHints="@string/tel" />
+
+            <TextView
+                android:id="@+id/room"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/et_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/room"
+                android:inputType="text"
+                android:maxLength="20"
+                android:padding="15dp"
+                android:textSize="15sp"
+                tools:ignore="TextViewEdits" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/btn_save"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:ignore="OnClick" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

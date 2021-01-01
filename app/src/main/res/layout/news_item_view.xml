@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="#dff9fb"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/news_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/title_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text=""
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/content_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/view_new_item_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:padding="15dp"
+        android:text="" />
+</LinearLayout>

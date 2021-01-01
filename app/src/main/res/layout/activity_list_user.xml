@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_custom">
+
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/todo"
+            android:fontFamily="@font/roboto_regular"
+            android:src="@mipmap/blood_pressure_icon_vector" />
+
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/img_view"
+            android:layout_toRightOf="@id/img_view"
+            android:background="@drawable/title_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/list_user_title"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:text="@string/mesage_delete_user"
+        android:textSize="15sp" />
+
+    <ListView
+        android:id="@+id/list_users"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/user_item_custom"
+        android:divider="@null"
+        android:scrollbars="none"/>
+
+</LinearLayout>

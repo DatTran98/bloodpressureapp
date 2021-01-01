@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dff9fb"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_weight="1"
+        android:background="@drawable/title_custom"
+        tools:ignore="ObsoleteLayoutParam">
+
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/todo"
+            android:src="@mipmap/blood_pressure_icon_vector" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/img_view"
+            android:layout_toRightOf="@id/img_view"
+            android:background="@drawable/title_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/title_activity_rooms"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="45dp"
+        android:gravity="center"
+        android:text="@string/press_to_delete"
+        android:textSize="15sp" />
+
+    <ListView
+        android:id="@+id/list_rooms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
+        android:layout_weight="1"
+        android:divider="@null"
+        android:scrollbars="none" />
+
+    <Button
+        android:id="@+id/btn_add_room"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@mipmap/btn_add"
+        android:shadowRadius="5" />
+</FrameLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailUserFrame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dff9fb"
+    android:orientation="vertical"
+    tools:context=".controllers.DetailUserActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_custom">
+
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/todo"
+            android:src="@mipmap/blood_pressure_icon_vector" />
+
+        <TextView
+            android:id="@+id/title_detail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/img_view"
+            android:layout_toRightOf="@id/img_view"
+            android:background="@drawable/title_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="@string/add_news_title"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/title_news"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:autofillHints="@string/news_title"
+                android:background="@drawable/et_custom"
+                android:focusable="true"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/news_title"
+                android:inputType="text"
+                android:maxLength="50"
+                android:padding="15dp"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/content_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:autofillHints="@string/news_content"
+                android:background="@drawable/et_custom"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="@string/news_content"
+                android:inputType="textMultiLine"
+                android:maxLines="40"
+                android:padding="15dp"
+                android:textSize="20sp"
+                tools:ignore="LabelFor" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_create_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/create"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/view_item_custom">
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="left"
+        android:text=""
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/id_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/date"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/date"
+        android:layout_toRightOf="@id/date"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="right"
+        android:text=""
+        android:textStyle="bold"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/min_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text=""
+        android:textColor="#130f40" />
+
+    <TextView
+        android:id="@+id/max_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/min_pressure"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_marginBottom="5dp"
+        android:text=""
+        android:textColor="#b71540" />
+</RelativeLayout>
