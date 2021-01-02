@@ -37,15 +37,20 @@ public class ListViewPressureAdapter extends BaseAdapter {
     @SuppressLint({"DefaultLocale", "SimpleDateFormat"})
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View newView;
+        View pressureView;
         if (view == null) {
-            newView = View.inflate(viewGroup.getContext(), R.layout.pressure_item_view, null);
-        } else newView = view;
+            pressureView = View.inflate(viewGroup.getContext(), R.layout.pressure_item_view, null);
+        } else pressureView = view;
         BloodPressureInfor bloodPressureInfor = (BloodPressureInfor) getItem(i);
-        ((TextView) newView.findViewById(R.id.min_pressure)).setText(String.format("  Huyết áp tâm trương:   %d", bloodPressureInfor.getPressureMin()));
-        ((TextView) newView.findViewById(R.id.max_pressure)).setText(String.format("  Huyết áp tâm thu:   %d", bloodPressureInfor.getPressureMax()));
-        ((TextView) newView.findViewById(R.id.date)).setText(String.format("   Ngày đo:    %s", new SimpleDateFormat("yyyy-MM-dd").format(bloodPressureInfor.getTime())));
-        ((TextView) newView.findViewById(R.id.id_pressure)).setText(String.format("Mã đo: %d   ", bloodPressureInfor.getBloodPressureId()));
-        return newView;
+        int pressMin = bloodPressureInfor.getPressureMin();
+        int pressMax = bloodPressureInfor.getPressureMax();
+        ((TextView) pressureView.findViewById(R.id.min_pressure)).setText(String.format("  Huyết áp tâm trương:   %d mmHg", pressMin));
+        ((TextView) pressureView.findViewById(R.id.max_pressure)).setText(String.format("  Huyết áp tâm thu:   %d mmHg", pressMax));
+        ((TextView) pressureView.findViewById(R.id.date)).setText(String.format("   Ngày đo:    %s", new SimpleDateFormat("yyyy-MM-dd").format(bloodPressureInfor.getTime())));
+        ((TextView) pressureView.findViewById(R.id.id_pressure)).setText(String.format("Mã đo: %d   ", bloodPressureInfor.getBloodPressureId()));
+        if ((pressMax >= 140) || (pressMin >= 90) || (pressMax <= 100)) {
+            pressureView.findViewById(R.id.pressure_item).setBackgroundResource(R.drawable.view_item_custom_warring);
+        }
+        return pressureView;
     }
 }

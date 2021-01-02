@@ -208,7 +208,7 @@ public class ListUserFragment extends Fragment {
             confirm.setPositiveButton(Constant.YES, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    String name = listUsers.get(position).getFullname();
+                    String name = listUsers.get(position).getFullName();
                     listUsers.remove(position);
                     // Do delete in DB
                     listViewUserAdapter.notifyDataSetChanged();

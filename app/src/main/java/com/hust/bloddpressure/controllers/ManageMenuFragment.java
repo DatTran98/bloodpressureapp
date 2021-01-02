@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.entities.InforStaticClass;
@@ -36,13 +38,12 @@ public class ManageMenuFragment extends Fragment {
         textViewLabelTile = view.findViewById(R.id.label_title);
         textViewLabelListOrDetail = view.findViewById(R.id.label_move_list_or_detail_user);
         textViewLabelRoom = view.findViewById(R.id.label_move_list_room);
-        // láy rule khi login vào hệ thống
+        // Get rule when login
         ruleId = InforStaticClass.getRule();
         if (ruleId == Constant.USER_RULE) {
             textViewLabelTile.setText(R.string.title_user_menu);
             textViewLabelListOrDetail.setText(R.string.btn_name_user_information);
             textViewLabelRoom.setText(R.string.label_room_user);
-
         } else {
             textViewLabelTile.setText(R.string.blood_pressure);
         }
@@ -67,6 +68,7 @@ public class ManageMenuFragment extends Fragment {
         view.findViewById(R.id.btn_move_list_new).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ManageMenuFragment manageMenuFragment = new ManageMenuFragment();
                 Intent intent = new Intent(getActivity(), ListNewsActivity.class);
                 startActivity(intent);
             }

@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".controllers.RegisterFragment"
-    >
+    tools:context=".controllers.RegisterFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,12 +25,19 @@
         android:textSize="17sp" />
 
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:src="@mipmap/blood_pressure_icon_vector"
-        android:contentDescription="@string/todo" />
+        android:contentDescription="@string/todo"
+        android:src="@mipmap/blood_pressure_icon_vector" />
 
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/no_data_color"
+        android:textSize="15sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <EditText
                 android:id="@+id/user_id"
                 android:layout_width="match_parent"
@@ -50,15 +57,15 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
+                android:autofillHints="@string/user_id"
                 android:background="@drawable/et_custom"
-                android:enabled="false"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/user_id"
                 android:inputType="text"
                 android:maxLength="20"
                 android:padding="15dp"
-                android:textSize="15sp"
-                android:autofillHints="@string/user_id" />
+                android:textSize="15sp" />
+
             <EditText
                 android:id="@+id/full_name"
                 android:layout_width="match_parent"
@@ -66,14 +73,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
+                android:autofillHints="@string/full_name"
                 android:background="@drawable/et_custom"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/full_name"
                 android:inputType="textPersonName"
-                android:padding="15dp"
-                android:textSize="15sp"
                 android:maxLength="20"
-                android:autofillHints="@string/full_name" />
+                android:padding="15dp"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/username"
@@ -82,14 +89,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
+                android:autofillHints="@string/username"
                 android:background="@drawable/et_custom"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/username"
                 android:inputType="text"
-                android:padding="15dp"
-                android:textSize="15sp"
                 android:maxLength="20"
-                android:autofillHints="@string/username" />
+                android:padding="15dp"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/password"
@@ -98,14 +105,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
+                android:autofillHints=""
                 android:background="@drawable/et_custom"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:padding="15dp"
-                android:textSize="15sp"
                 android:maxLength="20"
-                android:autofillHints="" />
+                android:padding="15dp"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/age"
@@ -114,14 +121,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
+                android:autofillHints="@string/age"
                 android:background="@drawable/et_custom"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/age"
                 android:inputType="number"
-                android:padding="15dp"
-                android:textSize="15sp"
                 android:maxLength="2"
-                android:autofillHints="@string/age" />
+                android:padding="15dp"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/disease_name"
@@ -130,14 +137,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
+                android:autofillHints="@string/disease_name"
                 android:background="@drawable/et_custom"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/disease_name"
                 android:inputType="text"
-                android:padding="15dp"
-                android:textSize="15sp"
                 android:maxLength="20"
-                android:autofillHints="@string/disease_name" />
+                android:padding="15dp"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/tel"
@@ -146,13 +153,13 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
+                android:autofillHints="@string/tel"
                 android:background="@drawable/et_custom"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/tel"
                 android:inputType="text"
                 android:padding="15dp"
-                android:textSize="15sp"
-                android:autofillHints="@string/tel" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/room_id_add"
@@ -165,10 +172,11 @@
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/room_id"
                 android:inputType="text"
+                android:maxLength="20"
                 android:padding="15dp"
                 android:textSize="15sp"
-                android:maxLength="20"
                 tools:ignore="TextViewEdits" />
+
             <Spinner
                 android:id="@+id/spinner_room"
                 android:layout_width="wrap_content"
@@ -204,8 +212,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_arrow_left"
-                    android:contentDescription="@string/todo" />
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_arrow_left" />
 
                 <TextView
                     android:id="@+id/swipeLeft"

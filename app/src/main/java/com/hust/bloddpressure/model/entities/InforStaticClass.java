@@ -6,6 +6,16 @@ public class InforStaticClass {
     private static String username;
     private static String password;
 
+    public static String getFullName() {
+        return fullName;
+    }
+
+    public static void setFullName(String fullName) {
+        InforStaticClass.fullName = fullName;
+    }
+
+    private static String fullName;
+
     public static void setRule(int rule) {
         InforStaticClass.rule = rule;
     }

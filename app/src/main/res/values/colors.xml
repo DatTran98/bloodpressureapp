@@ -7,8 +7,8 @@
     <color name="no_data_color">#e55039</color>
     <color name="choose_item">#ffcccc</color>
     <color name="white">#FAFAFA</color>
-    <color name="odd_item">#dff9fb</color>
-    <color name="even">#c7ecee</color>
+    <color name="odd_item">#80DEEA</color>
+    <color name="even">#B2EBF2</color>
     <color name="select_nav">#B2EBF2</color>
     <color name="back_ground">#dff9fb</color>
     <color name="link_color">#82B1FF</color>

@@ -135,6 +135,7 @@ public class TabHistoryPressureFragment extends Fragment {
                 txtMessage.setText(R.string.history_detail);
                 listViewPressureAdapter = new ListViewPressureAdapter(listPressure);
                 listViewPressure.setAdapter(listViewPressureAdapter);
+                listViewPressure.setSelection(listViewPressureAdapter.getCount()-1);
                 listViewPressureAdapter.notifyDataSetChanged();
                 listViewPressure.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

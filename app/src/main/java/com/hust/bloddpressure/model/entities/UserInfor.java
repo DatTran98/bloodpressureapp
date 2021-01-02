@@ -149,14 +149,6 @@ public class UserInfor implements Serializable {
         this.rule = rule;
     }
 
-    public String getFullname() {
-        return fullName;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullName = fullname;
-    }
-
     public String getTel() {
         return tel;
     }

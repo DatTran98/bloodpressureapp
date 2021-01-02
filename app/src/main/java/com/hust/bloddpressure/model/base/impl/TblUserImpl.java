@@ -160,7 +160,7 @@ public class TblUserImpl extends BaseImpl implements TblUserInter {
 					userInfor.setAge(rs.getInt("age"));
 					userInfor.setRoomId(rs.getInt("roomid"));
 					userInfor.setRule(rs.getInt("rule"));
-					userInfor.setFullname(rs.getString("fullname"));
+					userInfor.setFullName(rs.getString("fullname"));
 					userInfor.setRoom(rs.getString("roomname"));
 					userInfor.setDiseaseName(rs.getString("diseasename"));
 					userInfor.setTel(rs.getString("tel"));
@@ -234,7 +234,7 @@ public class TblUserImpl extends BaseImpl implements TblUserInter {
 					userInfor.setAge(rs.getInt("age"));
 					userInfor.setRoomId(rs.getInt("roomid"));
 					userInfor.setRule(rs.getInt("rule"));
-					userInfor.setFullname(rs.getString("fullname"));
+					userInfor.setFullName(rs.getString("fullname"));
 					userInfor.setRoom(rs.getString("roomname"));
 					userInfor.setDiseaseName(rs.getString("diseasename"));
 					userInfor.setTel(rs.getString("tel"));
@@ -280,7 +280,7 @@ public class TblUserImpl extends BaseImpl implements TblUserInter {
 
 				// set các giá trị cho tham số truyền vào
 				int index = 1;
-				ps.setString(index++, userInfor.getFullname());
+				ps.setString(index++, userInfor.getFullName());
 				ps.setInt(index++, userInfor.getAge());
 				ps.setString(index++, userInfor.getDiseaseName());
 				ps.setString(index++, userInfor.getTel());

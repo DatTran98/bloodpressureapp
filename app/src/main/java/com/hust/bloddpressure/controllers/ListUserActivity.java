@@ -12,14 +12,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.MyService;
 import com.hust.bloddpressure.model.entities.UserInfor;
+import com.hust.bloddpressure.util.Common;
 import com.hust.bloddpressure.util.Constant;
 
 import org.json.JSONArray;
@@ -34,13 +33,14 @@ public class ListUserActivity extends AppCompatActivity {
     ListView listViewUsers;
     private int rule;
     ProgressDialog pDialog;
-
+    private int selectedPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_user);
         // get all user information from db
+        listViewUsers = findViewById(R.id.list_users);
         listUsers = new ArrayList<>();
         GetListUser getListUser = new GetListUser();
         getListUser.execute();
@@ -100,21 +100,26 @@ public class ListUserActivity extends AppCompatActivity {
                 UserInfor userInfor = new UserInfor(Constant.EMPTY, Constant.EMPTY, Constant.INT_VALUE_DEFAULT, Constant.EMPTY);
                 listUsers.add(userInfor);
             }
-            listViewUsers = findViewById(R.id.list_users);
+
             // Create adapter to sent the data on the view
             listViewUserAdapter = new ListViewUserAdapter(listUsers);
+            listViewUsers.setSelection(listViewUserAdapter.getCount() - 1);
             listViewUsers.setAdapter(listViewUserAdapter);
             listViewUserAdapter.notifyDataSetChanged();
             listViewUsers.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     // set status default when not selected
-                    for (int i = 0; i < listUsers.size(); i++) {
-                        View viewChoose1, userItem1;
-                        View view1 = listViewUsers.getChildAt(i);
-                        userItem1 = view1.findViewById(R.id.user_item);
-                        viewChoose1 = view1.findViewById(R.id.btn_choose);
-                        backNormal(i, userItem1, viewChoose1);
+                    int start = listViewUsers.getFirstVisiblePosition();
+                    int end = listViewUsers.getLastVisiblePosition();
+                    for (int i = start; i < end; i++) {
+                        if (i != position) {
+                            View viewChoose1, userItem1;
+                            View view1 = listViewUsers.getChildAt(i);
+                            userItem1 = view1.findViewById(R.id.user_item);
+                            viewChoose1 = view1.findViewById(R.id.btn_choose);
+                            backNormal(i, userItem1, viewChoose1);
+                        }
                     }
                     // Get user information that just have selected
                     UserInfor userInfor = (UserInfor) listViewUserAdapter.getItem(position);
@@ -133,14 +138,13 @@ public class ListUserActivity extends AppCompatActivity {
                 @Override
                 public boolean onItemLongClick(final AdapterView<?> adapterView, View view, final int position, long l) {
                     if (!listUsers.get(0).getUserId().isEmpty()) {
-                        for (int i = 0; i < listUsers.size(); i++) {
-                            if (i != position) {
-                                View viewChoose1, userItem1;
-                                View view1 = listViewUsers.getChildAt(i);
-                                userItem1 = view1.findViewById(R.id.user_item);
-                                viewChoose1 = view1.findViewById(R.id.btn_choose);
-                                backNormal(i, userItem1, viewChoose1);
-                            }
+                        if (selectedPosition != position) {
+                            View viewChoose1, userItem1;
+                            View view1 = listViewUsers.getChildAt(selectedPosition);
+                            userItem1 = view1.findViewById(R.id.user_item);
+                            viewChoose1 = view1.findViewById(R.id.btn_choose);
+                            Common.backNormal(selectedPosition, userItem1, viewChoose1);
+                            selectedPosition = position;
                         }
                         View viewChoose, userItem;
                         userItem = view.findViewById(R.id.user_item);
@@ -161,7 +165,7 @@ public class ListUserActivity extends AppCompatActivity {
                                 View viewChoose1, userItem1;
                                 userItem1 = view1.findViewById(R.id.user_item);
                                 viewChoose1 = view1.findViewById(R.id.btn_choose);
-                                backNormal(position, userItem1, viewChoose1);
+                                Common.backNormal(position, userItem1, viewChoose1);
                             }
                         });
                         btnDel.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +198,7 @@ public class ListUserActivity extends AppCompatActivity {
             confirm.setPositiveButton(Constant.YES, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    String name = listUsers.get(position).getFullname();
+                    String name = listUsers.get(position).getFullName();
                     listUsers.remove(position);
                     // Do delete in DB
                     listViewUserAdapter.notifyDataSetChanged();
@@ -218,18 +222,18 @@ public class ListUserActivity extends AppCompatActivity {
                 }
             });
         }
-
         /**
          * Set status default when not selected
-         * @param position  position to set
-         * @param userItem view need set with position
+         *
+         * @param position   position to set
+         * @param item       view need set with position
          * @param viewChoose view need set with position
          */
-        private void backNormal(int position, View userItem, View viewChoose) {
+        private void backNormal(int position, View item, View viewChoose) {
             if (position % 2 == 0) {
-                userItem.setBackgroundResource(R.color.odd_item);
+                item.setBackgroundResource(R.drawable.view_item_custom_odd);
             } else {
-                userItem.setBackgroundResource(R.color.even);
+                item.setBackgroundResource(R.drawable.view_item_custom_even);
             }
             viewChoose.setVisibility(View.INVISIBLE);
         }

@@ -28,7 +28,6 @@ public class SpinnerRoomAdapter implements SpinnerAdapter {
         textViewRoomName = view.findViewById(R.id.room_name);
         if (listRoom.get(i).getRoomId() > 0) {
             textViewRoomId.setText(String.format("Mã phòng: %d", listRoom.get(i).getRoomId()));
-
         }
         textViewRoomName.setText(listRoom.get(i).getRoomName());
         return view;

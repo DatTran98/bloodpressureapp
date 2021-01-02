@@ -1,14 +1,12 @@
 package com.hust.bloddpressure.controllers;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -16,14 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.MyService;
-import com.hust.bloddpressure.model.entities.InforStaticClass;
-import com.hust.bloddpressure.model.entities.Room;
 import com.hust.bloddpressure.model.entities.UserInfor;
 import com.hust.bloddpressure.util.Constant;
 
@@ -146,20 +140,21 @@ public class TabBasicDetailUserFragment extends Fragment {
             getData();
         }
 
+        @SuppressLint("SetTextI18n")
         private void getData() {
             if (listUserInfor.size() != 0) {
                 txtMessage.setText(R.string.basic_detail);
                 UserInfor userInfor = listUserInfor.get(0);
                 // Set value for text view display
                 textViewUserId.setText(userId);
-                textViewFullName.setText(userInfor.getFullname());
+                textViewFullName.setText(userInfor.getFullName());
                 textViewAge.setText(userInfor.getAge() + "");
                 textViewUserName.setText(userInfor.getUsername());
                 textViewTel.setText(userInfor.getTel() + "");
                 textViewDisease.setText(userInfor.getDiseaseName());
                 textViewRoom.setText(userInfor.getRoom());
-                textViewPressureMax.setText(userInfor.getPressureMax() + "");
-                textViewPressureMin.setText(userInfor.getPressureMin() + "");
+                textViewPressureMax.setText(userInfor.getPressureMax() + " mmHg");
+                textViewPressureMin.setText(userInfor.getPressureMin() + " mmHg");
             } else {
                 setMessageNoData();
             }

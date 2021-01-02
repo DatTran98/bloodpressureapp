@@ -11,39 +11,38 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constrain"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".controllers.MainActivity2">
+        android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/activity_main_tv_empty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/empty_icon_width"
-            android:layout_height="@dimen/empty_icon_height"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:contentDescription="@string/todo"
-            android:scaleType="fitCenter"
-            android:src="@mipmap/news_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activity_main_tv_empty" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/activity_main_tv_empty"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text=""-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--            app:layout_constraintRight_toRightOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView"-->
+        <!--            android:layout_width="@dimen/empty_icon_width"-->
+        <!--            android:layout_height="@dimen/empty_icon_height"-->
+        <!--            android:layout_marginStart="8dp"-->
+        <!--            android:layout_marginLeft="8dp"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:layout_marginRight="8dp"-->
+        <!--            android:contentDescription="@string/todo"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            android:src="@mipmap/news_icon"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/activity_main_tv_empty" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -64,9 +63,8 @@
                 android:gravity="bottom"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="@dimen/activity_horizontal_margin"
+                android:paddingBottom="10dp"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                 <ImageView
@@ -74,7 +72,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:contentDescription="@string/todo"
-                    android:paddingTop="@dimen/activity_vertical_margin"
+                    android:paddingTop="10dp"
                     app:srcCompat="@mipmap/blood_pressure_icon_vector" />
 
                 <TextView
@@ -93,13 +91,35 @@
                     tools:ignore="SmallSp" />
 
             </LinearLayout>
+            <!-- Item home -->
+            <LinearLayout
+                android:id="@+id/nav_home"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/navigation_item_height"
+                android:background="@android:color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
 
+                <ImageView
+                    android:layout_width="@dimen/navigation_item_icon_size"
+                    android:layout_height="@dimen/navigation_item_icon_size"
+                    android:contentDescription="@string/todo"
+                    android:src="@mipmap/home_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:text="@string/home" />
+            </LinearLayout>
             <!-- Item Info -->
             <LinearLayout
                 android:id="@+id/nav_basic"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/navigation_item_height"
-                android:layout_marginTop="3dp"
                 android:background="@android:color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -144,31 +164,7 @@
                     android:layout_marginLeft="32dp"
                     android:text="@string/my_message" />
             </LinearLayout>
-            <!-- Item home -->
 
-            <LinearLayout
-                android:id="@+id/nav_home"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/navigation_item_height"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
-
-                <ImageView
-                    android:layout_width="@dimen/navigation_item_icon_size"
-                    android:layout_height="@dimen/navigation_item_icon_size"
-                    android:contentDescription="@string/todo"
-                    android:src="@mipmap/home_icon" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
-                    android:text="@string/home" />
-            </LinearLayout>
 
             <!-- Item news -->
             <LinearLayout

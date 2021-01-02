@@ -5,9 +5,14 @@
 package com.hust.bloddpressure.util;
 
 import android.app.Activity;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,6 +20,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.hust.bloddpressure.R;
+import com.hust.bloddpressure.controllers.ManageMenuFragment;
 import com.hust.bloddpressure.model.base.impl.TblUserImpl;
 import com.hust.bloddpressure.model.entities.UserInfor;
 
@@ -41,7 +48,7 @@ public class Common {
     /**
      * Mã hóa password theo SHA-1
      *
-     * @param salt chuỗi được tạo ngẫu nhiên
+     * @param salt     chuỗi được tạo ngẫu nhiên
      * @param password mật khẩu chưa mã hóa
      * @return trả về mật khẩu đã được mã hóa theo SHA-1
      */
@@ -202,16 +209,16 @@ public class Common {
      */
     public static String validateLogin(String username, String password) {
         String error = "";
-        // Kiểm tra xem empty và độ dài chuỗi
+        // check empty and length of input text
         if (Common.checkEmpty(username)) {
-            // gan loi
-            error += " Chưa nhập username";
+            // attach error message
+            error += Constant.EMPTY_MESSAGE + Constant.USERNAME_NAME;
         } else if (Common.checkEmpty(password)) {
-            error += " Chưa nhập password";
-        } else if (checkLength(username, Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-            error += "Chú ý " + Constant.USER_MIN_LENGTH + " < Tên đăng nhập < " + Constant.MAX_LENGTH;
+            error += Constant.EMPTY_MESSAGE + Constant.PASSWORD_NAME;
+        } else if (checkLength(username, Constant.USER_MIN_LENGTH, Constant.MAX_LENGTH)) {
+            error += Constant.NOTE + Constant.USER_MIN_LENGTH + " <= " + Constant.USERNAME_NAME + " <= " + Constant.MAX_LENGTH;
         } else if (checkLength(password, Constant.MIN_LENGTH, Constant.MAX_LENGTH))
-            error += "Chú ý " + Constant.MIN_LENGTH + " < Mật Khẩu < " + Constant.MAX_LENGTH;
+            error += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.PASSWORD_NAME + " <= " + Constant.MAX_LENGTH;
         return error;
     }
 
@@ -240,49 +247,67 @@ public class Common {
     public static String validateUser(UserInfor userInfor, int mode) {
         String noteError = "";
         if (Constant.MODE_EDIT == mode) {
-            if (checkEmpty(userInfor.getFullname())) {
-                noteError += "Hãy nhập họ tên";
+            if (checkEmpty(userInfor.getFullName())) {
+                noteError += Constant.EMPTY_MESSAGE + Constant.FULL_NAME_NAME;
             } else if (userInfor.getAge() <= 0) {
-                noteError += "Hãy nhập tuổi";
+                noteError += Constant.EMPTY_MESSAGE + Constant.AGE_NAME;
             } else if (checkEmpty(userInfor.getDiseaseName())) {
-                noteError += "Hãy nhập tên bệnh";
+                noteError += Constant.EMPTY_MESSAGE + Constant.DISEASE_NAME_NAME;
             } else if (checkEmpty(userInfor.getTel())) {
-                noteError += "Hãy nhập số điện thoại";
+                noteError += Constant.EMPTY_MESSAGE + Constant.TEL_NAME;
             } else if (checkEmpty(userInfor.getRoom())) {
-                noteError += "Hãy chọn phòng";
-            } else if (checkLength(userInfor.getFullname(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-                noteError += "Chú ý " + Constant.MIN_LENGTH + " < Độ dài Họ tên < " + Constant.MAX_LENGTH;
+                noteError += Constant.EMPTY_MESSAGE + Constant.ROOM_NAME_NAME;
+            } else if (checkLength(userInfor.getUserId(), Constant.MIN_LENGTH, Constant.ID_MAX_LENGTH)) {
+                noteError += Constant.NOTE + " <= " + Constant.MIN_LENGTH + " <= " + Constant.ID_MAX_LENGTH;
+            } else if (checkLength(userInfor.getFullName(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.FULL_NAME_NAME + " <= " + Constant.MAX_LENGTH;
+            } else if (checkLength(userInfor.getUsername(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.USERNAME_NAME + " <= " + Constant.MAX_LENGTH;
+            } else if (checkLength(userInfor.getPassword(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.PASSWORD_NAME + " <= " + Constant.MAX_LENGTH;
             } else if (checkMinAge(userInfor.getAge(), Constant.MIN_AGE)) {
-                noteError += "Chú ý " + "Tuổi phải > " + Constant.MIN_AGE;
+                noteError += Constant.NOTE + Constant.AGE_NAME + " >= " + Constant.MIN_AGE;
             } else if (checkLength(userInfor.getDiseaseName(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-                noteError += "Chú ý " + Constant.MIN_LENGTH + " < Độ dài Tên bệnh < " + Constant.MAX_LENGTH;
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.DISEASE_NAME_NAME + " <= " + Constant.MAX_LENGTH;
+            } else if (checkLength(userInfor.getTel(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.TEL_NAME + " <= " + Constant.MAX_LENGTH;
+            } else if (userInfor.getRoomId() == -1) {
+                noteError += Constant.NOTE + Constant.ROOM_NOT_EXIST;
             }
             // check room?
         } else if (Constant.MODE_ADD == mode) {
-            if (checkEmpty(userInfor.getFullname())) {
-                noteError += "Hãy nhập họ tên";
+            if (checkEmpty(userInfor.getUserId())) {
+                noteError += Constant.EMPTY_MESSAGE + Constant.USER_ID_NAME;
+            } else if (checkEmpty(userInfor.getFullName())) {
+                noteError += Constant.EMPTY_MESSAGE + Constant.FULL_NAME_NAME;
             } else if (checkEmpty(userInfor.getUsername())) {
-                noteError += "Hãy nhập tên đăng nhập";
+                noteError += Constant.EMPTY_MESSAGE + Constant.USERNAME_NAME;
             } else if (checkEmpty(userInfor.getPassword())) {
-                noteError += "Hãy nhập mật khẩu";
+                noteError += Constant.EMPTY_MESSAGE + Constant.PASSWORD_NAME;
             } else if (userInfor.getAge() <= 0) {
-                noteError += "Hãy nhập tuổi";
+                noteError += Constant.EMPTY_MESSAGE + Constant.AGE_NAME;
             } else if (checkEmpty(userInfor.getDiseaseName())) {
-                noteError += "Hãy nhập tên bệnh";
+                noteError += Constant.EMPTY_MESSAGE + Constant.DISEASE_NAME_NAME;
             } else if (checkEmpty(userInfor.getTel())) {
-                noteError += "Hãy nhập số điện thoại";
+                noteError += Constant.EMPTY_MESSAGE + Constant.TEL_NAME;
             } else if (checkEmpty(userInfor.getRoom())) {
-                noteError += "Hãy chọn phòng";
-            } else if (checkLength(userInfor.getFullname(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-                noteError += "Chú ý " + Constant.MIN_LENGTH + " < Độ dài Họ tên < " + Constant.MAX_LENGTH;
+                noteError += Constant.EMPTY_MESSAGE + Constant.ROOM_NAME_NAME;
+            } else if (checkLength(userInfor.getUserId(), Constant.MIN_LENGTH, Constant.ID_MAX_LENGTH)) {
+                noteError += Constant.NOTE + " <= " + Constant.MIN_LENGTH + " <= " + Constant.ID_MAX_LENGTH;
+            } else if (checkLength(userInfor.getFullName(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.FULL_NAME_NAME + " <= " + Constant.MAX_LENGTH;
             } else if (checkLength(userInfor.getUsername(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-                noteError += "Chú ý " + Constant.MIN_LENGTH + " < Độ dài Tên đăng nhập < " + Constant.MAX_LENGTH;
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.USERNAME_NAME + " <= " + Constant.MAX_LENGTH;
             } else if (checkLength(userInfor.getPassword(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-                noteError += "Chú ý " + Constant.MIN_LENGTH + " < Độ dài Mật khấu < " + Constant.MAX_LENGTH;
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.PASSWORD_NAME + " <= " + Constant.MAX_LENGTH;
             } else if (checkMinAge(userInfor.getAge(), Constant.MIN_AGE)) {
-                noteError += "Chú ý " + "Tuổi phải > " + Constant.MIN_AGE;
+                noteError += Constant.NOTE + Constant.AGE_NAME + " >= " + Constant.MIN_AGE;
             } else if (checkLength(userInfor.getDiseaseName(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-                noteError += "Chú ý " + Constant.MIN_LENGTH + " < Độ dài Tên bệnh < " + Constant.MAX_LENGTH;
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.DISEASE_NAME_NAME + " <= " + Constant.MAX_LENGTH;
+            } else if (checkLength(userInfor.getTel(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.TEL_NAME + " <= " + Constant.MAX_LENGTH;
+            } else if (userInfor.getRoomId() == -1) {
+                noteError += Constant.NOTE + Constant.ROOM_NOT_EXIST;
             }
         }
         return noteError;
@@ -297,5 +322,27 @@ public class Common {
 
     public static void showToast(Activity activity, String message) {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Set fragment for content view
+     *
+     * @param idFrameContent  id của frame cần set
+     * @param fragmentRequire fragment cần set vào layout
+     */
+    public static void setFragmentByManagerFragment(int idFrameContent, Fragment fragmentRequire, AppCompatActivity activity) {
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(idFrameContent, fragmentRequire);
+        fragmentTransaction.commit();
+    }
+
+    public static void backNormal(int position, View item, View viewChoose) {
+        if (position % 2 == 0) {
+            item.setBackgroundResource(R.drawable.view_item_custom_odd);
+        } else {
+            item.setBackgroundResource(R.drawable.view_item_custom_even);
+        }
+        viewChoose.setVisibility(View.INVISIBLE);
     }
 }

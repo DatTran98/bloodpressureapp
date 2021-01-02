@@ -108,7 +108,7 @@ public class EditUserActivity extends AppCompatActivity {
         String tel = textTel.getText().toString().trim().trim().trim();
         String disease = textDisease.getText().toString().trim();
         // Set gia trị cho user
-        userInfor.setFullname(fullName);
+        userInfor.setFullName(fullName);
         userInfor.setAge(age);
         userInfor.setDiseaseName(disease);
         userInfor.setTel(tel);

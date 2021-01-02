@@ -81,5 +81,6 @@
     <string name="room_item">Phòng bệnh</string>
     <string name="news_item">Bản tin</string>
     <string name="analyst_item">Phân tích</string>
+    <string name="nearest_check">Lần kiểm tra gần nhất</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

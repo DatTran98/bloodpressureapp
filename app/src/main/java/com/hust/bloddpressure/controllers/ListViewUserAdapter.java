@@ -60,11 +60,10 @@ public class ListViewUserAdapter extends BaseAdapter {
         }
         accView.findViewById(R.id.btn_choose).setVisibility(View.INVISIBLE);
         if (i % 2 == 0) {
-            accView.findViewById(R.id.user_item).setBackgroundResource(R.color.odd_item);
+            accView.findViewById(R.id.user_item).setBackgroundResource(R.drawable.view_item_custom_odd);
         } else {
-            accView.findViewById(R.id.user_item).setBackgroundResource(R.color.even);
+            accView.findViewById(R.id.user_item).setBackgroundResource(R.drawable.view_item_custom_even);
         }
-
         return accView;
     }
 }
