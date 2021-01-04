@@ -46,14 +46,12 @@ public class ListRoomActivity extends AppCompatActivity {
         if (rule == Constant.USER_RULE) {
             findViewById(R.id.empty).setVisibility(View.INVISIBLE);
             findViewById(R.id.btn_add_room).setVisibility(View.INVISIBLE);
-
         }
         listRoom = new ArrayList<>();
         // Get list room from DB
         GetListRoom getListRoom = new GetListRoom();
         getListRoom.execute();
     }
-
     /**
      * Set information for dialog
      *
@@ -70,7 +68,7 @@ public class ListRoomActivity extends AppCompatActivity {
                 int roomId = listRoom.get(position).getRoomId();
                 DeleteRoom deleteRoom = new DeleteRoom(roomId);
                 // Delete information in db
-                deleteRoom.execute(roomId);
+                deleteRoom.execute();
                 listRoom.remove(position);
                 listViewRoomAdapter.notifyDataSetChanged();
                 Toast.makeText(ListRoomActivity.this, Constant.DELETED_ROOM + name, Toast.LENGTH_SHORT).show();
@@ -79,6 +77,12 @@ public class ListRoomActivity extends AppCompatActivity {
         confirm.setNegativeButton(Constant.NO, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                View view = listViewRoom.getChildAt(position);
+                if (position % 2 == 0) {
+                    view.setBackgroundResource(R.drawable.view_item_custom_odd);
+                } else {
+                    view.setBackgroundResource(R.drawable.view_item_custom_even);
+                }
                 dialogInterface.cancel();
             }
         });
@@ -185,59 +189,20 @@ public class ListRoomActivity extends AppCompatActivity {
         listViewRoomAdapter = new ListViewRoomAdapter(listRoom);
         listViewRoom = findViewById(R.id.list_rooms);
         listViewRoom.setAdapter(listViewRoomAdapter);
-        listViewRoom.setSelection(listViewRoomAdapter.getCount()-1);
+        listViewRoom.setSelection(listViewRoomAdapter.getCount() - 1);
         listViewRoomAdapter.notifyDataSetChanged();
         if (rule == Constant.ADMIN_RULE) {
             listViewRoom.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(final AdapterView<?> adapterView, View view, final int position, long l) {
-                    if (listRoom.get(0).getRoomId() != 0) {
-                        for (int i = 0; i < listRoom.size() - 1; i++) {
-                            if (i != position) {
-                                int i1 = listViewRoom.getLastVisiblePosition();
-                                View viewChoose1, roomItem1;
-                                View view1 = listViewRoom.getChildAt(i);
-                                if (view1 == null) continue;
-                                roomItem1 = view1.findViewById(R.id.room_item);
-                                viewChoose1 = view1.findViewById(R.id.btn_choose);
-                                Common.backNormal(i, roomItem1, viewChoose1);
-                            }
-                        }
-                        View viewChoose, userItem;
-                        userItem = view.findViewById(R.id.room_item);
-                        viewChoose = view.findViewById(R.id.btn_choose);
-                        Button btnCancel = view.findViewById(R.id.btn_cancel);
-                        Button btnDel = view.findViewById(R.id.btn_delete);
-                        userItem.setBackgroundResource(R.color.choose_item);
-                        int visibleStatus = viewChoose.getVisibility();
-                        if (visibleStatus == View.INVISIBLE) {
-                            viewChoose.setVisibility(View.VISIBLE);
-                        } else {
-                            viewChoose.setVisibility(View.INVISIBLE);
-                        }
-                        btnCancel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                View view1 = listViewRoom.getChildAt(position);
-                                View viewChoose1, userItem1;
-                                userItem1 = view1.findViewById(R.id.room_item);
-                                viewChoose1 = view1.findViewById(R.id.btn_choose);
-                                Common.backNormal(position, userItem1, viewChoose1);
-                            }
-                        });
-                        btnDel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                //Create interface dialog
-                                AlertDialog.Builder confirm = new AlertDialog.Builder(adapterView.getContext());
-                                // Set information for dialog
-                                setUpDialog(confirm, position);
-                                //Create dialog
-                                AlertDialog dialogConfirm = confirm.create();
-                                dialogConfirm.show();
-                            }
-                        });
-                    }
+                    view.setBackgroundResource(R.drawable.view_item_custom_warring);
+                    //Create interface dialog
+                    AlertDialog.Builder confirm = new AlertDialog.Builder(adapterView.getContext());
+                    // Set information for dialog
+                    setUpDialog(confirm, position);
+                    //Create dialog
+                    AlertDialog dialogConfirm = confirm.create();
+                    dialogConfirm.show();
                     return true;
                 }
             });

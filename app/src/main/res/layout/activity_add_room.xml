@@ -27,7 +27,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@id/img_view"
-            android:background="@drawable/btn_custom"
+            android:background="@drawable/title_custom"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="@string/title_add_room"

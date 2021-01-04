@@ -29,7 +29,7 @@
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@id/img_view"
             android:layout_toRightOf="@id/img_view"
-            android:background="@drawable/btn_custom"
+            android:background="@drawable/title_custom"
             android:gravity="center"
             android:text="@string/title_activity_news"
             android:textSize="25sp"

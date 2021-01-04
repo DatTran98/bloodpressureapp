@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
+    <item android:drawable="@drawable/user_item_custom" android:state_pressed="false" android:state_selected="false" />
+
+    <item android:drawable="@drawable/item_state_press" android:state_pressed="true" />
+
+    <item android:drawable="@drawable/view_item_custom_warring" android:state_pressed="true" android:state_selected="true" tools:ignore="StateListReachable" />
+
+</selector>

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -15,7 +14,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.entities.InforStaticClass;
-import com.hust.bloddpressure.util.Common;
 import com.hust.bloddpressure.util.Constant;
 
 public class DetailUserActivity extends AppCompatActivity {
@@ -50,8 +48,11 @@ public class DetailUserActivity extends AppCompatActivity {
         TabBasicDetailUserFragment tabBasicDetailUserFragment = new TabBasicDetailUserFragment();
         // Gửi bundle chứ id này qua fragment( không cần thiết vi đã set view)
         tabBasicDetailUserFragment.setArguments(bundle1);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.content_detail, tabBasicDetailUserFragment);
         // Set fragment cho view, frame cần hiển thị fragment
-        setFragmentByManagerFragment(R.id.content_detail, tabBasicDetailUserFragment);
+        fragmentTransaction.commit();
         // Set mode tab
         tabMode = Constant.MODE_BASIC;
         // Set disible button khi là user không có quyên edit
@@ -104,11 +105,6 @@ public class DetailUserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        // truyền data khi vào màn hình: rule user đang đăng nhập, thông tin bệnh nhân
-        // tạo mới tab thông tin bệnh nhân
-        // Thực hiện check quyền user và manager
-        // tạo mới tab button riêng cho quyền
-
     }
 
     private Bundle getIdUserMain() {
@@ -126,6 +122,7 @@ public class DetailUserActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(idFrameContent, fragmentRequire);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

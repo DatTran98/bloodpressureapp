@@ -12,20 +12,9 @@ package com.hust.bloddpressure.util;
  */
 public class Constant {
 
-    // Biến quyền ứng dụng
+    // var static rule
     public static final int ADMIN_RULE = 0;
     public static final int USER_RULE = 1;
-    // Biến static cho DB
-//	public static final String JDBC_SQL = DatabaseProperties.getValueByKey("JDBC_SQL");
-//	public static final String USER_SQL = DatabaseProperties.getValueByKey("USER_SQL");
-//	public static final String PASS_SQL = DatabaseProperties.getValueByKey("PASS_SQL");
-//	public static final String URL_SQL = DatabaseProperties.getValueByKey("URL_SQL");
-    public static final String JDBC_SQL = "com.mysql.jdbc.Driver";
-    public static final String USER_SQL = "root";
-    public static final String PASS_SQL = "HH1a3110@";
-    public static final String URL_SQL = "jdbc:mysql://42.117.189.29:3306/DATN";
-    public static final String PROPERTIES_DATABASE_PATH = "classes/database_ja.properties";
-    public static final String CONFIG_PATH = "config.properties";
 
     // Biến static sử dụng cho common
     public static final String ALPHA = "abcdefghijklmnopqrstuvwxyz"; // a-z
@@ -47,16 +36,15 @@ public class Constant {
     public static final int INT_VALUE_DEFAULT = 0;
     public static final float TEXT_SIZE_MSG = 25;
     public static final String SELECT_ROOM = "Chọn phòng";
-    public static final String LABEL_CHART_MAX = "Áp huyết cao";
+    public static final String LABEL_CHART_MAX = "Huyết áp tâm thu";
+    public static final String LABEL_CHART_MIN = "Huyết áp tâm trương";
     public static final int MODE_BASIC = 0;
     public static final int MODE_HISTORY = 1;
-
-    public static final String LABEL_CHART_MIN = "Áp huyết thấp";
-
 
     // ACTION
     public static final String ACTION = "action";
     public static final String ACTION_ADD = "add";
+    public static final String ACTION_EDIT = "edit";
     public static final String ACTION_DELETE = "delete";
     public static final String ACTION_SORT = "sort";
     public static final String ACTION_SEARCH = "search";
@@ -72,6 +60,11 @@ public class Constant {
     public static final String URL_LIST_USER = URL_LOCAL + "user_api.php";
     public static final String URL_LOGIN = URL_LOCAL + "login_api.php";
     public static final String URL_REGISTER_USER = URL_LOCAL + "register_api.php";
+    public static final String URL_EDIT_USER =  URL_LOCAL + "register_api.php";
+    public static final String URL_DELETE_USER = URL_LOCAL + "delete_user_api.php";
+
+    public static final String URL_LIST_TYPE_PREDICT =  URL_LOCAL + "list_type_predict_api.php";
+
 //    public static final String URL_LIST_ROOM = URL + "listroom_api.php";
 //    public static final String URL_DELETE_ROOM = URL + "deleteroom_api.php";
 //    public static final String URL_LIST_NEWS = URL + "new_api.php";
@@ -91,7 +84,7 @@ public class Constant {
     public static final String CONFIRM_USER = "Bạn có chắc chắn xóa người dùng này không?";
 
     public static final String DETAIL = "Chi tiết";
-    public static final String MESSAGE_WARING_MAX = "Lần kiểm tra này có nguy cơ cao huyết áp\n Huyết áp tâp thu lớn hơn hoặc bằng 140 mmHg hoặc\n Huyết áp tâm trương >=90\n Hãy liên hệ bác sĩ";
+    public static final String MESSAGE_WARING_MAX = "Lần kiểm tra này có nguy cơ cao huyết áp\n Huyết áp tâp thu lớn hơn hoặc bằng 140 mmHg hoặc\n Huyết áp tâm trương lớn hơn hoặc bằng 90 mmHg\n Hãy liên hệ bác sĩ";
     public static final String MESSAGE_WARING_MIN = "Lần kiểm tra này có nguy cơ huyết áp thâp\n Huyết áp tâp thu nhỏ hơn hoặc bằng 100 mmHg\n Hãy liên hệ bác sĩ";
     public static final String MESSAGE_NORMAL = "Chỉ số huyết áp bình thường \n Hãy kiểm tra lại thường xuyên";
     public static final String MESSAGE_LOGIN_FAILED = "Sai tên đăng nhập hoặc mật khẩu";
@@ -103,6 +96,8 @@ public class Constant {
     public static final String MESSAGE_ADD_FAIL = "Thêm thất bại.";
     public static final String CHOOSE_ROOM = "Chọn phòng";
     public static final String ROOM_CHOOSE_MESS = "Hãy chọn phòng";
+    public static final String MESSAGE_EDIT_SUCCESS = "Chỉnh sửa thành công";
+    public static final String MESSAGE_EDIT_FAIL = "Chỉnh sửa thất bại";
 
     public static final String EMPTY_MESSAGE = " Hãy nhập ";
     public static final String PASSWORD_NAME = "mật khẩu";
@@ -133,6 +128,7 @@ public class Constant {
     public static final String OBJECT_JSON_LIST_NEWS = "list_news";
     public static final String OBJECT_JSON_PRESSURE = "pressure";
     public static final String OBJECT_USER = "user";
+    public static final String OBJECT_JSON_LIST_PREDICT = "predict";
     // NAME FOR ENTITY OBJECT ATTRIBUTED
     public static final String ROOM_ID = "room_id";
     public static final String ROOM_NAME = "room_name";
@@ -153,7 +149,20 @@ public class Constant {
     public static final String TEL = "tel";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
+    public static final String PREDICT_TYPE = "predict_type";
 
 
-
+    public static final String PREDICT_NORMAL = "Các kết quả đo cho kết luận huyết áp bình thường \nLần kiểm tra gần nhất";
+    public static final String PREDICT_MAX = "Dự đoán bạn có nguy cơ cao huyết áp qua các lần kiểm tra \nLần kiểm tra gần nhất";
+    public static final String PREDICT_MIN = "Dự đoán bạn có nguy cơ huyết áp thấp qua các lần kiểm tra\n Lần kiểm tra gần nhất";
+    public static final int VALUE_NORMAL_PREDICT = 0;
+    public static final int VALUE_MAX_PREDICT = 1;
+    public static final int VALUE_MIN_PREDICT = 2;
+    public static final String PREDICT_CONTENT = "Phỏng đoán:\n Đỏ - Cao huyết áp\n Vàng - Huyết áp thấp\n Xanh - Bình thuòng";
+    public static final String PREDICT_MAX_NAME = "Phỏng đoán cao huyết áp";
+    public static final String PREDICT_MIN_NAME = "Phỏng đoán huyết áp thấp";
+    public static final String PREDICT_NORMAL_NAME = "Bình thường";
+    public static final String PREDICT_NAME = "Phỏng đoán tình trạng";
+    public static final String EXIST = "Bạn muốn thoát khỏi ứng dụng";
+    public static final String PRESS_BACK_AGAIN = "Ấn back 1 lần nữa để thoát";
 }

@@ -3,6 +3,7 @@ package com.hust.bloddpressure.controllers;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +64,8 @@ public class TabHistoryPressureFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         txtMessage = getActivity().findViewById(R.id.message);
+        ImageView img = getActivity().findViewById(R.id.img_no_pressure);
+        img.setVisibility(View.GONE);
         Bundle bundle = getArguments();
         if (bundle != null) {
             // GET information from db
@@ -135,7 +139,7 @@ public class TabHistoryPressureFragment extends Fragment {
                 txtMessage.setText(R.string.history_detail);
                 listViewPressureAdapter = new ListViewPressureAdapter(listPressure);
                 listViewPressure.setAdapter(listViewPressureAdapter);
-                listViewPressure.setSelection(listViewPressureAdapter.getCount()-1);
+                listViewPressure.setSelection(listViewPressureAdapter.getCount() - 1);
                 listViewPressureAdapter.notifyDataSetChanged();
                 listViewPressure.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -177,6 +181,8 @@ public class TabHistoryPressureFragment extends Fragment {
     private void setMessageNoData() {
         txtMessage.setTextColor(ContextCompat.getColor(getContext(), R.color.no_data_color));
         txtMessage.setText(R.string.no_data);
-        getActivity().findViewById(R.id.content_detail).setVisibility(View.INVISIBLE);
+        ImageView img = getActivity().findViewById(R.id.img_no_pressure);
+        img.setVisibility(View.VISIBLE);
+        img.setImageResource(R.mipmap.blood_pressure_icon_vector);
     }
 }

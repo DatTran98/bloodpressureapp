@@ -40,24 +40,24 @@ public class BaseImpl extends AsyncTask implements BaseInter {
 	 */
 	@Override
 	public void openConnection() throws SQLException, ClassNotFoundException {
-		try {
+//		try {
 			// driver sử dụng cho cơ sở dữ liệu
-			String jdbc = Constant.JDBC_SQL;
-			// tên đăng nhập vào DB
-			String user = Constant.USER_SQL;
-			// mật khẩu đăng nhập vào DB
-			String pass = Constant.PASS_SQL;
-			// url của DB
-			String URL = Constant.URL_SQL;
-			Class.forName(jdbc); // nạp driver
-			conn = DriverManager.getConnection(URL, user, pass); // kết nối tới database
-
-		} catch (ClassNotFoundException | SQLException e) {
+//			String jdbc = Constant.JDBC_SQL;
+//			// tên đăng nhập vào DB
+//			String user = Constant.USER_SQL;
+//			// mật khẩu đăng nhập vào DB
+//			String pass = Constant.PASS_SQL;
+//			// url của DB
+//			String URL = Constant.URL_SQL;
+//			Class.forName(jdbc); // nạp driver
+//			conn = DriverManager.getConnection(URL, user, pass); // kết nối tới database
+//
+//		} catch (ClassNotFoundException | SQLException e) {
 			// Ghi log
-			Logger.getLogger(BaseInter.class.getName()).log(Level.SEVERE, null, e);// ghi log
-			// Ném một ngoại lệ ra ngoài để hàm gọi tới xử lý
-			throw e;
-		}
+//			Logger.getLogger(BaseInter.class.getName()).log(Level.SEVERE, null, e);// ghi log
+//			// Ném một ngoại lệ ra ngoài để hàm gọi tới xử lý
+//			throw e;
+//		}
 	}
 
 	/**

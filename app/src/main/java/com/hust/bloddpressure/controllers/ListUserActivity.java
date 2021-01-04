@@ -8,10 +8,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,11 +23,14 @@ import com.hust.bloddpressure.model.entities.UserInfor;
 import com.hust.bloddpressure.util.Common;
 import com.hust.bloddpressure.util.Constant;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListUserActivity extends AppCompatActivity {
     ArrayList<UserInfor> listUsers;
@@ -110,17 +115,7 @@ public class ListUserActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     // set status default when not selected
-                    int start = listViewUsers.getFirstVisiblePosition();
-                    int end = listViewUsers.getLastVisiblePosition();
-                    for (int i = start; i < end; i++) {
-                        if (i != position) {
-                            View viewChoose1, userItem1;
-                            View view1 = listViewUsers.getChildAt(i);
-                            userItem1 = view1.findViewById(R.id.user_item);
-                            viewChoose1 = view1.findViewById(R.id.btn_choose);
-                            backNormal(i, userItem1, viewChoose1);
-                        }
-                    }
+
                     // Get user information that just have selected
                     UserInfor userInfor = (UserInfor) listViewUserAdapter.getItem(position);
                     // Get id of user and send to detail screen
@@ -138,48 +133,14 @@ public class ListUserActivity extends AppCompatActivity {
                 @Override
                 public boolean onItemLongClick(final AdapterView<?> adapterView, View view, final int position, long l) {
                     if (!listUsers.get(0).getUserId().isEmpty()) {
-                        if (selectedPosition != position) {
-                            View viewChoose1, userItem1;
-                            View view1 = listViewUsers.getChildAt(selectedPosition);
-                            userItem1 = view1.findViewById(R.id.user_item);
-                            viewChoose1 = view1.findViewById(R.id.btn_choose);
-                            Common.backNormal(selectedPosition, userItem1, viewChoose1);
-                            selectedPosition = position;
-                        }
-                        View viewChoose, userItem;
-                        userItem = view.findViewById(R.id.user_item);
-                        viewChoose = view.findViewById(R.id.btn_choose);
-                        Button btnCancel = view.findViewById(R.id.btn_cancel);
-                        Button btnDel = view.findViewById(R.id.btn_delete);
-                        userItem.setBackgroundResource(R.color.choose_item);
-                        int visibleStatus = viewChoose.getVisibility();
-                        if (visibleStatus == View.INVISIBLE) {
-                            viewChoose.setVisibility(View.VISIBLE);
-                        } else {
-                            viewChoose.setVisibility(View.INVISIBLE);
-                        }
-                        btnCancel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                View view1 = listViewUsers.getChildAt(position);
-                                View viewChoose1, userItem1;
-                                userItem1 = view1.findViewById(R.id.user_item);
-                                viewChoose1 = view1.findViewById(R.id.btn_choose);
-                                Common.backNormal(position, userItem1, viewChoose1);
-                            }
-                        });
-                        btnDel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                //Create interface dialog
-                                AlertDialog.Builder confirm = new AlertDialog.Builder(adapterView.getContext());
-                                // Set information for dialog
-                                setUpDialog(confirm, position);
-                                //Create dialog
-                                AlertDialog dialogConfirm = confirm.create();
-                                dialogConfirm.show();
-                            }
-                        });
+                        view.setBackgroundResource(R.drawable.view_item_custom_warring);
+                        //Create interface dialog
+                        AlertDialog.Builder confirm = new AlertDialog.Builder(adapterView.getContext());
+                        // Set information for dialog
+                        setUpDialog(confirm, position);
+                        //Create dialog
+                        AlertDialog dialogConfirm = confirm.create();
+                        dialogConfirm.show();
                     }
                     return true;
                 }
@@ -199,43 +160,73 @@ public class ListUserActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     String name = listUsers.get(position).getFullName();
-                    listUsers.remove(position);
+                    String userId = listUsers.get(position).getUserId();
                     // Do delete in DB
+                    DeleteUser deleteUser = new DeleteUser(userId);
+                    deleteUser.execute();
+                    listUsers.remove(position);
                     listViewUserAdapter.notifyDataSetChanged();
-                    View view2 = listViewUsers.getChildAt(position);
-                    View viewChoose, userItem;
-                    userItem = view2.findViewById(R.id.user_item);
-                    viewChoose = view2.findViewById(R.id.btn_choose);
-                    backNormal(position, userItem, viewChoose);
                     Toast.makeText(ListUserActivity.this, Constant.DELETED_USER + name, Toast.LENGTH_SHORT).show();
                 }
             });
             confirm.setNegativeButton(Constant.NO, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    View viewChoose, userItem;
-                    View view3 = listViewUsers.getChildAt(position);
-                    userItem = view3.findViewById(R.id.user_item);
-                    viewChoose = view3.findViewById(R.id.btn_choose);
-                    backNormal(position, userItem, viewChoose);
+                    View view = listViewUsers.getChildAt(position);
+                    if (position % 2 == 0) {
+                        view.setBackgroundResource(R.drawable.view_item_custom_odd);
+                    } else {
+                        view.setBackgroundResource(R.drawable.view_item_custom_even);
+                    }
                     dialogInterface.cancel();
                 }
             });
         }
-        /**
-         * Set status default when not selected
-         *
-         * @param position   position to set
-         * @param item       view need set with position
-         * @param viewChoose view need set with position
-         */
-        private void backNormal(int position, View item, View viewChoose) {
-            if (position % 2 == 0) {
-                item.setBackgroundResource(R.drawable.view_item_custom_odd);
-            } else {
-                item.setBackgroundResource(R.drawable.view_item_custom_even);
+    }
+    /**
+     * Back ground to delete room information
+     */
+    class DeleteUser extends AsyncTask {
+        private String userId;
+
+        public DeleteUser(String userId) {
+            this.userId = userId;
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            // Create param list to send to server
+            List<NameValuePair> args = new ArrayList<NameValuePair>();
+            args.add(new BasicNameValuePair(Constant.USER_ID, userId));
+            MyService sh = new MyService();
+            // Get JSON object
+            String json = sh.callService(Constant.URL_DELETE_USER, MyService.POST, args);
+            if (json != null) {
+                try {
+                    JSONObject jsonObject = new JSONObject(json);
+                    int success = jsonObject.getInt(Constant.JSON_SUCCESS);
+                    if (success == 1) {
+                    } else {
+                    }
+                } catch (JSONException e) {
+                    Log.d(Constant.ERROR_TAG, e.toString());
+                }
             }
-            viewChoose.setVisibility(View.INVISIBLE);
+            return null;
+        }
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(ListUserActivity.this);
+            pDialog.setMessage(Constant.MSG_DELETING);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            if (pDialog.isShowing())
+                pDialog.dismiss();
         }
     }
 }

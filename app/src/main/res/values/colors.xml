@@ -8,6 +8,9 @@
     <color name="choose_item">#ffcccc</color>
     <color name="white">#FAFAFA</color>
     <color name="odd_item">#80DEEA</color>
+    <color name="waring_max">#FF5722</color>
+    <color name="waring_min">#FFC107</color>
+    <color name="normal">#03A9F4</color>
     <color name="even">#B2EBF2</color>
     <color name="select_nav">#B2EBF2</color>
     <color name="back_ground">#dff9fb</color>

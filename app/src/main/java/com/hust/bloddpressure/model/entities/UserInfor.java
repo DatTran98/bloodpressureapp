@@ -20,6 +20,7 @@ public class UserInfor implements Serializable {
     private int rule;
     private int pressureMin;
     private int pressureMax;
+    private int predictType;
     private String fullName;
     private String tel;
     private String room;
@@ -30,7 +31,13 @@ public class UserInfor implements Serializable {
 
     public UserInfor() {
     }
+    public int getPredictType() {
+        return predictType;
+    }
 
+    public void setPredictType(int predictType) {
+        this.predictType = predictType;
+    }
     public int getPressureMin() {
         return pressureMin;
     }
@@ -63,13 +70,14 @@ public class UserInfor implements Serializable {
         this.diseaseName = diseaseName;
     }
 
-    public UserInfor(String userId, int roomId, int age, int rule, int pressureMin, int pressureMax, String fullName, String tel, String room, String diseaseName, String username) {
+    public UserInfor(String userId, int roomId, int age, int rule, int pressureMin, int pressureMax,int predictType, String fullName, String tel, String room, String diseaseName, String username) {
         this.userId = userId;
         this.roomId = roomId;
         this.age = age;
         this.rule = rule;
         this.pressureMin = pressureMin;
         this.pressureMax = pressureMax;
+        this.predictType=predictType;
         this.fullName = fullName;
         this.tel = tel;
         this.room = room;

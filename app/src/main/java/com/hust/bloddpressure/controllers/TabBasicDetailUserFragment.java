@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hust.bloddpressure.R;
@@ -36,7 +37,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class TabBasicDetailUserFragment extends Fragment {
-    TextView textViewFullName, textViewUserId, textViewAge, textViewUserName, textViewTel, textViewDisease, textViewRoom, textViewPressureMax, textViewPressureMin;
+    TextView textViewFullName, textViewUserId, textViewAge, textViewUserName, textViewTel, textViewDisease, textViewRoom, textViewPressureMax, textViewPressureMin, textViewPredict;
     ArrayList<UserInfor> listUserInfor;
     private int rule;
     ProgressDialog pDialog;
@@ -58,8 +59,8 @@ public class TabBasicDetailUserFragment extends Fragment {
             String userId;
             userId = bundle.getString(Constant.USER_ID);
             listUserInfor = new ArrayList<>();
-            GetDetailtUser getListUser = new GetDetailtUser(userId);
-            getListUser.execute();
+            GetDetailUser getDetailUser = new GetDetailUser(userId);
+            getDetailUser.execute();
         } else {
             setMessageNoData();
         }
@@ -67,6 +68,9 @@ public class TabBasicDetailUserFragment extends Fragment {
 
     private void findViewById(View view) {
         // Get view layout by id
+        ImageView img = getActivity().findViewById(R.id.img_no_pressure);
+        img.setVisibility(View.GONE);
+        textViewPredict = view.findViewById(R.id.predict_type);
         txtMessage = getActivity().findViewById(R.id.message);
         textViewUserId = view.findViewById(R.id.user_id);
         textViewFullName = view.findViewById(R.id.full_name);
@@ -79,10 +83,10 @@ public class TabBasicDetailUserFragment extends Fragment {
         textViewPressureMin = view.findViewById(R.id.min_pressure);
     }
 
-    class GetDetailtUser extends AsyncTask {
+    class GetDetailUser extends AsyncTask {
         private String userId;
 
-        public GetDetailtUser(String userId) {
+        public GetDetailUser(String userId) {
             this.userId = userId;
         }
 
@@ -100,7 +104,13 @@ public class TabBasicDetailUserFragment extends Fragment {
                         JSONArray pressure = jsonObj.getJSONArray(Constant.OBJECT_JSON_PRESSURE);
                         for (int i = 0; i < jsonArrayUser.length(); i++) {
                             JSONObject obj = (JSONObject) jsonArrayUser.get(i);
-                            JSONObject obj1 = (JSONObject) pressure.get(i);
+                            int pressureMax = Constant.INT_VALUE_DEFAULT;
+                            int pressureMin = Constant.INT_VALUE_DEFAULT;
+                            if (pressure.length() != 0) {
+                                JSONObject obj1 = (JSONObject) pressure.get(i);
+                                pressureMax = obj1.getInt(Constant.PRESSURE_MAX);
+                                pressureMin = obj1.getInt(Constant.PRESSURE_MIN);
+                            }
                             int roomId = obj.getInt(Constant.ROOM_ID);
                             int age = obj.getInt(Constant.AGE);
                             int rule = obj.getInt(Constant.RULE);
@@ -109,9 +119,9 @@ public class TabBasicDetailUserFragment extends Fragment {
                             String room = obj.getString(Constant.ROOM_NAME);
                             String diseaseName = obj.getString(Constant.DISEASE_NAME);
                             String username = obj.getString(Constant.USERNAME);
-                            int pressureMax = obj1.getInt(Constant.PRESSURE_MAX);
-                            int pressureMin = obj1.getInt(Constant.PRESSURE_MIN);
-                            UserInfor userInfor = new UserInfor(userId, roomId, age, rule, pressureMin, pressureMax, fullName, tel, room, diseaseName, username);
+                            int predictType = obj.getInt(Constant.PREDICT_TYPE);
+
+                            UserInfor userInfor = new UserInfor(userId, roomId, age, rule, pressureMin, pressureMax, predictType, fullName, tel, room, diseaseName, username);
                             listUserInfor.add(userInfor);
                         }
                     }
@@ -155,6 +165,14 @@ public class TabBasicDetailUserFragment extends Fragment {
                 textViewRoom.setText(userInfor.getRoom());
                 textViewPressureMax.setText(userInfor.getPressureMax() + " mmHg");
                 textViewPressureMin.setText(userInfor.getPressureMin() + " mmHg");
+                if (userInfor.getPredictType() == Constant.VALUE_NORMAL_PREDICT) {
+                    textViewPredict.setText(Constant.PREDICT_NORMAL);
+                } else if (userInfor.getPredictType() == Constant.VALUE_MAX_PREDICT) {
+                    textViewPredict.setText(Constant.PREDICT_MAX);
+                } else {
+                    textViewPredict.setText(Constant.PREDICT_MIN);
+                }
+
             } else {
                 setMessageNoData();
             }
@@ -164,6 +182,8 @@ public class TabBasicDetailUserFragment extends Fragment {
     private void setMessageNoData() {
         txtMessage.setTextColor(ContextCompat.getColor(getContext(), R.color.no_data_color));
         txtMessage.setText(R.string.no_data);
-        getActivity().findViewById(R.id.content_detail).setVisibility(View.INVISIBLE);
+        ImageView img = getActivity().findViewById(R.id.img_no_pressure);
+        img.setVisibility(View.VISIBLE);
+        img.setImageResource(R.mipmap.about_icon);
     }
 }

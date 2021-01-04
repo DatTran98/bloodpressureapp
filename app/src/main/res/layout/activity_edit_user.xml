@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#26a69a">
+        android:background="@drawable/title_custom">
 
         <ImageView
             android:id="@+id/img_view"
@@ -20,19 +20,19 @@
             android:contentDescription="@string/todo" />
 
         <TextView
-            android:id="@+id/title_edit"
+            android:id="@+id/title_detail"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/img_view"
-            android:background="#26a69a"
+            android:layout_toEndOf="@id/img_view"
+            android:background="@drawable/title_custom"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="@string/edit_user"
             android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_toEndOf="@id/img_view" />
+            android:layout_toRightOf="@id/img_view" />
     </RelativeLayout>
+
 
     <TextView
 
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:fontFamily="bold"
+        android:layout_gravity="center"
         android:text=""
         android:textColor="@android:color/holo_red_light"
         android:layout_marginStart="20dp" />

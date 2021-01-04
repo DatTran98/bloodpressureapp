@@ -46,7 +46,7 @@
             android:id="@+id/btn_basic_detail"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="#55efc4"
+            android:background="@drawable/btn_custom"
             android:fontFamily="@font/roboto_regular"
             android:padding="10dp"
             android:text="@string/basic_detail" />
@@ -69,7 +69,7 @@
             android:layout_marginLeft="80dp"
             android:layout_toEndOf="@+id/btn_basic_detail"
             android:layout_toRightOf="@+id/btn_basic_detail"
-            android:background="#55efc4"
+            android:background="@drawable/btn_custom"
             android:fontFamily="@font/roboto_regular"
             android:padding="10dp"
             android:text="@string/history_result" />
@@ -98,7 +98,14 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="@color/white" />
+        android:background="@drawable/list_custom" >
+        <ImageView
+            android:id="@+id/img_no_pressure"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+    </FrameLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
