@@ -10,14 +10,15 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -49,8 +50,10 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.TreeMap;
 
 public class AnalysisActivity extends AppCompatActivity implements OnChartValueSelectedListener {
     private int rule;
@@ -60,6 +63,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     PieChart mChart, pieAge1, pieAge2, pieAge3;
     ToggleButton btn_toggle;
     ArrayList<Predict> listMax, listMin, listNormal;
+    Map<Integer, Integer> mapMax, mapMin, mapNormal;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -72,6 +76,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             setContentView(R.layout.activity_analysis_manager);
             // find view by id
             findViewByIdManager();
+            // init chart default
             // set listener for button
             setListenButton();
             listPredict = new ArrayList<>();
@@ -103,27 +108,156 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
+                    analystDataByAge();
                     setPieChartAgeMax();
                     setPieChartAgeMin();
                     setPieChartAgeNormal();
-                    Toast.makeText(AnalysisActivity.this, "Check", Toast.LENGTH_SHORT).show();
+                    pieAge1.setVisibility(View.VISIBLE);
+                    pieAge2.setVisibility(View.VISIBLE);
+                    pieAge3.setVisibility(View.VISIBLE);
                 } else {
-                    Toast.makeText(AnalysisActivity.this, "None CHecks", Toast.LENGTH_SHORT).show();
+                    pieAge1.setVisibility(View.GONE);
+                    pieAge2.setVisibility(View.GONE);
+                    pieAge3.setVisibility(View.GONE);
                 }
             }
         });
     }
+
+    /**
+     * Get data for pie chart age
+     */
+    private void analystDataByAge() {
+        mapMax = new TreeMap<>();
+        mapMin = new TreeMap<>();
+        mapNormal = new TreeMap<>();
+        for (Predict item : listMax) {
+            addElement(mapMax, item.getAge());
+        }
+        for (Predict item : listMin) {
+            addElement(mapMin, item.getAge());
+        }
+        for (Predict item : listNormal) {
+            addElement(mapNormal, item.getAge());
+        }
+    }
+
+    /**
+     * Add element for map to count value the same
+     *
+     * @param map
+     * @param age
+     */
+    private void addElement(Map<Integer, Integer> map, int age) {
+        if (map.containsKey(age)) {
+            int count = map.get(age) + 1;
+            map.put(age, count);
+        } else {
+            map.put(age, 1);
+        }
+    }
+
     /**
      * init view for pie chart analyst by max pressure
      */
     private void setPieChartAgeNormal() {
+        pieAge3.setRotationEnabled(true);
+        pieAge3.setHoleRadius(35f);
+        pieAge3.setTransparentCircleAlpha(0);
+        pieAge3.setCenterText(Constant.PREDICT_NORMAL_NAME);
+        pieAge3.setCenterTextSize(8);
+        pieAge3.setOnChartValueSelectedListener(this);
+        Description description = new Description();
+        description.setTextColor(R.color.no_data_color);
+        if (listNormal.size() > 0) {
+            description.setText(Constant.ANALYST_NORMAL);
+        } else {
+            description.setText(Constant.MESAGE_NO_DATA);
+        }
+        pieAge3.setDescription(description);
+
+        ArrayList<PieEntry> yEntries = new ArrayList<>();
+        ArrayList<String> xEntries = new ArrayList<>();
+        int index = 0;
+        for (Integer key : mapNormal.keySet()) {
+            yEntries.add(new PieEntry(mapNormal.get(key), index));
+            xEntries.add(key + Constant.EMPTY);
+        }
+        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_NORMAL_NAME);
+        pieDataSet.setSliceSpace(2);
+        pieDataSet.setValueTextSize(12);
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int i = 0; i < listNormal.size(); i++) {
+            Random random = new Random();
+            int red = random.nextInt(255);
+            int green = random.nextInt(255);
+            int blue = random.nextInt(1);
+            red = (red + 255) / 2;
+            green = (green + 255) / 2;
+            blue = (blue + 255) / 2;
+            colors.add(Color.rgb(red, green, blue));
+        }
+        pieDataSet.setColors(colors);
+
+        Legend legend = pieAge3.getLegend();
+        legend.setForm(Legend.LegendForm.CIRCLE);
+
+        PieData pieData = new PieData(pieDataSet);
+        pieAge3.setData(pieData);
+        pieAge3.invalidate();
 
     }
+
     /**
      * init view for pie chart analyst by min pressure
      */
     private void setPieChartAgeMin() {
+        pieAge2.setRotationEnabled(true);
+        pieAge2.setHoleRadius(35f);
+        pieAge2.setTransparentCircleAlpha(0);
+        pieAge2.setCenterText(Constant.PREDICT_MIN_NAME);
+        pieAge2.setCenterTextSize(8);
+        pieAge2.setOnChartValueSelectedListener(this);
+        Description description = new Description();
+        description.setTextColor(R.color.no_data_color);
+        if (listMin.size() > 0) {
+            description.setText(Constant.ANALYST_MIN);
+        } else {
+            description.setText(Constant.MESAGE_NO_DATA);
+        }
+        pieAge2.setDescription(description);
 
+        ArrayList<PieEntry> yEntries = new ArrayList<>();
+        ArrayList<String> xEntries = new ArrayList<>();
+        int index = 0;
+        for (Integer key : mapMin.keySet()) {
+            yEntries.add(new PieEntry(mapMin.get(key), index));
+            xEntries.add(key + Constant.EMPTY);
+        }
+        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_MIN_NAME);
+        pieDataSet.setSliceSpace(2);
+        pieDataSet.setValueTextSize(12);
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int i = 0; i < listMin.size(); i++) {
+            Random random = new Random();
+            int red = random.nextInt(255);
+            int green = random.nextInt(255);
+            int blue = random.nextInt(1);
+            red = (red + 255) / 2;
+            green = (green + 255) / 2;
+            blue = (blue + 255) / 2;
+            colors.add(Color.rgb(red, green, blue));
+        }
+        pieDataSet.setColors(colors);
+
+        Legend legend = pieAge2.getLegend();
+        legend.setForm(Legend.LegendForm.CIRCLE);
+
+        PieData pieData = new PieData(pieDataSet);
+        pieAge2.setData(pieData);
+        pieAge2.invalidate();
     }
 
     /**
@@ -133,25 +267,47 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         pieAge1.setRotationEnabled(true);
         pieAge1.setHoleRadius(35f);
         pieAge1.setTransparentCircleAlpha(0);
-        pieAge1.setCenterText(Constant.PREDICT_NAME);
-        pieAge1.setCenterTextSize(10);
+        pieAge1.setCenterText(Constant.PREDICT_MAX_NAME);
+        pieAge1.setCenterTextSize(8);
         pieAge1.setOnChartValueSelectedListener(this);
-        ArrayList<Integer> listCount = new ArrayList<>();
-//        for (Predict item : listPredict) {
-//            if (item.getTypePredict()=Co)
-//
-//        }
-//        for (int i = 0; i < listPredict.size(); i++) {
-//            int count = 0;
-//            for (int j = i + 1; j < listPredict.size(); j++) {
-//                if (listPredict.get(i) == listPredict.get(j))
-//                    count++;
-//            }
-//            listCount.add(count);
-//
-//        }
-        TextView t = findViewById(R.id.empty);
-        t.setText(listMax.size() +" " +listMin.size()+" " + listNormal.size());
+        Description description = new Description();
+        if (listMax.size() > 0) {
+            description.setText(Constant.ANALYST_MAX);
+        } else {
+            description.setText(Constant.MESAGE_NO_DATA);
+        }
+        pieAge1.setDescription(description);
+
+        ArrayList<PieEntry> yEntries = new ArrayList<>();
+        ArrayList<String> xEntries = new ArrayList<>();
+        int index = 0;
+        for (Integer key : mapMax.keySet()) {
+            yEntries.add(new PieEntry(mapMax.get(key), index));
+            xEntries.add(key + Constant.EMPTY);
+        }
+        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_MAX_NAME);
+        pieDataSet.setSliceSpace(2);
+        pieDataSet.setValueTextSize(12);
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        for (int i = 0; i < listMax.size(); i++) {
+            Random random = new Random();
+            int red = random.nextInt(255);
+            int green = random.nextInt(100);
+            int blue = random.nextInt(100);
+            red = (red + 255) / 2;
+            green = (green + 255) / 2;
+            blue = (blue + 255) / 2;
+            colors.add(Color.rgb(red, green, blue));
+        }
+        pieDataSet.setColors(colors);
+
+        Legend legend = pieAge1.getLegend();
+        legend.setForm(Legend.LegendForm.CIRCLE);
+
+        PieData pieData = new PieData(pieDataSet);
+        pieAge1.setData(pieData);
+        pieAge1.invalidate();
     }
 
     /**
@@ -166,6 +322,11 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         mChart.setCenterTextSize(10);
         mChart.setOutlineAmbientShadowColor(Color.rgb(238, 238, 238));
         mChart.setOnChartValueSelectedListener(this);
+        Description description = new Description();
+        description.setText(Constant.ANALYST_USER);
+        description.setTextSize(15);
+        description.setTextColor(R.color.no_data_color);
+        mChart.setDescription(description);
 //        mChart.setDrawEntryLabels(true);
         GetListTypePredict getListTypePredict = new GetListTypePredict();
         getListTypePredict.execute();
@@ -181,6 +342,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         getListPressure.execute();
 
     }
+
     /**
      * init view for min pressure chart in case of user rule
      */
@@ -274,6 +436,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
 
     /**
      * Set data for Pressure Max Chart
+     *
      * @return data set
      */
     private DataSet dataChartMax() {
@@ -296,8 +459,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         d.addDataSet(set);
         return set;
     }
+
     /**
      * Set data for Pressure Min Chart
+     *
      * @return data set
      */
     private DataSet dataChartMin() {
@@ -428,6 +593,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
 
     /**
      * Add data set for pie chart predict blood pressue
+     *
      * @param pieChart pie chart need set
      */
     private void addDataSet(PieChart pieChart) {
@@ -483,6 +649,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     @Override
     public void onValueSelected(Entry e, Highlight h) {
         if (rule == Constant.ADMIN_RULE) {
+
             int value = (int) h.getX();
             String mess = "";
             if (value == Constant.VALUE_NORMAL_PREDICT) {
@@ -494,8 +661,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             }
 
             Toast.makeText(this, "Có: "
-                            + (int) e.getY() + "/" + listPredict.size() + " người " + mess
+                            + (int) e.getY() + "/" + value + " người " + mess
                     , Toast.LENGTH_SHORT).show();
+
         } else {
             Toast.makeText(this, "Chỉ số đo: "
                             + e.getY()

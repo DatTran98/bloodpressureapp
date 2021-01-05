@@ -35,8 +35,7 @@ public class ListNewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_news);
-        // Phải lấy ra id được truyền từ màn hình list từ intent
-        Bundle bundle = getIntent().getExtras();
+        // check rule
         rule = InforStaticClass.getRule();
         if (rule == Constant.USER_RULE) {
             findViewById(R.id.btn_add_news).setVisibility(View.INVISIBLE);
@@ -44,7 +43,7 @@ public class ListNewsActivity extends AppCompatActivity {
         listNews = new ArrayList<>();
         GetListNews getListNews = new GetListNews();
         getListNews.execute();
-
+        // button click listener
         findViewById(R.id.btn_add_news).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +52,10 @@ public class ListNewsActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Class do back ground get list news
+     */
     class GetListNews extends AsyncTask {
         @Override
         protected Object doInBackground(Object[] params) {
@@ -62,10 +65,10 @@ public class ListNewsActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObj = new JSONObject(json);
                     if (jsonObj != null) {
-                        JSONArray jsonArrayRoom = jsonObj.getJSONArray("list_news");
+                        JSONArray jsonArrayRoom = jsonObj.getJSONArray(Constant.OBJECT_JSON_LIST_NEWS);
                         for (int i = 0; i < jsonArrayRoom.length(); i++) {
                             JSONObject obj = (JSONObject) jsonArrayRoom.get(i);
-                            News news = new News(obj.getInt("new_id"), obj.getString("new_title"), obj.getString("new_content"));
+                            News news = new News(obj.getInt(Constant.NEWS_ID), obj.getString(Constant.NEWS_TITLE), obj.getString(Constant.NEWS_CONTENT));
                             listNews.add(news);
                         }
                     }
@@ -73,7 +76,7 @@ public class ListNewsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else {
-                Log.e("JSON Data", "Didn't receive any data from server!");
+                Log.e(Constant.LOG_JSON, Constant.MSG_JSON);
             }
             return null;
         }
@@ -81,7 +84,7 @@ public class ListNewsActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(ListNewsActivity.this);
-            pDialog.setMessage("Loading..");
+            pDialog.setMessage(Constant.MESSAGE_LOADING);
             pDialog.setCancelable(false);
             pDialog.show();
         }
@@ -96,7 +99,7 @@ public class ListNewsActivity extends AppCompatActivity {
 
         private void getData() {
             if (listNews.size() == 0) {
-                listNews.add(new News(1, "Không có bản tin nào", "Vui lòng quay lại sau"));
+                listNews.add(new News(Constant.INT_VALUE_DEFAULT, Constant.NO_NEWS, Constant.COMBACK_LATER));
             }
             listViewNewAdapter = new ListViewNewsAdapter(listNews);
             listViewNews = findViewById(R.id.list_news);
@@ -105,7 +108,7 @@ public class ListNewsActivity extends AppCompatActivity {
             listViewNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    Toast.makeText(ListNewsActivity.this, "Cám ơn bạn đã đọc tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListNewsActivity.this, Constant.THANKS_READING, Toast.LENGTH_SHORT).show();
                 }
             });
         }

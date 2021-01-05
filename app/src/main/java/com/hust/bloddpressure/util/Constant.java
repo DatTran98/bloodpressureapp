@@ -60,10 +60,9 @@ public class Constant {
     public static final String URL_LIST_USER = URL_LOCAL + "user_api.php";
     public static final String URL_LOGIN = URL_LOCAL + "login_api.php";
     public static final String URL_REGISTER_USER = URL_LOCAL + "register_api.php";
-    public static final String URL_EDIT_USER =  URL_LOCAL + "register_api.php";
+    public static final String URL_EDIT_USER = URL_LOCAL + "register_api.php";
     public static final String URL_DELETE_USER = URL_LOCAL + "delete_user_api.php";
-
-    public static final String URL_LIST_TYPE_PREDICT =  URL_LOCAL + "list_type_predict_api.php";
+    public static final String URL_LIST_TYPE_PREDICT = URL_LOCAL + "list_type_predict_api.php";
 
 //    public static final String URL_LIST_ROOM = URL + "listroom_api.php";
 //    public static final String URL_DELETE_ROOM = URL + "deleteroom_api.php";
@@ -72,6 +71,11 @@ public class Constant {
 //    public static final String URL_ADD_NEWS = URL + "new_api.php";
 //    public static final String URL_LIST_PRESSURE = URL + "pressure_api.php";
 //    public static final String URL_LIST_USER = URL + "user_api.php";
+//    public static final String URL_LOGIN = URL + "login_api.php";
+//    public static final String URL_REGISTER_USER = URL + "register_api.php";
+//    public static final String URL_EDIT_USER = URL + "register_api.php";
+//    public static final String URL_DELETE_USER = URL + "delete_user_api.php";
+//public static final String URL_LIST_TYPE_PREDICT = URL + "list_type_predict_api.php";
 
 
     // SET UP FOR DIALOG
@@ -90,7 +94,7 @@ public class Constant {
     public static final String MESSAGE_LOGIN_FAILED = "Sai tên đăng nhập hoặc mật khẩu";
     public static final String MESSAGE_EXIST_USERNAME = "Tên đăng nhập đã tồn tại";
 
-    // MESSAGE
+    // MESSAGE Validate
     public static final String MESAGE_NO_DATA = "Không có dữ liệu";
     public static final String MESSAGE_ADD_SUCCESS = "Tạo thành công";
     public static final String MESSAGE_ADD_FAIL = "Thêm thất bại.";
@@ -98,7 +102,7 @@ public class Constant {
     public static final String ROOM_CHOOSE_MESS = "Hãy chọn phòng";
     public static final String MESSAGE_EDIT_SUCCESS = "Chỉnh sửa thành công";
     public static final String MESSAGE_EDIT_FAIL = "Chỉnh sửa thất bại";
-
+    public static final String NOTE = "Chú ý ";
     public static final String EMPTY_MESSAGE = " Hãy nhập ";
     public static final String PASSWORD_NAME = "mật khẩu";
     public static final String USERNAME_NAME = "tên đăng nhập";
@@ -110,8 +114,6 @@ public class Constant {
     public static final String ROOM_NAME_NAME = "/chọn phòng";
     public static final String ROOM_NOT_EXIST = "phòng không tồn tại";
 
-
-    public static final String NOTE = "Chú ý ";
     // SET UP FOR JSON
     public static final String LOG_JSON = "JSON Data";
     public static final String MSG_JSON = "Didn't receive any data from server!";
@@ -129,12 +131,12 @@ public class Constant {
     public static final String OBJECT_JSON_PRESSURE = "pressure";
     public static final String OBJECT_USER = "user";
     public static final String OBJECT_JSON_LIST_PREDICT = "predict";
+
     // NAME FOR ENTITY OBJECT ATTRIBUTED
     public static final String ROOM_ID = "room_id";
     public static final String ROOM_NAME = "room_name";
     public static final String USER_ID = "user_id";
     public static final String MESSAGE = "message";
-
 
     public static final String AGE = "age";
     public static final String FULL_NAME = "full_name";
@@ -150,19 +152,28 @@ public class Constant {
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String PREDICT_TYPE = "predict_type";
+    public static final String NEWS_ID = "new_id";
+    public static final String NEWS_TITLE = "new_title";
+    public static final String NEWS_CONTENT = "new_content";
+    public static final int VALUE_NORMAL_PREDICT = 0;
+    public static final int VALUE_MAX_PREDICT = 1;
+    public static final int VALUE_MIN_PREDICT = 2;
 
 
     public static final String PREDICT_NORMAL = "Các kết quả đo cho kết luận huyết áp bình thường \nLần kiểm tra gần nhất";
     public static final String PREDICT_MAX = "Dự đoán bạn có nguy cơ cao huyết áp qua các lần kiểm tra \nLần kiểm tra gần nhất";
     public static final String PREDICT_MIN = "Dự đoán bạn có nguy cơ huyết áp thấp qua các lần kiểm tra\n Lần kiểm tra gần nhất";
-    public static final int VALUE_NORMAL_PREDICT = 0;
-    public static final int VALUE_MAX_PREDICT = 1;
-    public static final int VALUE_MIN_PREDICT = 2;
+    public static final String THANKS_READING = "Cám ơn bạn đã đọc tin";
     public static final String PREDICT_CONTENT = "Phỏng đoán:\n Đỏ - Cao huyết áp\n Vàng - Huyết áp thấp\n Xanh - Bình thuòng";
     public static final String PREDICT_MAX_NAME = "Phỏng đoán cao huyết áp";
     public static final String PREDICT_MIN_NAME = "Phỏng đoán huyết áp thấp";
     public static final String PREDICT_NORMAL_NAME = "Bình thường";
     public static final String PREDICT_NAME = "Phỏng đoán tình trạng";
-    public static final String EXIST = "Bạn muốn thoát khỏi ứng dụng";
     public static final String PRESS_BACK_AGAIN = "Ấn back 1 lần nữa để thoát";
+    public static final String ANALYST_USER = "Thống kê tình trạng bệnh nhân";
+    public static final String ANALYST_MAX = "Thống kê tuổi - cao huyết áp";
+    public static final String ANALYST_MIN = "Thống kê tuổi - huyết áp thấp";
+    public static final String ANALYST_NORMAL = "Thống kê theo tuổi - bình thường";
+    public static final String NO_NEWS = "Không có bản tin nào";
+    public static final String COMBACK_LATER = "Vui lòng quay lại sau";
 }
