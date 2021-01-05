@@ -120,12 +120,16 @@ public class ListUserActivity extends AppCompatActivity {
                     UserInfor userInfor = (UserInfor) listViewUserAdapter.getItem(position);
                     // Get id of user and send to detail screen
                     String userId = userInfor.getUserId();
-                    // Create detail activity
-                    Intent intent = new Intent(ListUserActivity.this, DetailUserActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString(Constant.USER_ID, userId);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    if (userId!=null&&!userId.isEmpty()){
+                        // Create detail activity
+                        Intent intent = new Intent(ListUserActivity.this, DetailUserActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString(Constant.USER_ID, userId);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(ListUserActivity.this, Constant.MESAGE_NO_DATA, Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
             listViewUsers.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

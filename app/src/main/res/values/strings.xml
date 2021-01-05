@@ -86,5 +86,7 @@
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="use_analyst_age">Phân tích theo tuổi</string>
+    <string name="search_by_name">Tìm kiếm tên</string>
+    <string name="search">OK</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

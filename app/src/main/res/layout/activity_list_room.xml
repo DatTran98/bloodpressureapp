@@ -53,7 +53,6 @@
         android:layout_marginTop="65dp"
         android:divider="@null"
         android:scrollbars="none" />
-
     <Button
         android:id="@+id/btn_add_room"
         android:layout_width="50dp"
