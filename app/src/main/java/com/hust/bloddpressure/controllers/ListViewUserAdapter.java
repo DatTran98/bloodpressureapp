@@ -13,8 +13,9 @@ import com.hust.bloddpressure.util.Constant;
 
 import java.util.ArrayList;
 
+
 public class ListViewUserAdapter extends BaseAdapter {
-    final ArrayList<UserInfor> listUsers;
+    private ArrayList<UserInfor> listUsers;
 
     public ListViewUserAdapter(ArrayList<UserInfor> listUsers) {
         this.listUsers = listUsers;

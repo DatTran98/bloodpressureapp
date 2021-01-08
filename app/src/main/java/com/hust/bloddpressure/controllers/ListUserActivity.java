@@ -8,19 +8,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.MyService;
 import com.hust.bloddpressure.model.entities.UserInfor;
-import com.hust.bloddpressure.util.Common;
 import com.hust.bloddpressure.util.Constant;
 
 import org.apache.http.NameValuePair;
@@ -31,14 +29,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ListUserActivity extends AppCompatActivity {
     ArrayList<UserInfor> listUsers;
     ListViewUserAdapter listViewUserAdapter;
     ListView listViewUsers;
+    private ArrayList<UserInfor> listUsersSource;
     private int rule;
     ProgressDialog pDialog;
     private int selectedPosition = 0;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,29 @@ public class ListUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_user);
         // get all user information from db
         listViewUsers = findViewById(R.id.list_users);
+        searchView = findViewById(R.id.searchView);
+        setQueryTextChange();
         listUsers = new ArrayList<>();
+        listUsersSource = new ArrayList<>();
         GetListUser getListUser = new GetListUser();
         getListUser.execute();
 
+    }
+
+    private void setQueryTextChange() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String text = newText;
+                filterItem(text);
+                return false;
+            }
+        });
     }
 
     /**
@@ -72,7 +92,7 @@ public class ListUserActivity extends AppCompatActivity {
                             String diseaseName = obj.getString(Constant.DISEASE_NAME);
                             String userId = obj.getString(Constant.USER_ID);
                             UserInfor userInfor = new UserInfor(userId, fullName, age, diseaseName);
-                            listUsers.add(userInfor);
+                            listUsersSource.add(userInfor);
                         }
                     }
                 } catch (JSONException e) {
@@ -101,6 +121,7 @@ public class ListUserActivity extends AppCompatActivity {
         }
 
         private void getData() {
+            listUsers.addAll(listUsersSource);
             if (listUsers.size() == 0) {
                 UserInfor userInfor = new UserInfor(Constant.EMPTY, Constant.EMPTY, Constant.INT_VALUE_DEFAULT, Constant.EMPTY);
                 listUsers.add(userInfor);
@@ -120,14 +141,14 @@ public class ListUserActivity extends AppCompatActivity {
                     UserInfor userInfor = (UserInfor) listViewUserAdapter.getItem(position);
                     // Get id of user and send to detail screen
                     String userId = userInfor.getUserId();
-                    if (userId!=null&&!userId.isEmpty()){
+                    if (userId != null && !userId.isEmpty()) {
                         // Create detail activity
                         Intent intent = new Intent(ListUserActivity.this, DetailUserActivity.class);
                         Bundle bundle = new Bundle();
                         bundle.putString(Constant.USER_ID, userId);
                         intent.putExtras(bundle);
                         startActivity(intent);
-                    }else{
+                    } else {
                         Toast.makeText(ListUserActivity.this, Constant.MESAGE_NO_DATA, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -187,6 +208,7 @@ public class ListUserActivity extends AppCompatActivity {
             });
         }
     }
+
     /**
      * Back ground to delete room information
      */
@@ -218,6 +240,7 @@ public class ListUserActivity extends AppCompatActivity {
             }
             return null;
         }
+
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(ListUserActivity.this);
@@ -232,5 +255,24 @@ public class ListUserActivity extends AppCompatActivity {
             if (pDialog.isShowing())
                 pDialog.dismiss();
         }
+    }
+
+    /**
+     * Do fill list view user when text search change
+     * @param charText text got from text view
+     */
+    public void filterItem(String charText) {
+        String text = charText.toLowerCase(Locale.getDefault());
+        listUsers.clear();
+        if (text.length() == 0) {
+            listUsers.addAll(listUsersSource);
+        } else {
+            for (UserInfor userInfor : listUsersSource) {
+                if (userInfor.getFullName().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    listUsers.add(userInfor);
+                }
+            }
+        }
+        listViewUserAdapter.notifyDataSetChanged();
     }
 }
