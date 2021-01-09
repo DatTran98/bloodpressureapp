@@ -86,7 +86,6 @@ public class Constant {
     public static final String DELETED_USER = "Đã xóa thông tin bệnh nhân ";
     public static final String CONFIRM_ROOM = "Bạn có chắc chắn xóa phòng này không?";
     public static final String CONFIRM_USER = "Bạn có chắc chắn xóa người dùng này không?";
-
     public static final String DETAIL = "Chi tiết";
     public static final String MESSAGE_WARING_MAX = "Lần kiểm tra này có nguy cơ cao huyết áp\n Huyết áp tâp thu lớn hơn hoặc bằng 140 mmHg hoặc\n Huyết áp tâm trương lớn hơn hoặc bằng 90 mmHg\n Hãy liên hệ bác sĩ";
     public static final String MESSAGE_WARING_MIN = "Lần kiểm tra này có nguy cơ huyết áp thâp\n Huyết áp tâp thu nhỏ hơn hoặc bằng 100 mmHg\n Hãy liên hệ bác sĩ";
@@ -122,7 +121,7 @@ public class Constant {
     public static final String ERROR_TAG = "Error...";
     public static final String MSG_LOGIN = "Login...";
     public static final String CREATING = "Creating...";
-
+    // PARAM
     public static final String JSON_SUCCESS = "success";
     public static final String OBJECT_JSON_LIST_ROOM = "list_room";
     public static final String OBJECT_JSON_LIST_USER = "list_user";
@@ -158,7 +157,8 @@ public class Constant {
     public static final int VALUE_NORMAL_PREDICT = 0;
     public static final int VALUE_MAX_PREDICT = 1;
     public static final int VALUE_MIN_PREDICT = 2;
-
+    public static final String FLOW = "flow_from";
+    public static final String FROM_NAV = "from_nav";
 
     public static final String PREDICT_NORMAL = "Các kết quả đo cho kết luận huyết áp bình thường \nLần kiểm tra gần nhất";
     public static final String PREDICT_MAX = "Dự đoán bạn có nguy cơ cao huyết áp qua các lần kiểm tra \nLần kiểm tra gần nhất";
@@ -176,4 +176,8 @@ public class Constant {
     public static final String ANALYST_NORMAL = "Thống kê theo tuổi - bình thường";
     public static final String NO_NEWS = "Không có bản tin nào";
     public static final String COMBACK_LATER = "Vui lòng quay lại sau";
+    public static final String EDIT_USER_DELETED = "Người dùng không tồn tại hoặc đã bị xóa";
+    public static final String STATIC_NAME = "Phân tích dữ liệu";
+
+
 }

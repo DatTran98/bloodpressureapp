@@ -23,7 +23,7 @@ import com.hust.bloddpressure.util.Constant;
  * create an instance of this fragment.
  */
 public class ManageMenuFragment extends Fragment {
-    TextView textViewLabelTile, textViewLabelListOrDetail, textViewLabelRoom;
+    TextView textViewLabelTile, textViewLabelListOrDetail, textViewLabelRoom, textViewStatic;
     private int ruleId;
 
     @Override
@@ -32,12 +32,14 @@ public class ManageMenuFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_manage_menu, container, false);
     }
+
     @SuppressLint("SetTextI18n")
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         textViewLabelTile = view.findViewById(R.id.label_title);
         textViewLabelListOrDetail = view.findViewById(R.id.label_move_list_or_detail_user);
         textViewLabelRoom = view.findViewById(R.id.label_move_list_room);
+        textViewStatic = view.findViewById(R.id.label_move_static);
         // Get rule when login
         ruleId = InforStaticClass.getRule();
         if (ruleId == Constant.USER_RULE) {
@@ -46,18 +48,13 @@ public class ManageMenuFragment extends Fragment {
             textViewLabelRoom.setText(R.string.label_room_user);
         } else {
             textViewLabelTile.setText(R.string.blood_pressure);
+            textViewStatic.setText(Constant.STATIC_NAME);
         }
         view.findViewById(R.id.btn_move_list_user).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (ruleId == Constant.USER_RULE) {
                     Intent intent = new Intent(getActivity(), DetailUserActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("userId", 1);
-                    bundle.putInt("rule", ruleId);
-                    intent.putExtras(bundle);
-                    bundle.putInt("rule", ruleId);
-                    intent.putExtras(bundle);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(getActivity(), ListUserActivity.class);
@@ -68,7 +65,6 @@ public class ManageMenuFragment extends Fragment {
         view.findViewById(R.id.btn_move_list_new).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ManageMenuFragment manageMenuFragment = new ManageMenuFragment();
                 Intent intent = new Intent(getActivity(), ListNewsActivity.class);
                 startActivity(intent);
             }
@@ -83,7 +79,6 @@ public class ManageMenuFragment extends Fragment {
         view.findViewById(R.id.btn_move_list_static).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // GỬI User Id để lấy dữ liệu
                 Intent intent = new Intent(getActivity(), AnalysisActivity.class);
                 startActivity(intent);
             }

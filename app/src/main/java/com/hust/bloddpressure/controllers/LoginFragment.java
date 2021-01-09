@@ -76,7 +76,7 @@ public class LoginFragment extends Fragment {
                 }
             }
         });
-        //Xử lý sự kiện cho button switchregiters
+        // button switch register clicked
         btnSwitchRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +162,7 @@ public class LoginFragment extends Fragment {
     }
 
     private void doSwitchRegisterView() {
-        // chuyển sang view đăng ký
+        // switch register view
         RegisterFragment registerFragment = new RegisterFragment();
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

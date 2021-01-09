@@ -29,13 +29,14 @@
         android:src="@mipmap/blood_pressure_icon_vector" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_view"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
+        android:background="@drawable/list_custom"
         android:gravity="center"
-
-        >
+        android:padding="40dp">
 
         <ImageButton
             android:id="@+id/btn_move_list_user"
@@ -44,6 +45,7 @@
             android:background="@mipmap/user_image"
             android:contentDescription="@string/todo"
             android:radius="5dp"
+            android:src="@drawable/user_item_custom"
             android:text="@string/move_list_user" />
 
         <TextView
@@ -70,6 +72,7 @@
             android:background="@mipmap/room_image"
             android:contentDescription="@string/todo"
             android:radius="5dp"
+            android:src="@drawable/user_item_custom"
             android:text="@string/move_list_room" />
 
         <TextView
@@ -95,6 +98,7 @@
             android:background="@mipmap/news_image"
             android:contentDescription="@string/todo"
             android:radius="5dp"
+            android:src="@drawable/user_item_custom"
             android:text="@string/move_list_news" />
 
         <TextView
@@ -121,7 +125,8 @@
             android:background="@mipmap/static_image"
             android:contentDescription="@string/todo"
             android:fontFamily="@font/roboto_regular"
-            android:radius="5dp" />
+            android:radius="5dp"
+            android:src="@drawable/user_item_custom" />
 
         <TextView
             android:id="@+id/label_move_static"

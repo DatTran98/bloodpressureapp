@@ -77,6 +77,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             // find view by id
             findViewByIdManager();
             // init chart default
+            setVisibleChartAge(true);
             // set listener for button
             setListenButton();
             listPredict = new ArrayList<>();
@@ -92,6 +93,23 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     }
 
     /**
+     * Set 3 chart by age invisible when default or visible
+     *
+     * @param b
+     */
+    private void setVisibleChartAge(boolean b) {
+        if (b) {
+            pieAge1.setVisibility(View.GONE);
+            pieAge2.setVisibility(View.GONE);
+            pieAge3.setVisibility(View.GONE);
+        } else {
+            pieAge1.setVisibility(View.VISIBLE);
+            pieAge2.setVisibility(View.VISIBLE);
+            pieAge3.setVisibility(View.VISIBLE);
+        }
+    }
+
+    /**
      * Find view by id in case of manager
      */
     private void findViewByIdManager() {
@@ -102,6 +120,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         pieAge3 = (PieChart) findViewById(R.id.pie_chart_age3);
     }
 
+    /**
+     * Action when click button
+     */
     private void setListenButton() {
         btn_toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @SuppressLint("ResourceAsColor")
@@ -112,13 +133,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
                     setPieChartAgeMax();
                     setPieChartAgeMin();
                     setPieChartAgeNormal();
-                    pieAge1.setVisibility(View.VISIBLE);
-                    pieAge2.setVisibility(View.VISIBLE);
-                    pieAge3.setVisibility(View.VISIBLE);
+                    setVisibleChartAge(false);
                 } else {
-                    pieAge1.setVisibility(View.GONE);
-                    pieAge2.setVisibility(View.GONE);
-                    pieAge3.setVisibility(View.GONE);
+                    setVisibleChartAge(true);
                 }
             }
         });

@@ -49,9 +49,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controllers.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controllers.MainActivity2"
+            android:label="@string/title_activity_main">
+<!--            android:theme="@style/AppTheme.NoActionBar"-->
+<!--            >-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

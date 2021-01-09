@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -15,14 +16,12 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.hust.bloddpressure.R;
-import com.hust.bloddpressure.util.Common;
+import com.hust.bloddpressure.model.entities.InforStaticClass;
+import com.hust.bloddpressure.util.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +33,8 @@ public class MainActivity2 extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private View navBasic, navMess, navHome, navRoom, navNews, navAnalyst, navExport, navLogout;
-    ConstraintLayout constraintLayout;
     List<Integer> listViewId;
+    int rule = 1;
 
     @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -43,18 +42,31 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        InforStaticClass.setRule(0);
         findViewByIdView();
-        ManageMenuFragment manageMenuFragment = new ManageMenuFragment();
-        Common.setFragmentByManagerFragment(R.id.constrain, manageMenuFragment, this);
         listViewId = getListViewId();
         // Set action for menu navigation when click
         setClickNavigationItem();
+        // set Display with rule user
+        setDisplayRule();
         // Set action for action bar
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
         //enable button home
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    /**
+     * Set display navigation by rule
+     */
+    private void setDisplayRule() {
+        if (InforStaticClass.getRule() == Constant.USER_RULE) {
+            navExport.setVisibility(View.GONE);
+            navRoom.setVisibility(View.GONE);
+        } else {
+            navBasic.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -83,11 +95,11 @@ public class MainActivity2 extends AppCompatActivity {
         }
         switch (item.getItemId()) {
             case R.id.home:
-                Intent intent = new Intent(this,MenuManagerActivity.class);
+                Intent intent = new Intent(this, MenuManagerActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.reset:
-                Intent intent1 = new Intent(this,this.getClass());
+                Intent intent1 = new Intent(this, this.getClass());
                 startActivity(intent1);
                 return true;
             case R.id.about:
@@ -106,8 +118,7 @@ public class MainActivity2 extends AppCompatActivity {
      * Find view by id from id view for any navigation view
      */
     private void findViewByIdView() {
-        constraintLayout = findViewById(R.id.constrain);
-        drawerLayout = findViewById(R.id.activity2_main_drawer);
+        drawerLayout = findViewById(R.id.export_activity);
         navBasic = findViewById(R.id.nav_basic);
         navMess = findViewById(R.id.nav_message);
         navHome = findViewById(R.id.nav_home);
@@ -144,7 +155,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 changeBackGroundExceptView(view);
-                Intent intent = getParentActivityIntent();
+                Intent intent = new Intent(MainActivity2.this, MenuManagerActivity.class);
                 startActivity(intent);
             }
         });
@@ -153,6 +164,11 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 changeBackGroundExceptView(v);
+                Intent intent = new Intent(MainActivity2.this, DetailUserActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(Constant.FLOW, Constant.FROM_NAV);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 return true;
             }
         });
@@ -160,6 +176,7 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 changeBackGroundExceptView(v);
+
                 return true;
             }
         });
@@ -167,6 +184,8 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 changeBackGroundExceptView(v);
+                Intent intent = new Intent(MainActivity2.this, ListRoomActivity.class);
+                startActivity(intent);
                 return true;
             }
         });
@@ -174,6 +193,8 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 changeBackGroundExceptView(v);
+                Intent intent = new Intent(MainActivity2.this, ListNewsActivity.class);
+                startActivity(intent);
                 return true;
             }
         });
@@ -181,6 +202,8 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 changeBackGroundExceptView(v);
+                Intent intent = new Intent(MainActivity2.this, AnalysisActivity.class);
+                startActivity(intent);
                 return true;
             }
         });
@@ -195,16 +218,33 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 changeBackGroundExceptView(v);
+                setDefaultInfoLogoutSession();
+                Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                ActivityCompat.finishAffinity(MainActivity2.this);
                 return true;
             }
         });
     }
 
     /**
+     * When log out, set default information
+     */
+    private void setDefaultInfoLogoutSession() {
+        InforStaticClass.setRule(1);
+        InforStaticClass.setUserId(null);
+    }
+
+    /**
      * Set view background except selected view
+     *
      * @param v view selecting
      */
     private void changeBackGroundExceptView(View v) {
+        drawerLayout.closeDrawer(Gravity.LEFT);
         int viewId = v.getId();
         for (int i : listViewId) {
             if (viewId == i) {

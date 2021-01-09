@@ -31,53 +31,28 @@ public class UserInfor implements Serializable {
 
     public UserInfor() {
     }
-    public int getPredictType() {
-        return predictType;
-    }
 
-    public void setPredictType(int predictType) {
-        this.predictType = predictType;
-    }
-    public int getPressureMin() {
-        return pressureMin;
-    }
-
-    public void setPressureMin(int pressureMin) {
-        this.pressureMin = pressureMin;
-    }
-
-    public int getPressureMax() {
-        return pressureMax;
-    }
-
-    public void setPressureMax(int pressureMax) {
-        this.pressureMax = pressureMax;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getDiseaseName() {
-        return diseaseName;
-    }
-
-    public void setDiseaseName(String diseaseName) {
-        this.diseaseName = diseaseName;
-    }
-
-    public UserInfor(String userId, int roomId, int age, int rule, int pressureMin, int pressureMax,int predictType, String fullName, String tel, String room, String diseaseName, String username) {
+    public UserInfor(String userId, int roomId, int age, int rule, int pressureMin, int pressureMax, int predictType, String fullName, String tel, String room, String diseaseName, String username) {
         this.userId = userId;
         this.roomId = roomId;
         this.age = age;
         this.rule = rule;
         this.pressureMin = pressureMin;
         this.pressureMax = pressureMax;
-        this.predictType=predictType;
+        this.predictType = predictType;
+        this.fullName = fullName;
+        this.tel = tel;
+        this.room = room;
+        this.diseaseName = diseaseName;
+        this.username = username;
+    }
+
+    public UserInfor(String userId, int roomId, int age, int rule, int predictType, String fullName, String tel, String room, String diseaseName, String username) {
+        this.userId = userId;
+        this.roomId = roomId;
+        this.age = age;
+        this.rule = rule;
+        this.predictType = predictType;
         this.fullName = fullName;
         this.tel = tel;
         this.room = room;
@@ -92,15 +67,12 @@ public class UserInfor implements Serializable {
         this.username = username;
         this.password = password;
     }
-
     public UserInfor(String userId, String fullName, int age, String diseaseName) {
         this.userId = userId;
         this.fullName = fullName;
         this.age = age;
         this.diseaseName = diseaseName;
     }
-
-
     public String getUsername() {
         return username;
     }
@@ -172,5 +144,46 @@ public class UserInfor implements Serializable {
     public void setRoom(String room) {
         this.room = room;
     }
+
+    public int getPredictType() {
+        return predictType;
+    }
+
+    public void setPredictType(int predictType) {
+        this.predictType = predictType;
+    }
+
+    public int getPressureMin() {
+        return pressureMin;
+    }
+
+    public void setPressureMin(int pressureMin) {
+        this.pressureMin = pressureMin;
+    }
+
+    public int getPressureMax() {
+        return pressureMax;
+    }
+
+    public void setPressureMax(int pressureMax) {
+        this.pressureMax = pressureMax;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getDiseaseName() {
+        return diseaseName;
+    }
+
+    public void setDiseaseName(String diseaseName) {
+        this.diseaseName = diseaseName;
+    }
+
 
 }

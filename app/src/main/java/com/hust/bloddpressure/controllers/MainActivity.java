@@ -1,6 +1,8 @@
 package com.hust.bloddpressure.controllers;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.hust.bloddpressure.R;
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     public void onBackPressed(){
         if (exit) {
-            finish(); // finish activity
+            finish();
         } else {
             Toast.makeText(this, Constant.PRESS_BACK_AGAIN,
                     Toast.LENGTH_SHORT).show();
@@ -40,7 +43,6 @@ public class MainActivity extends AppCompatActivity  {
                     exit = false;
                 }
             }, 3 * 1000);
-
         }
     }
 }

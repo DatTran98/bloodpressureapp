@@ -20,22 +20,24 @@
 
     <ImageView
         android:id="@+id/img_view"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_below="@id/label_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:background="@mipmap/blood_pressure_icon_vector"
         android:contentDescription="@string/todo"
-        android:src="@mipmap/blood_pressure_icon_vector" />
+        android:src="@drawable/user_item_custom" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_view"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
+        android:background="@drawable/list_custom"
         android:gravity="center"
-
-        >
+        android:padding="40dp">
 
         <ImageButton
             android:id="@+id/btn_move_list_user"
@@ -44,6 +46,7 @@
             android:background="@mipmap/user_image"
             android:contentDescription="@string/todo"
             android:radius="5dp"
+            android:src="@drawable/user_item_custom"
             android:text="@string/move_list_user" />
 
         <TextView
@@ -68,6 +71,7 @@
             android:background="@mipmap/room_image"
             android:contentDescription="@string/todo"
             android:radius="5dp"
+            android:src="@drawable/user_item_custom"
             android:text="@string/move_list_room" />
 
         <TextView
@@ -92,6 +96,7 @@
             android:background="@mipmap/news_image"
             android:contentDescription="@string/todo"
             android:radius="5dp"
+            android:src="@drawable/user_item_custom"
             android:text="@string/move_list_news" />
 
         <TextView
@@ -116,7 +121,8 @@
             android:background="@mipmap/static_image"
             android:contentDescription="@string/todo"
             android:fontFamily="@font/roboto_regular"
-            android:radius="5dp" />
+            android:radius="5dp"
+            android:src="@drawable/user_item_custom" />
 
         <TextView
             android:id="@+id/label_move_static"

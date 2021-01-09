@@ -38,6 +38,7 @@ public class EditUserActivity extends AppCompatActivity {
     ArrayList<UserInfor> listUserInfor;
     ProgressDialog pDialog;
     private int success;
+    private String userIdEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +61,6 @@ public class EditUserActivity extends AppCompatActivity {
                 } else {
                     EditUser editUser = new EditUser(userInfor);
                     editUser.execute();
-                    // THỰC HIỆN TRUY VẤN DB TẠI ĐÂY
-                    // KIỂM TRA USER TỒN TẠI
-                    // TRUY VẤN UPDATE BẢNG
                 }
             }
         });
@@ -72,7 +70,7 @@ public class EditUserActivity extends AppCompatActivity {
      * Find view by id
      */
     private void findViewById() {
-        textViewMessage= findViewById(R.id.message);
+        textViewMessage = findViewById(R.id.message);
         textUserId = findViewById(R.id.user_id);
         textUsername = findViewById(R.id.username);
         textFullName = findViewById(R.id.full_name);
@@ -95,12 +93,14 @@ public class EditUserActivity extends AppCompatActivity {
             btnSave.setEnabled(false);
         } else {
             String userId = bundle.getString(Constant.USER_ID);
+            userIdEdit = userId;
             listUserInfor = new ArrayList<>();
             GetDetailUser getDetailUser = new GetDetailUser(userId);
             getDetailUser.execute();
 
         }
     }
+
     /**
      * Get data from form
      *
@@ -118,6 +118,7 @@ public class EditUserActivity extends AppCompatActivity {
         String tel = textTel.getText().toString().trim().trim().trim();
         String disease = textDisease.getText().toString().trim();
         // Set value for user
+        userInfor.setUserId(userIdEdit);
         userInfor.setFullName(fullName);
         userInfor.setAge(age);
         userInfor.setDiseaseName(disease);
@@ -125,6 +126,9 @@ public class EditUserActivity extends AppCompatActivity {
         return userInfor;
     }
 
+    /**
+     * Class do back ground to get db
+     */
     @SuppressLint("StaticFieldLeak")
     class GetDetailUser extends AsyncTask {
         private String userId;
@@ -143,10 +147,8 @@ public class EditUserActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObj = new JSONObject(json);
                     JSONArray jsonArrayUser = jsonObj.getJSONArray(Constant.OBJECT_JSON_LIST_USER);
-                    JSONArray pressure = jsonObj.getJSONArray(Constant.OBJECT_JSON_PRESSURE);
                     for (int i = 0; i < jsonArrayUser.length(); i++) {
                         JSONObject obj = (JSONObject) jsonArrayUser.get(i);
-                        JSONObject obj1 = (JSONObject) pressure.get(i);
                         int roomId = obj.getInt(Constant.ROOM_ID);
                         int age = obj.getInt(Constant.AGE);
                         int rule = obj.getInt(Constant.RULE);
@@ -155,10 +157,8 @@ public class EditUserActivity extends AppCompatActivity {
                         String room = obj.getString(Constant.ROOM_NAME);
                         String diseaseName = obj.getString(Constant.DISEASE_NAME);
                         String username = obj.getString(Constant.USERNAME);
-                        int pressureMax = obj1.getInt(Constant.PRESSURE_MAX);
-                        int pressureMin = obj1.getInt(Constant.PRESSURE_MIN);
                         int predictType = obj.getInt(Constant.PREDICT_TYPE);
-                        UserInfor userInfor = new UserInfor(userId, roomId, age, rule, pressureMin, pressureMax,predictType, fullName, tel, room, diseaseName, username);
+                        UserInfor userInfor = new UserInfor(userId, roomId, age, rule, predictType, fullName, tel, room, diseaseName, username);
                         listUserInfor.add(userInfor);
                     }
                 } catch (JSONException e) {
@@ -205,6 +205,10 @@ public class EditUserActivity extends AppCompatActivity {
             textTel.setText(tel);
         }
     }
+
+    /**
+     * Class do edit information user
+     */
     @SuppressLint("StaticFieldLeak")
     class EditUser extends AsyncTask {
         UserInfor userInfor;
@@ -252,7 +256,9 @@ public class EditUserActivity extends AppCompatActivity {
                 pDialog.dismiss();
             if (success == 1) {
                 textViewMessage.setText(Constant.MESSAGE_EDIT_SUCCESS);
-            } else {
+            } else if (success == 2){
+                textViewMessage.setText(Constant.EDIT_USER_DELETED);
+            }else{
                 textViewMessage.setText(Constant.MESSAGE_EDIT_FAIL);
             }
         }
