@@ -86,6 +86,7 @@
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="use_analyst_age">Phân tích theo tuổi</string>
+
     <string name="export_user">Xuất dữ liệu người dùng</string>
     <string name="all">Tất cả</string>
     <string name="a_week">Một tuần</string>
@@ -95,5 +96,9 @@
     <string name="one_file">Chỉ xuất 1 file</string>
     <string name="export_pressure_des">Lưu ý: Khi chọn checkbox giá trị đo của tất cả người dùng sẽ được lưu cùng 1 file\n với tên theo format: {0}_user_{1}\n Với {0} - all/month/week/day \n\t\t\t {1} - ngày xuất file\n Nếu không check chọn sẽ lưu riêng file cho từng ngườ dùng với tên file theo format: {0}_{1}_user_{2}\n Với {0} - Mã người dùng\n\t\t\t {1} - all/month/week/day \n\t\t\t {1} - ngày xuất file\n </string>
     <string name="export_pressure">Xuất dữ liệu kết quả đo</string>
+
+    <string name="search_by_name">Tìm kiếm tên</string>
+    <string name="search">OK</string>
+
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

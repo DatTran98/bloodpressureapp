@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -185,5 +187,10 @@ public class TabBasicDetailUserFragment extends Fragment {
         ImageView img = getActivity().findViewById(R.id.img_no_pressure);
         img.setVisibility(View.VISIBLE);
         img.setImageResource(R.mipmap.about_icon);
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = new Fragment();
+        fragmentTransaction.replace(R.id.content_detail, fragment);
+        fragmentTransaction.commit();
     }
 }
