@@ -1,17 +1,24 @@
 package com.hust.bloddpressure.controllers;
 
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.MyService;
@@ -39,12 +46,21 @@ public class EditUserActivity extends AppCompatActivity {
     ProgressDialog pDialog;
     private int success;
     private String userIdEdit;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
         findViewById();
+        new NavigationSetting(EditUserActivity.this);
+        drawerLayout = findViewById(R.id.drawable);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(R.string.edit_user);
         // Get data  set for view
         getAndSetDataToView();
         // when click button save
@@ -65,7 +81,50 @@ public class EditUserActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        switch (item.getItemId()) {
+            case R.id.home:
+                Intent intent = new Intent(this, MenuManagerActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.reset:
+                Intent intent1 = new Intent(this, this.getClass());
+                startActivity(intent1);
+                return true;
+            case R.id.about:
+                // Create about activity
+                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.help:
+                // Create help activity
+                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     /**
      * Find view by id
      */

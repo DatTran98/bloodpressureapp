@@ -1,15 +1,21 @@
 package com.hust.bloddpressure.controllers;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Toast;
@@ -57,13 +63,15 @@ import java.util.TreeMap;
 
 public class AnalysisActivity extends AppCompatActivity implements OnChartValueSelectedListener {
     private int rule;
-    ProgressDialog pDialog;
-    ArrayList<BloodPressureInfor> listPressure;
-    ArrayList<Predict> listPredict;
-    PieChart mChart, pieAge1, pieAge2, pieAge3;
-    ToggleButton btn_toggle;
-    ArrayList<Predict> listMax, listMin, listNormal;
-    Map<Integer, Integer> mapMax, mapMin, mapNormal;
+    private ProgressDialog pDialog;
+    private ArrayList<BloodPressureInfor> listPressure;
+    private ArrayList<Predict> listPredict;
+    private PieChart mChart, pieAge1, pieAge2, pieAge3;
+    private ToggleButton btn_toggle;
+    private ArrayList<Predict> listMax, listMin, listNormal;
+    private Map<Integer, Integer> mapMax, mapMin, mapNormal;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -89,7 +97,59 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             setContentView(R.layout.activity_analysis);
             initViewUser();
         }
+        new NavigationSetting(AnalysisActivity.this);
+        drawerLayout = findViewById(R.id.drawable);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(R.string.static_title);
 
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        switch (item.getItemId()) {
+            case R.id.home:
+                Intent intent = new Intent(this, MenuManagerActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.reset:
+                Intent intent1 = new Intent(this, this.getClass());
+                startActivity(intent1);
+                return true;
+            case R.id.about:
+                // Create about activity
+                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.help:
+                // Create help activity
+                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -175,7 +235,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     }
 
     /**
-     * init view for pie chart analyst by max pressure
+     * init view for pie chart analyst by normal pressure
      */
     private void setPieChartAgeNormal() {
         pieAge3.setRotationEnabled(true);
@@ -183,7 +243,18 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         pieAge3.setTransparentCircleAlpha(0);
         pieAge3.setCenterText(Constant.PREDICT_NORMAL_NAME);
         pieAge3.setCenterTextSize(8);
-        pieAge3.setOnChartValueSelectedListener(this);
+        pieAge3.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                PieEntry pe = (PieEntry) e;
+                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGELEVEL_ + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
         Description description = new Description();
         description.setTextColor(R.color.no_data_color);
         if (listNormal.size() > 0) {
@@ -195,15 +266,15 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
 
         ArrayList<PieEntry> yEntries = new ArrayList<>();
         ArrayList<String> xEntries = new ArrayList<>();
-        int index = 0;
         for (Integer key : mapNormal.keySet()) {
-            yEntries.add(new PieEntry(mapNormal.get(key), index));
+            PieEntry pie = new PieEntry(mapNormal.get(key), key);
+            pie.setLabel(key + Constant.EMPTY);
+            yEntries.add(pie);
             xEntries.add(key + Constant.EMPTY);
         }
         PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_NORMAL_NAME);
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
-
         ArrayList<Integer> colors = new ArrayList<>();
         for (int i = 0; i < listNormal.size(); i++) {
             Random random = new Random();
@@ -219,7 +290,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
 
         Legend legend = pieAge3.getLegend();
         legend.setForm(Legend.LegendForm.CIRCLE);
-
         PieData pieData = new PieData(pieDataSet);
         pieAge3.setData(pieData);
         pieAge3.invalidate();
@@ -235,7 +305,18 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         pieAge2.setTransparentCircleAlpha(0);
         pieAge2.setCenterText(Constant.PREDICT_MIN_NAME);
         pieAge2.setCenterTextSize(8);
-        pieAge2.setOnChartValueSelectedListener(this);
+        pieAge2.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                PieEntry pe = (PieEntry) e;
+                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGELEVEL_ + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
         Description description = new Description();
         description.setTextColor(R.color.no_data_color);
         if (listMin.size() > 0) {
@@ -247,9 +328,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
 
         ArrayList<PieEntry> yEntries = new ArrayList<>();
         ArrayList<String> xEntries = new ArrayList<>();
-        int index = 0;
         for (Integer key : mapMin.keySet()) {
-            yEntries.add(new PieEntry(mapMin.get(key), index));
+            PieEntry pie = new PieEntry(mapMin.get(key), key);
+            pie.setLabel(key + Constant.EMPTY);
+            yEntries.add(pie);
             xEntries.add(key + Constant.EMPTY);
         }
         PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_MIN_NAME);
@@ -278,7 +360,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     }
 
     /**
-     * init view for pie chart analyst by normal pressure
+     * init view for pie chart analyst by max pressure
      */
     private void setPieChartAgeMax() {
         pieAge1.setRotationEnabled(true);
@@ -286,7 +368,18 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         pieAge1.setTransparentCircleAlpha(0);
         pieAge1.setCenterText(Constant.PREDICT_MAX_NAME);
         pieAge1.setCenterTextSize(8);
-        pieAge1.setOnChartValueSelectedListener(this);
+        pieAge1.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                PieEntry pe = (PieEntry) e;
+                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGELEVEL_ + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
         Description description = new Description();
         if (listMax.size() > 0) {
             description.setText(Constant.ANALYST_MAX);
@@ -297,9 +390,10 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
 
         ArrayList<PieEntry> yEntries = new ArrayList<>();
         ArrayList<String> xEntries = new ArrayList<>();
-        int index = 0;
         for (Integer key : mapMax.keySet()) {
-            yEntries.add(new PieEntry(mapMax.get(key), index));
+            PieEntry pie = new PieEntry(mapMax.get(key), key);
+            pie.setLabel(key + Constant.EMPTY);
+            yEntries.add(pie);
             xEntries.add(key + Constant.EMPTY);
         }
         PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_MAX_NAME);
@@ -671,21 +765,26 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             String mess = "";
             if (value == Constant.VALUE_NORMAL_PREDICT) {
                 mess += Constant.PREDICT_NORMAL_NAME;
+                Toast.makeText(this, Constant.HAVE
+                                + (int) e.getY() + Constant.CHAR + listNormal.size() + Constant.PEOPLE + mess
+                        , Toast.LENGTH_SHORT).show();
             } else if (value == Constant.VALUE_MAX_PREDICT) {
                 mess += Constant.PREDICT_MAX_NAME;
+                Toast.makeText(this, Constant.HAVE
+                                + (int) e.getY() + Constant.CHAR + listMax.size() + Constant.PEOPLE + mess
+                        , Toast.LENGTH_SHORT).show();
             } else {
                 mess += Constant.PREDICT_MIN_NAME;
+                Toast.makeText(this, Constant.HAVE
+                                + (int) e.getY() + Constant.CHAR + listMin.size() + Constant.PEOPLE + mess
+                        , Toast.LENGTH_SHORT).show();
             }
 
-            Toast.makeText(this, "Có: "
-                            + (int) e.getY() + "/" + value + " người " + mess
-                    , Toast.LENGTH_SHORT).show();
 
         } else {
-            Toast.makeText(this, "Chỉ số đo: "
+            Toast.makeText(this, Constant.NUMBER_GOT
                             + e.getY()
-                            + " mmHg, index: "
-                            + h.getX()
+                            + Constant.MMHG
                     , Toast.LENGTH_SHORT).show();
         }
 

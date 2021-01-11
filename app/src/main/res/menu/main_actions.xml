@@ -10,16 +10,16 @@
         android:id="@+id/reset"
         android:icon="@mipmap/btn_reset"
         android:title="@string/reset"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="withText" />
     <item
         android:id="@+id/about"
         android:icon="@mipmap/btn_about"
         android:title="@string/about"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="withText" />
     <item
         android:id="@+id/help"
         android:icon="@mipmap/btn_help"
         android:title="@string/help"
-        app:showAsAction="ifRoom|withText" />
+        app:showAsAction="withText" />
 
 </menu>

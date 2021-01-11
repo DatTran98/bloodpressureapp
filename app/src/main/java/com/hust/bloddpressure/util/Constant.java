@@ -50,7 +50,7 @@ public class Constant {
     public static final String ACTION_SEARCH = "search";
     // CONSTANT SET UP FOR URL
     public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
-    public static final String URL_LOCAL = "http://10.0.2.2:88/bloodpressure/";
+    public static final String URL_LOCAL = "http://10.0.2.2/bloodpressure/";
     public static final String URL_LIST_ROOM = URL_LOCAL + "listroom_api.php";
     public static final String URL_DELETE_ROOM = URL_LOCAL + "deleteroom_api.php";
     public static final String URL_LIST_NEWS = URL_LOCAL + "new_api.php";
@@ -178,6 +178,11 @@ public class Constant {
     public static final String COMBACK_LATER = "Vui lòng quay lại sau";
     public static final String EDIT_USER_DELETED = "Người dùng không tồn tại hoặc đã bị xóa";
     public static final String STATIC_NAME = "Phân tích dữ liệu";
-
-
+    public static final String DEVERLOPING = "Chức năng này đang phát triển";
+    public static final String HAVE = "Có ";
+    public static final String CHAR = "/";
+    public static final String PEOPLE = " người ";
+    public static final String NUMBER_GOT = "Chỉ số đo: ";
+    public static final String MMHG = "mmHg";
+    public static final String AGELEVEL_ = " Độ tuổi ";
 }

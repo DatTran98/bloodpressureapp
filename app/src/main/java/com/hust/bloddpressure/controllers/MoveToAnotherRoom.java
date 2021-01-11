@@ -1,15 +1,13 @@
 package com.hust.bloddpressure.controllers;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -24,15 +22,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoveToAnotherRoom extends AppCompatActivity {
-    AppCompatSpinner spinnerRoom;
-    SpinnerRoomAdapter spinnerRoomAdapter;
-    TextView selectRoomId;
-    Button btnSave;
-
+    private AppCompatSpinner spinnerRoom;
+    private SpinnerRoomAdapter spinnerRoomAdapter;
+    private TextView selectRoomId;
+    private Button btnSave;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_move_to_another_room);
+        new NavigationSetting(MoveToAnotherRoom.this);
+        drawerLayout = findViewById(R.id.drawable);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(R.string.move_to_room_title);
         // Get user id from bundle
 
         // Find view by id

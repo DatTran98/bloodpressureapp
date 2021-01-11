@@ -2,12 +2,18 @@ package com.hust.bloddpressure.controllers;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,10 +23,12 @@ import com.hust.bloddpressure.model.entities.InforStaticClass;
 import com.hust.bloddpressure.util.Constant;
 
 public class DetailUserActivity extends AppCompatActivity {
-    TextView textViewIdUser, textViewUsername, textViewFullName, textViewAge, textViewDisease, textViewTel, textViewRoom, textViewMessage;
+    private TextView textViewIdUser, textViewUsername, textViewFullName, textViewAge, textViewDisease, textViewTel, textViewRoom, textViewMessage;
     private int tabMode;
-    Button btnMoveRoom, btnEdit, btnHis, btnBasic;
-    String userId;
+    private Button btnMoveRoom, btnEdit, btnHis, btnBasic;
+    private String userId;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -28,6 +36,13 @@ public class DetailUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_user);
         getIdElementView();
+        new NavigationSetting(DetailUserActivity.this);
+        drawerLayout = findViewById(R.id.drawable);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(R.string.detail_infor_title);
         // Get id from another activity
         Bundle bundle = getIntent().getExtras();
         int rule = InforStaticClass.getRule();
@@ -103,7 +118,50 @@ public class DetailUserActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        switch (item.getItemId()) {
+            case R.id.home:
+                Intent intent = new Intent(this, MenuManagerActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.reset:
+                Intent intent1 = new Intent(this, this.getClass());
+                startActivity(intent1);
+                return true;
+            case R.id.about:
+                // Create about activity
+                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.help:
+                // Create help activity
+                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     private Bundle getIdUserMain() {
         Bundle bundle = new Bundle();
         textViewIdUser = findViewById(R.id.user_id_main);
