@@ -125,6 +125,7 @@ public class LoginFragment extends Fragment {
                     }
                 } catch (JSONException e) {
                     Log.d(Constant.ERROR_TAG, e.toString());
+                    statusLogin = Constant.SERVER_ERROR;
                 }
             }
             return null;
@@ -143,12 +144,14 @@ public class LoginFragment extends Fragment {
             super.onPostExecute(o);
             if (pDialog.isShowing())
                 pDialog.dismiss();
-            if (statusLogin == 1) {
+            if (statusLogin == Constant.SERVER_SUCCESS) {
                 message.setText(Constant.EMPTY);
                 Intent intent = new Intent(getActivity(), MenuManagerActivity.class);
                 startActivity(intent);
-            } else {
+            } else if (statusLogin == Constant.SERVER_FAIL) {
                 message.setText(Constant.MESSAGE_LOGIN_FAILED);
+            } else {
+                message.setText(Constant.MESSAGE_SERVER_FAILED);
             }
         }
     }

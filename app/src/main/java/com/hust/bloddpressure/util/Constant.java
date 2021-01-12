@@ -50,32 +50,32 @@ public class Constant {
     public static final String ACTION_SEARCH = "search";
     // CONSTANT SET UP FOR URL
     public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
-    public static final String URL_LOCAL = "http://10.0.2.2/bloodpressure/";
-    public static final String URL_LIST_ROOM = URL_LOCAL + "listroom_api.php";
-    public static final String URL_DELETE_ROOM = URL_LOCAL + "deleteroom_api.php";
-    public static final String URL_LIST_NEWS = URL_LOCAL + "new_api.php";
-    public static final String URL_ADD_ROOM = URL_LOCAL + "listroom_api.php";
-    public static final String URL_ADD_NEWS = URL_LOCAL + "new_api.php";
-    public static final String URL_LIST_PRESSURE = URL_LOCAL + "pressure_api.php";
-    public static final String URL_LIST_USER = URL_LOCAL + "user_api.php";
-    public static final String URL_LOGIN = URL_LOCAL + "login_api.php";
-    public static final String URL_REGISTER_USER = URL_LOCAL + "register_api.php";
-    public static final String URL_EDIT_USER = URL_LOCAL + "register_api.php";
-    public static final String URL_DELETE_USER = URL_LOCAL + "delete_user_api.php";
-    public static final String URL_LIST_TYPE_PREDICT = URL_LOCAL + "list_type_predict_api.php";
+//    public static final String URL_LOCAL = "http://10.0.2.2:88/bloodpressure/";
+//    public static final String URL_LIST_ROOM = URL_LOCAL + "listroom_api.php";
+//    public static final String URL_DELETE_ROOM = URL_LOCAL + "deleteroom_api.php";
+//    public static final String URL_LIST_NEWS = URL_LOCAL + "new_api.php";
+//    public static final String URL_ADD_ROOM = URL_LOCAL + "listroom_api.php";
+//    public static final String URL_ADD_NEWS = URL_LOCAL + "new_api.php";
+//    public static final String URL_LIST_PRESSURE = URL_LOCAL + "pressure_api.php";
+//    public static final String URL_LIST_USER = URL_LOCAL + "user_api.php";
+//    public static final String URL_LOGIN = URL_LOCAL + "login_api.php";
+//    public static final String URL_REGISTER_USER = URL_LOCAL + "register_api.php";
+//    public static final String URL_EDIT_USER = URL_LOCAL + "register_api.php";
+//    public static final String URL_DELETE_USER = URL_LOCAL + "delete_user_api.php";
+//    public static final String URL_LIST_TYPE_PREDICT = URL_LOCAL + "list_type_predict_api.php";
 
-//    public static final String URL_LIST_ROOM = URL + "listroom_api.php";
-//    public static final String URL_DELETE_ROOM = URL + "deleteroom_api.php";
-//    public static final String URL_LIST_NEWS = URL + "new_api.php";
-//    public static final String URL_ADD_ROOM = URL + "listroom_api.php";
-//    public static final String URL_ADD_NEWS = URL + "new_api.php";
-//    public static final String URL_LIST_PRESSURE = URL + "pressure_api.php";
-//    public static final String URL_LIST_USER = URL + "user_api.php";
-//    public static final String URL_LOGIN = URL + "login_api.php";
-//    public static final String URL_REGISTER_USER = URL + "register_api.php";
-//    public static final String URL_EDIT_USER = URL + "register_api.php";
-//    public static final String URL_DELETE_USER = URL + "delete_user_api.php";
-//public static final String URL_LIST_TYPE_PREDICT = URL + "list_type_predict_api.php";
+    public static final String URL_LIST_ROOM = URL + "listroom_api.php";
+    public static final String URL_DELETE_ROOM = URL + "deleteroom_api.php";
+    public static final String URL_LIST_NEWS = URL + "new_api.php";
+    public static final String URL_ADD_ROOM = URL + "listroom_api.php";
+    public static final String URL_ADD_NEWS = URL + "new_api.php";
+    public static final String URL_LIST_PRESSURE = URL + "pressure_api.php";
+    public static final String URL_LIST_USER = URL + "user_api.php";
+    public static final String URL_LOGIN = URL + "login_api.php";
+    public static final String URL_REGISTER_USER = URL + "register_api.php";
+    public static final String URL_EDIT_USER = URL + "register_api.php";
+    public static final String URL_DELETE_USER = URL + "delete_user_api.php";
+    public static final String URL_LIST_TYPE_PREDICT = URL + "list_type_predict_api.php";
 
 
     // SET UP FOR DIALOG
@@ -92,7 +92,7 @@ public class Constant {
     public static final String MESSAGE_NORMAL = "Chỉ số huyết áp bình thường \n Hãy kiểm tra lại thường xuyên";
     public static final String MESSAGE_LOGIN_FAILED = "Sai tên đăng nhập hoặc mật khẩu";
     public static final String MESSAGE_EXIST_USERNAME = "Tên đăng nhập đã tồn tại";
-
+    public static final String MESSAGE_SERVER_FAILED = "Lỗi máy chủ, vui lòng quay lại sau";
     // MESSAGE Validate
     public static final String MESAGE_NO_DATA = "Không có dữ liệu";
     public static final String MESSAGE_ADD_SUCCESS = "Tạo thành công";
@@ -130,7 +130,9 @@ public class Constant {
     public static final String OBJECT_JSON_PRESSURE = "pressure";
     public static final String OBJECT_USER = "user";
     public static final String OBJECT_JSON_LIST_PREDICT = "predict";
-
+    public static final int SERVER_ERROR = -1;
+    public static final int SERVER_SUCCESS = 1;
+    public static final int SERVER_FAIL = 0;
     // NAME FOR ENTITY OBJECT ATTRIBUTED
     public static final String ROOM_ID = "room_id";
     public static final String ROOM_NAME = "room_name";
@@ -185,4 +187,5 @@ public class Constant {
     public static final String NUMBER_GOT = "Chỉ số đo: ";
     public static final String MMHG = "mmHg";
     public static final String AGELEVEL_ = " Độ tuổi ";
+
 }

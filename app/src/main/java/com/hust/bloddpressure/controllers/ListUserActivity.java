@@ -318,13 +318,13 @@ public class ListUserActivity extends AppCompatActivity {
      * @param charText text got from text view
      */
     public void filterItem(String charText) {
-        String text = charText.toLowerCase(Locale.getDefault());
+        String text = charText.toLowerCase();
         listUsers.clear();
         if (text.length() == 0) {
             listUsers.addAll(listUsersSource);
         } else {
             for (UserInfor userInfor : listUsersSource) {
-                if (userInfor.getFullName().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (userInfor.getFullName().toLowerCase().contains(charText)) {
                     listUsers.add(userInfor);
                 }
             }
