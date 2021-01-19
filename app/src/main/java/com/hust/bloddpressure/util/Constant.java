@@ -50,7 +50,8 @@ public class Constant {
     public static final String ACTION_SEARCH = "search";
     // CONSTANT SET UP FOR URL
 //    public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
-    public static final String URL = "http://10.0.2.2/bloodpressure/";
+    public static final String URL = "http://10.0.2.2:88/bloodpressure/";
+//    public static final String URL = "http://10.0.2.2/bloodpressure/";
     public static final String URL_LIST_ROOM = URL + "list_room_api.php";
     public static final String URL_DELETE_ROOM = URL + "delete_room_api.php";
     public static final String URL_LIST_NEWS = URL + "new_api.php";
@@ -63,7 +64,7 @@ public class Constant {
     public static final String URL_EDIT_USER = URL + "update_user_api.php";
     public static final String URL_DELETE_USER = URL + "delete_user_api.php";
     public static final String URL_LIST_TYPE_PREDICT = URL + "list_type_predict_api.php";
-
+    public static final String URL_LIST_USER_EXPORT = URL + "list_user_export_api.php";
 
     // SET UP FOR DIALOG
     public static final String CONFIRM_TITLE = "Xác nhận";
@@ -118,6 +119,7 @@ public class Constant {
     public static final String OBJECT_JSON_PRESSURE = "pressure";
     public static final String OBJECT_USER = "user";
     public static final String OBJECT_JSON_LIST_PREDICT = "predict";
+    public static final String OBJECT_JSON_LIST_USER_EXPORT = "list_user_export";
     public static final int SERVER_ERROR = -1;
     public static final int SERVER_SUCCESS = 1;
     public static final int SERVER_FAIL = 0;
@@ -153,6 +155,12 @@ public class Constant {
     public static final String HEART_BEAT = "heart_beat";
     public static final String STANDARD_MAX = "standard_max";
     public static final String STANDARD_MIN = "standard_min";
+    public static final String OPT_USER = "opt_user";
+    public static final String OPT_PRESSURE = "opt_pressure";
+    public static final String SYSTOLIC_MAX = "systolic_max";
+    public static final String SYSTOLIC_MIN = "systolic_min";
+    public static final String DIASTOLIC_MAX = "diastolic_max";
+    public static final String DIASTOLIC_MIN = "diastolic_min";
 
     public static final String PREDICT_NORMAL = "Các kết quả đo cho kết luận huyết áp bình thường";
     public static final String PREDICT_MAX = "Dự đoán bạn có nguy cơ cao huyết áp qua các lần kiểm tra";
@@ -172,6 +180,8 @@ public class Constant {
     public static final String COMBACK_LATER = "Vui lòng quay lại sau";
     public static final String EDIT_USER_DELETED = "Người dùng không tồn tại hoặc đã bị xóa";
     public static final String MESSAGE_EXIST_ID = "Mã người dùng đã tồn tại";
+    public static final String SAVED = "Đã lưu thành công";
+    public static final String ERROR_SAVE = "Lưu thất bại";
     public static final String STATIC_NAME = "Phân tích dữ liệu";
     public static final String DEVERLOPING = "Chức năng này đang phát triển";
     public static final String HAVE = "Có ";

@@ -794,19 +794,25 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     private void initTableView() {
         TableLayout tableLayout = findViewById(R.id.table_result);
         for (BloodPressureInfor press : listPressure) {
+            TableRow tableRow = new TableRow(getBaseContext());
+            tableRow.setLayoutParams(new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT));
             TextView id = new TextView(getBaseContext());
             TextView hearBeat = new TextView(getBaseContext());
             TextView pressMax = new TextView(getBaseContext());
             TextView pressMin = new TextView(getBaseContext());
+
             id.setText(press.getBloodPressureId() + Constant.EMPTY);
             hearBeat.setText(press.getHeartBeat() + Constant.EMPTY);
             pressMax.setText(press.getPressureMax() + Constant.EMPTY);
             pressMin.setText(press.getPressureMin() + Constant.EMPTY);
-            TableRow tableRow = new TableRow(getBaseContext());
+
             tableRow.addView(id);
             tableRow.addView(hearBeat);
             tableRow.addView(pressMax);
             tableRow.addView(pressMin);
+
             tableLayout.addView(tableRow);
             tableLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_BEGINNING);
         }
@@ -888,7 +894,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         if (rule == Constant.ADMIN_RULE) {
 
             int value = (int) h.getX();
-            String mess = "";
+            String mess = Constant.EMPTY;
             if (value == Constant.VALUE_NORMAL_PREDICT) {
                 mess += Constant.PREDICT_NORMAL_NAME;
                 Toast.makeText(this, Constant.HAVE

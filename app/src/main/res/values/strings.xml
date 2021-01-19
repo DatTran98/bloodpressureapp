@@ -59,8 +59,8 @@
     <string name="mesage_delete_user">Ấn giữ để xóa người dùng!</string>
     <string name="move_to_room_title">Chuyển phòng bệnh nhân</string>
     <string name="choose_room">Chọn phòng mới</string>
-    <string name="max_pressure">Huyết áp tối đa</string>
-    <string name="min_pressure">Huyết áp tối thiểu</string>
+    <string name="max_pressure">Huyết áp tâm thu</string>
+    <string name="min_pressure">Huyết áp tâm trương</string>
     <string name="btn_name_user_information">Thông tin người dùng</string>
     <string name="title_user_menu">Welcome to BloodPressure User</string>
     <string name="label_room_user">Danh sách phòng bệnh</string>
@@ -82,7 +82,8 @@
     <string name="room_item">Phòng bệnh</string>
     <string name="news_item">Bản tin</string>
     <string name="analyst_item">Phân tích</string>
-    <string name="nearest_check">Lần kiểm tra gần nhất:</string>
+    <string name="nearest_check">Lần kiểm tra gần nhất</string>
+    <string name="heart_beat">Nhịp tim</string>
     <string name="message_analyst">Thống kê dữ liệu bệnh nhân</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
