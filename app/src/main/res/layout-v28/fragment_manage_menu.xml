@@ -4,7 +4,7 @@
     android:id="@+id/menu_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dff9fb"
+    android:background="@mipmap/background"
     tools:context=".controllers.ManageMenuFragment">
 
     <TextView
@@ -30,6 +30,7 @@
         android:src="@drawable/user_item_custom" />
 
     <RelativeLayout
+        android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_view"
@@ -41,8 +42,8 @@
 
         <ImageButton
             android:id="@+id/btn_move_list_user"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:background="@mipmap/user_image"
             android:contentDescription="@string/todo"
             android:radius="5dp"
@@ -63,10 +64,10 @@
 
         <ImageButton
             android:id="@+id/btn_move_list_room"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignTop="@+id/btn_move_list_user"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="60dp"
             android:layout_toEndOf="@+id/btn_move_list_user"
             android:background="@mipmap/room_image"
             android:contentDescription="@string/todo"
@@ -88,8 +89,8 @@
 
         <ImageButton
             android:id="@+id/btn_move_list_new"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_below="@+id/label_move_list_or_detail_user"
             android:layout_alignStart="@+id/label_move_list_or_detail_user"
             android:layout_marginTop="40dp"
@@ -113,10 +114,10 @@
 
         <ImageButton
             android:id="@+id/btn_move_list_static"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignTop="@+id/btn_move_list_new"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="60dp"
             android:layout_toEndOf="@+id/btn_move_list_new"
             android:background="@mipmap/static_image"
             android:contentDescription="@string/todo"

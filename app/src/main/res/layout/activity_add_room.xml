@@ -37,7 +37,7 @@
                     android:focusable="true"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/room_id"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLength="20"
                     android:padding="15dp"
                     android:textSize="20sp" />

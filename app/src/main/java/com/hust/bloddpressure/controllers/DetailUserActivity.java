@@ -86,7 +86,8 @@ public class DetailUserActivity extends AppCompatActivity {
                 tabHistoryPressureFragment.setArguments(bundle);
                 setFragmentByManagerFragment(R.id.content_detail, tabHistoryPressureFragment);
                 tabMode = Constant.MODE_HISTORY;
-
+                btnHis.setVisibility(View.GONE);
+                btnBasic.setVisibility(View.VISIBLE);
             }
         });
         btnBasic.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +98,8 @@ public class DetailUserActivity extends AppCompatActivity {
                 tabBasicDetailFragment.setArguments(bundle);
                 setFragmentByManagerFragment(R.id.content_detail, tabBasicDetailFragment);
                 tabMode = Constant.MODE_BASIC;
+                btnBasic.setVisibility(View.GONE);
+                btnHis.setVisibility(View.VISIBLE);
             }
         });
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +121,7 @@ public class DetailUserActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -162,6 +166,7 @@ public class DetailUserActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     private Bundle getIdUserMain() {
         Bundle bundle = new Bundle();
         textViewIdUser = findViewById(R.id.user_id_main);

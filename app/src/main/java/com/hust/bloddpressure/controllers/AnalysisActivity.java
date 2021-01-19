@@ -17,7 +17,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -56,6 +61,7 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -72,6 +78,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     private Map<Integer, Integer> mapMax, mapMin, mapNormal;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+    private int gotData;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -137,8 +144,12 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
                 startActivity(intent);
                 return true;
             case R.id.reset:
-                Intent intent1 = new Intent(this, this.getClass());
-                startActivity(intent1);
+                if (rule == Constant.ADMIN_RULE) {
+                    initViewManager();
+                } else {
+                    setContentView(R.layout.activity_analysis);
+                    initViewUser();
+                }
                 return true;
             case R.id.about:
                 // Create about activity
@@ -247,7 +258,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 PieEntry pe = (PieEntry) e;
-                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGELEVEL_ + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGE_LEVEL + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -256,7 +267,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             }
         });
         Description description = new Description();
-        description.setTextColor(R.color.no_data_color);
         if (listNormal.size() > 0) {
             description.setText(Constant.ANALYST_NORMAL);
         } else {
@@ -272,7 +282,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             yEntries.add(pie);
             xEntries.add(key + Constant.EMPTY);
         }
-        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_NORMAL_NAME);
+        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.AGE_LEVEL);
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
         ArrayList<Integer> colors = new ArrayList<>();
@@ -309,7 +319,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 PieEntry pe = (PieEntry) e;
-                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGELEVEL_ + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGE_LEVEL + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -318,7 +328,6 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             }
         });
         Description description = new Description();
-        description.setTextColor(R.color.no_data_color);
         if (listMin.size() > 0) {
             description.setText(Constant.ANALYST_MIN);
         } else {
@@ -334,7 +343,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             yEntries.add(pie);
             xEntries.add(key + Constant.EMPTY);
         }
-        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_MIN_NAME);
+        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.AGE_LEVEL);
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
 
@@ -372,7 +381,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 PieEntry pe = (PieEntry) e;
-                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGELEVEL_ + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(AnalysisActivity.this, Constant.HAVE + (int) pe.getValue() + Constant.PEOPLE + Constant.AGE_LEVEL + ((PieEntry) e).getLabel(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -396,7 +405,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             yEntries.add(pie);
             xEntries.add(key + Constant.EMPTY);
         }
-        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_MAX_NAME);
+        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.AGE_LEVEL);
         pieDataSet.setSliceSpace(2);
         pieDataSet.setValueTextSize(12);
 
@@ -424,23 +433,131 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     /**
      * init view in case of admin
      */
-    @RequiresApi(api = Build.VERSION_CODES.P)
     private void initViewManager() {
         mChart.setRotationEnabled(true);
         mChart.setHoleRadius(35f);
         mChart.setTransparentCircleAlpha(0);
         mChart.setCenterText(Constant.PREDICT_NAME);
         mChart.setCenterTextSize(10);
-        mChart.setOutlineAmbientShadowColor(Color.rgb(238, 238, 238));
         mChart.setOnChartValueSelectedListener(this);
         Description description = new Description();
         description.setText(Constant.ANALYST_USER);
-        description.setTextSize(15);
-        description.setTextColor(R.color.no_data_color);
+        description.setTextSize(10);
         mChart.setDescription(description);
-//        mChart.setDrawEntryLabels(true);
+        mChart.setDrawEntryLabels(true);
         GetListTypePredict getListTypePredict = new GetListTypePredict();
         getListTypePredict.execute();
+    }
+
+    /**
+     * Background Get List predict
+     */
+    @SuppressLint("StaticFieldLeak")
+    class GetListTypePredict extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            MyService jsonParser = new MyService();
+            String json = jsonParser.callService(Constant.URL_LIST_TYPE_PREDICT, MyService.GET);
+            if (json != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(json);
+                    JSONArray jsonArrayPredict = jsonObj.getJSONArray(Constant.OBJECT_JSON_LIST_PREDICT);
+                    for (int i = 0; i < jsonArrayPredict.length(); i++) {
+                        JSONObject obj = (JSONObject) jsonArrayPredict.get(i);
+                        int predictType = obj.getInt(Constant.PREDICT_TYPE);
+                        int age = obj.getInt(Constant.AGE);
+                        listPredict.add(new Predict(predictType, age));
+                    }
+                    gotData = Constant.SERVER_SUCCESS;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    gotData = Constant.SERVER_ERROR;
+                }
+            } else {
+                Log.e(Constant.LOG_JSON, Constant.MSG_JSON);
+                gotData = Constant.SERVER_FAIL;
+            }
+            return null;
+        }
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(AnalysisActivity.this);
+            pDialog.setMessage(Constant.MESSAGE_LOADING);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            if (pDialog.isShowing())
+                pDialog.dismiss();
+            if (Constant.SERVER_SUCCESS == gotData) {
+                addDataSet(mChart);
+//                initTableView();
+            } else if (Constant.SERVER_FAIL == gotData) {
+                TextView mess = findViewById(R.id.message_chart);
+                mess.setText(Constant.MESAGE_NO_DATA);
+            } else {
+                TextView mess = findViewById(R.id.message_chart);
+                mess.setText(Constant.MESSAGE_SERVER_FAILED);
+            }
+        }
+    }
+
+    /**
+     * Add data set for pie chart predict blood pressue
+     *
+     * @param pieChart pie chart need set
+     */
+    private void addDataSet(PieChart pieChart) {
+
+        ArrayList<PieEntry> yEntries = new ArrayList<>();
+        ArrayList<String> xEntries = new ArrayList<>();
+
+
+        int countMax = 0;
+        int countMin = 0;
+        for (Predict item : listPredict) {
+            if (Constant.VALUE_MAX_PREDICT == item.getTypePredict()) {
+                listMax.add(item);
+                countMax++;
+            }
+            if (Constant.VALUE_MIN_PREDICT == item.getTypePredict()) {
+                listMin.add(item);
+                countMin++;
+            }
+            if (Constant.VALUE_NORMAL_PREDICT == item.getTypePredict()) {
+                listNormal.add(item);
+            }
+        }
+        int normal = listPredict.size() - (countMax + countMin);
+
+        int[] yData = {countMax, countMin, normal};
+        String[] xData = {Constant.PREDICT_MAX_NAME, Constant.PREDICT_MIN_NAME, Constant.PREDICT_NORMAL_NAME};
+
+        for (int i = 0; i < yData.length; i++) {
+            yEntries.add(new PieEntry(yData[i], xData[i]));
+        }
+        xEntries.addAll(Arrays.asList(xData));
+        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.EMPTY);
+        pieDataSet.setSliceSpace(2);
+        pieDataSet.setValueTextSize(12);
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        colors.add(Color.rgb(255, 87, 34));
+        colors.add(Color.rgb(255, 193, 7));
+        colors.add(Color.rgb(3, 169, 244));
+        pieDataSet.setColors(colors);
+
+        Legend legend = pieChart.getLegend();
+        legend.setForm(Legend.LegendForm.CIRCLE);
+
+        PieData pieData = new PieData(pieDataSet);
+        pieChart.setData(pieData);
+        pieChart.invalidate();
     }
 
     /**
@@ -541,8 +658,52 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         xAxis.setAxisMaximum(dataMax.getXMax() + 0.25f);
         maxChart.setData(dataMax);
         maxChart.invalidate();
+    }
 
+    /**
+     * init view for heart chart in case of user rule
+     */
+    @SuppressLint("ResourceAsColor")
+    private void initViewHeartChart() {
+        CombinedChart heartChart = findViewById(R.id.combined_chart_heart);
+        heartChart.getDescription().setEnabled(false);
+        heartChart.setBackgroundColor(Color.WHITE);
+        heartChart.setDrawGridBackground(true);
+        heartChart.setDrawBarShadow(false);
+        heartChart.setHighlightFullBarEnabled(false);
+        heartChart.setOnChartValueSelectedListener(this);
 
+        YAxis rightAxis = heartChart.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setAxisMinimum(40f);
+
+        YAxis leftAxis = heartChart.getAxisLeft();
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setAxisMinimum(40f);
+
+        final List<String> xLabel = new ArrayList<>();
+        for (int i = listPressure.size() - 1; i >= 0; i--) {
+            xLabel.add(listPressure.get(i).getBloodPressureId() + Constant.EMPTY);
+        }
+
+        XAxis xAxis = heartChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setAxisMinimum(0f);
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return xLabel.get((int) value % xLabel.size());
+            }
+        });
+
+        CombinedData dataMin = new CombinedData();
+        LineData lineDatasMin = new LineData();
+        lineDatasMin.addDataSet((ILineDataSet) dataChartHeart());
+        dataMin.setData(lineDatasMin);
+        xAxis.setAxisMaximum(dataMin.getXMax() + 0.25f);
+        heartChart.setData(dataMin);
+        heartChart.invalidate();
     }
 
     /**
@@ -598,8 +759,57 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         return set;
     }
 
-    @Override
-    public void onNothingSelected() {
+    /**
+     * Set data for Pressure Heart beat Chart
+     *
+     * @return data set
+     */
+    private DataSet dataChartHeart() {
+        LineData d = new LineData();
+        ArrayList<Entry> entriesHeart = new ArrayList<>();
+        for (int i = 0; i < listPressure.size(); i++) {
+            entriesHeart.add(new Entry(i, listPressure.get(listPressure.size() - 1 - i).getHeartBeat()));
+        }
+        LineDataSet set = new LineDataSet(entriesHeart, Constant.LABEL_CHART_HEART);
+        set.setColor(Color.BLUE);
+        set.setLineWidth(2.5f);
+        set.setCircleColor(Color.BLUE);
+        set.setCircleRadius(5f);
+        set.setFillColor(Color.BLUE);
+        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setDrawValues(true);
+        set.setValueTextSize(10f);
+        set.setValueTextColor(Color.BLUE);
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        d.addDataSet(set);
+
+        return set;
+    }
+
+
+    /**
+     * Set Data for table view
+     */
+    @SuppressLint("SetTextI18n")
+    private void initTableView() {
+        TableLayout tableLayout = findViewById(R.id.table_result);
+        for (BloodPressureInfor press : listPressure) {
+            TextView id = new TextView(getBaseContext());
+            TextView hearBeat = new TextView(getBaseContext());
+            TextView pressMax = new TextView(getBaseContext());
+            TextView pressMin = new TextView(getBaseContext());
+            id.setText(press.getBloodPressureId() + Constant.EMPTY);
+            hearBeat.setText(press.getHeartBeat() + Constant.EMPTY);
+            pressMax.setText(press.getPressureMax() + Constant.EMPTY);
+            pressMin.setText(press.getPressureMin() + Constant.EMPTY);
+            TableRow tableRow = new TableRow(getBaseContext());
+            tableRow.addView(id);
+            tableRow.addView(hearBeat);
+            tableRow.addView(pressMax);
+            tableRow.addView(pressMin);
+            tableLayout.addView(tableRow);
+            tableLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_BEGINNING);
+        }
     }
 
     /**
@@ -626,14 +836,22 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
                     for (int i = 0; i < jsonArrayBloodPressure.length(); i++) {
                         JSONObject obj = (JSONObject) jsonArrayBloodPressure.get(i);
                         @SuppressLint("SimpleDateFormat") BloodPressureInfor bloodPressureInfor;
-                        bloodPressureInfor = new BloodPressureInfor(obj.getInt(Constant.PRESSURE_ID), obj.getInt(Constant.PRESSURE_MAX), obj.getInt(Constant.PRESSURE_MIN), new SimpleDateFormat(Constant.DATE_FORMAT).parse(obj.getString(Constant.TIME)));
+                        bloodPressureInfor = new BloodPressureInfor(obj.getInt(Constant.PRESSURE_ID),
+                                obj.getInt(Constant.PRESSURE_MAX),
+                                obj.getInt(Constant.PRESSURE_MIN),
+                                obj.getInt(Constant.HEART_BEAT),
+                                obj.getInt(Constant.STANDARD_MAX),
+                                obj.getInt(Constant.STANDARD_MIN), new SimpleDateFormat(Constant.DATE_FORMAT).parse(obj.getString(Constant.TIME)));
                         listPressure.add(bloodPressureInfor);
                     }
+                    gotData = Constant.SERVER_SUCCESS;
                 } catch (JSONException | ParseException e) {
                     e.printStackTrace();
+                    gotData = Constant.SERVER_ERROR;
                 }
             } else {
                 Log.e(Constant.LOG_JSON, Constant.MSG_JSON);
+                gotData = Constant.SERVER_FAIL;
             }
             return null;
         }
@@ -650,111 +868,19 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         protected void onPostExecute(Object o) {
             if (pDialog.isShowing())
                 pDialog.dismiss();
-            initViewMaxChart();
-            initViewMinChart();
-        }
-    }
-
-    /**
-     * Background Get List predict
-     */
-    @SuppressLint("StaticFieldLeak")
-    class GetListTypePredict extends AsyncTask {
-
-        @Override
-        protected Object doInBackground(Object[] params) {
-            MyService jsonParser = new MyService();
-            String json = jsonParser.callService(Constant.URL_LIST_TYPE_PREDICT, MyService.GET);
-            if (json != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(json);
-                    JSONArray jsonArrayPredict = jsonObj.getJSONArray(Constant.OBJECT_JSON_LIST_PREDICT);
-                    for (int i = 0; i < jsonArrayPredict.length(); i++) {
-                        JSONObject obj = (JSONObject) jsonArrayPredict.get(i);
-                        int predictType = obj.getInt(Constant.PREDICT_TYPE);
-                        int age = obj.getInt(Constant.AGE);
-                        listPredict.add(new Predict(predictType, age));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            if (Constant.SERVER_SUCCESS == gotData) {
+                initViewMaxChart();
+                initViewMinChart();
+                initViewHeartChart();
+                initTableView();
+            } else if (Constant.SERVER_FAIL == gotData) {
+                TextView mess = findViewById(R.id.message_chart);
+                mess.setText(Constant.MESAGE_NO_DATA);
             } else {
-                Log.e(Constant.LOG_JSON, Constant.MSG_JSON);
-            }
-            return null;
-        }
-
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(AnalysisActivity.this);
-            pDialog.setMessage(Constant.MESSAGE_LOADING);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-            if (pDialog.isShowing())
-                pDialog.dismiss();
-            addDataSet(mChart);
-
-        }
-    }
-
-    /**
-     * Add data set for pie chart predict blood pressue
-     *
-     * @param pieChart pie chart need set
-     */
-    private void addDataSet(PieChart pieChart) {
-
-        ArrayList<PieEntry> yEntries = new ArrayList<>();
-        ArrayList<String> xEntries = new ArrayList<>();
-
-
-        int countMax = 0;
-        int countMin = 0;
-        for (Predict item : listPredict) {
-            if (Constant.VALUE_MAX_PREDICT == item.getTypePredict()) {
-                listMax.add(item);
-                countMax++;
-            }
-            if (Constant.VALUE_MIN_PREDICT == item.getTypePredict()) {
-                listMin.add(item);
-                countMin++;
-            }
-            if (Constant.VALUE_NORMAL_PREDICT == item.getTypePredict()) {
-                listNormal.add(item);
+                TextView mess = findViewById(R.id.message_chart);
+                mess.setText(Constant.MESSAGE_SERVER_FAILED);
             }
         }
-        int normal = listPredict.size() - (countMax + countMin);
-
-        int[] yData = {countMax, countMin, normal};
-        String[] xData = {Constant.PREDICT_MAX_NAME, Constant.PREDICT_MIN_NAME, Constant.PREDICT_NORMAL_NAME};
-
-        for (int i = 0; i < yData.length; i++) {
-            yEntries.add(new PieEntry(yData[i], i));
-        }
-        for (int i = 0; i < xData.length; i++) {
-            xEntries.add(xData[i]);
-        }
-        PieDataSet pieDataSet = new PieDataSet(yEntries, Constant.PREDICT_CONTENT);
-        pieDataSet.setSliceSpace(2);
-        pieDataSet.setValueTextSize(12);
-
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.rgb(255, 87, 34));
-        colors.add(Color.rgb(255, 193, 7));
-        colors.add(Color.rgb(3, 169, 244));
-        pieDataSet.setColors(colors);
-
-        Legend legend = pieChart.getLegend();
-        legend.setForm(Legend.LegendForm.CIRCLE);
-
-        PieData pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieChart.invalidate();
     }
 
     @Override
@@ -766,17 +892,17 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             if (value == Constant.VALUE_NORMAL_PREDICT) {
                 mess += Constant.PREDICT_NORMAL_NAME;
                 Toast.makeText(this, Constant.HAVE
-                                + (int) e.getY() + Constant.CHAR + listNormal.size() + Constant.PEOPLE + mess
+                                + (int) e.getY() + Constant.CHAR + listPredict.size() + Constant.PEOPLE + mess
                         , Toast.LENGTH_SHORT).show();
             } else if (value == Constant.VALUE_MAX_PREDICT) {
                 mess += Constant.PREDICT_MAX_NAME;
                 Toast.makeText(this, Constant.HAVE
-                                + (int) e.getY() + Constant.CHAR + listMax.size() + Constant.PEOPLE + mess
+                                + (int) e.getY() + Constant.CHAR + listPredict.size() + Constant.PEOPLE + mess
                         , Toast.LENGTH_SHORT).show();
             } else {
                 mess += Constant.PREDICT_MIN_NAME;
                 Toast.makeText(this, Constant.HAVE
-                                + (int) e.getY() + Constant.CHAR + listMin.size() + Constant.PEOPLE + mess
+                                + (int) e.getY() + Constant.CHAR + listPredict.size() + Constant.PEOPLE + mess
                         , Toast.LENGTH_SHORT).show();
             }
 
@@ -789,4 +915,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         }
 
     }
+
+    @Override
+    public void onNothingSelected() {
+    }
+
 }

@@ -15,34 +15,6 @@
         android:orientation="vertical"
         tools:context=".controllers.DetailUserActivity">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/title_custom">
-
-            <ImageView
-                android:id="@+id/img_view"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:contentDescription="@string/todo"
-                android:src="@mipmap/blood_pressure_icon_vector" />
-
-            <TextView
-                android:id="@+id/title_detail"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/img_view"
-                android:layout_toRightOf="@id/img_view"
-                android:background="@drawable/title_custom"
-                android:fontFamily="@font/roboto_regular"
-                android:gravity="center"
-                android:text="@string/add_news_title"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="500dp"
@@ -66,7 +38,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/news_title"
                     android:inputType="text"
-                    android:maxLength="50"
+                    android:maxLength="100"
                     android:padding="15dp"
                     android:textSize="20sp" />
 

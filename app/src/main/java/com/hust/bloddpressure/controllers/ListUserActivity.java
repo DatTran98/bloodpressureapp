@@ -121,7 +121,7 @@ public class ListUserActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                String text = newText;
+                String text = newText.trim().toLowerCase();
                 filterItem(text);
                 return false;
             }
@@ -318,7 +318,7 @@ public class ListUserActivity extends AppCompatActivity {
      * @param charText text got from text view
      */
     public void filterItem(String charText) {
-        String text = charText.toLowerCase();
+        String text = charText;
         listUsers.clear();
         if (text.length() == 0) {
             listUsers.addAll(listUsersSource);

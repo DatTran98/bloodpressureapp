@@ -52,8 +52,8 @@
     <string name="static_title">Thống kê dữ liệu</string>
     <string name="message_result">Đồ thị kết quả đo gần nhất</string>
     <string name="detail_infor_title">Thông tin chi tiết bệnh nhân</string>
-    <string name="basic_detail">Thông tin cơ bản</string>
-    <string name="history_result">lịch sử kiểm tra</string>
+    <string name="basic_detail">Đi tới thông tin cơ bản</string>
+    <string name="history_result">Đi tới lịch sử kiểm tra</string>
     <string name="user_id">Mã bệnh nhân</string>
     <string name="list_user_title">Danh sách người bệnh</string>
     <string name="mesage_delete_user">Ấn giữ để xóa người dùng!</string>
@@ -65,6 +65,7 @@
     <string name="title_user_menu">Welcome to BloodPressure User</string>
     <string name="label_room_user">Danh sách phòng bệnh</string>
     <string name="no_data">Không có dữ liệu</string>
+    <string name="basic_detail_mess">Thông tin người dùng</string>
     <string name="history_detail">Thông tin lịch sử đo</string>
     <string name="press_to_delete">Ấn giữ để xóa phòng!</string>
     <string name="home">Màn hình chính</string>
@@ -81,24 +82,29 @@
     <string name="room_item">Phòng bệnh</string>
     <string name="news_item">Bản tin</string>
     <string name="analyst_item">Phân tích</string>
-    <string name="nearest_check">Lần kiểm tra gần nhất</string>
+    <string name="nearest_check">Lần kiểm tra gần nhất:</string>
     <string name="message_analyst">Thống kê dữ liệu bệnh nhân</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="use_analyst_age">Phân tích theo tuổi</string>
 
-    <string name="export_user">Xuất dữ liệu người dùng</string>
+    <string name="export_user">Tùy chọn xuất dữ liệu người dùng</string>
     <string name="all">Tất cả</string>
-    <string name="a_week">Một tuần</string>
-    <string name="a_mount">Một tháng</string>
-    <string name="export_user_des">Lưu ý: file dữ liệu được xuất ra sẽ có tên theo format: {0}_user_{1}\n Với {0} - all/month/week \n\t\t\t {1} - ngày xuất file</string>
-    <string name="three_day">3 ngày gần nhất</string>
+    <string name="a_10">10 bản ghi gần nhất</string>
+    <string name="a_50">50 bản ghi gần nhất</string>
+    <string name="export_user_des">Lưu ý: file dữ liệu được xuất ra sẽ có tên theo format: {0}_user_{1}_pressure_{2}\n
+        Với {0} - all/50/10 \n\t\t\t
+        {1} - all/10/7/3 \n\t\t\t
+        {2} - ngày xuất file</string>
+    <string name="a_3_time">3 lần đo gần nhất</string>
     <string name="one_file">Chỉ xuất 1 file</string>
-    <string name="export_pressure_des">Lưu ý: Khi chọn checkbox giá trị đo của tất cả người dùng sẽ được lưu cùng 1 file\n với tên theo format: {0}_user_{1}\n Với {0} - all/month/week/day \n\t\t\t {1} - ngày xuất file\n Nếu không check chọn sẽ lưu riêng file cho từng ngườ dùng với tên file theo format: {0}_{1}_user_{2}\n Với {0} - Mã người dùng\n\t\t\t {1} - all/month/week/day \n\t\t\t {1} - ngày xuất file\n </string>
-    <string name="export_pressure">Xuất dữ liệu kết quả đo</string>
+    <string name="a_7_time">7 lần đo gần nhất</string>
+    <string name="a_10_time">10 lần đo gần nhất</string>
+    <string name="export_pressure">Tùy chọn xuất dữ liệu kết quả đo</string>
 
     <string name="search_by_name">Tìm kiếm tên</string>
     <string name="search">OK</string>
+    <string name="label_setting_pressure">Thiết lập chỉ số đo</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

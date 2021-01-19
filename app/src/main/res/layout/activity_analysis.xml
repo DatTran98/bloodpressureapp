@@ -16,7 +16,7 @@
 
 
         <TextView
-            android:id="@android:id/empty"
+            android:id="@+id/message_chart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -33,15 +33,33 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
                 <com.github.mikephil.charting.charts.CombinedChart
                     android:id="@+id/combined_chart_max"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp" />
+                    android:layout_width="fill_parent"
+                    android:layout_height="300dp"
+                    android:background="@drawable/list_custom" />
 
                 <com.github.mikephil.charting.charts.CombinedChart
                     android:id="@+id/combined_chart_min"
+                    android:layout_width="fill_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/list_custom" />
+
+                <com.github.mikephil.charting.charts.CombinedChart
+                    android:id="@+id/combined_chart_heart"
+                    android:layout_width="fill_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/list_custom" />
+
+                <TableLayout
+                    android:id="@+id/table_result"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/list_custom" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

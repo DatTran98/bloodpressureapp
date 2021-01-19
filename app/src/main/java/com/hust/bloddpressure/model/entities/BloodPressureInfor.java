@@ -16,12 +16,19 @@ public class BloodPressureInfor implements Serializable {
     private int bloodPressureId;
     private int pressureMax;
     private int pressureMin;
+    private int heartBeat;
+    private int standardMax;
+    private int standardMin;
     private Date time;
 
-    public BloodPressureInfor(int bloodPressureId, int pressureMax, int pressureMin, Date time) {
+
+    public BloodPressureInfor(int bloodPressureId, int pressureMax, int pressureMin, int heartBeat, int standardMax, int standardMin, Date time) {
         this.bloodPressureId = bloodPressureId;
         this.pressureMax = pressureMax;
         this.pressureMin = pressureMin;
+        this.heartBeat = heartBeat;
+        this.standardMax = standardMax;
+        this.standardMin = standardMin;
         this.time = time;
     }
 
@@ -60,4 +67,27 @@ public class BloodPressureInfor implements Serializable {
         this.pressureMax = pressureMax;
     }
 
+    public int getHeartBeat() {
+        return heartBeat;
+    }
+
+    public void setHeartBeat(int heartBeat) {
+        this.heartBeat = heartBeat;
+    }
+
+    public int getStandardMax() {
+        return standardMax;
+    }
+
+    public void setStandardMax(int standardMax) {
+        this.standardMax = standardMax;
+    }
+
+    public int getStandardMin() {
+        return standardMin;
+    }
+
+    public void setStandardMin(int standardMin) {
+        this.standardMin = standardMin;
+    }
 }

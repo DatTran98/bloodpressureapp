@@ -107,7 +107,12 @@ public class TabHistoryPressureFragment extends Fragment {
                     for (int i = 0; i < jsonArrayBloodPressure.length(); i++) {
                         JSONObject obj = (JSONObject) jsonArrayBloodPressure.get(i);
                         @SuppressLint("SimpleDateFormat") BloodPressureInfor bloodPressureInfor;
-                        bloodPressureInfor = new BloodPressureInfor(obj.getInt(Constant.PRESSURE_ID), obj.getInt(Constant.PRESSURE_MAX), obj.getInt(Constant.PRESSURE_MIN), new SimpleDateFormat(Constant.DATE_FORMAT).parse(obj.getString(Constant.TIME)));
+                        bloodPressureInfor = new BloodPressureInfor(obj.getInt(Constant.PRESSURE_ID),
+                                obj.getInt(Constant.PRESSURE_MAX),
+                                obj.getInt(Constant.PRESSURE_MIN),
+                                obj.getInt(Constant.HEART_BEAT),
+                                obj.getInt(Constant.STANDARD_MAX),
+                                obj.getInt(Constant.STANDARD_MIN), new SimpleDateFormat(Constant.DATE_FORMAT).parse(obj.getString(Constant.TIME)));
                         listPressure.add(bloodPressureInfor);
                     }
                 } catch (JSONException | ParseException e) {

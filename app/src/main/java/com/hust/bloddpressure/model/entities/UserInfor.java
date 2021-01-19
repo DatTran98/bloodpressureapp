@@ -21,6 +21,9 @@ public class UserInfor implements Serializable {
     private int pressureMin;
     private int pressureMax;
     private int predictType;
+    private int heartBeat;
+
+
     private String fullName;
     private String tel;
     private String room;
@@ -32,7 +35,7 @@ public class UserInfor implements Serializable {
     public UserInfor() {
     }
 
-    public UserInfor(String userId, int roomId, int age, int rule, int pressureMin, int pressureMax, int predictType, String fullName, String tel, String room, String diseaseName, String username) {
+    public UserInfor(String userId, int roomId, int age, int rule, int pressureMin, int pressureMax, int predictType, int heartBeat, String fullName, String tel, String room, String diseaseName, String username) {
         this.userId = userId;
         this.roomId = roomId;
         this.age = age;
@@ -40,6 +43,7 @@ public class UserInfor implements Serializable {
         this.pressureMin = pressureMin;
         this.pressureMax = pressureMax;
         this.predictType = predictType;
+        this.heartBeat = heartBeat;
         this.fullName = fullName;
         this.tel = tel;
         this.room = room;
@@ -67,12 +71,14 @@ public class UserInfor implements Serializable {
         this.username = username;
         this.password = password;
     }
+
     public UserInfor(String userId, String fullName, int age, String diseaseName) {
         this.userId = userId;
         this.fullName = fullName;
         this.age = age;
         this.diseaseName = diseaseName;
     }
+
     public String getUsername() {
         return username;
     }
@@ -185,5 +191,12 @@ public class UserInfor implements Serializable {
         this.diseaseName = diseaseName;
     }
 
+    public int getHeartBeat() {
+        return heartBeat;
+    }
+
+    public void setHeartBeat(int heartBeat) {
+        this.heartBeat = heartBeat;
+    }
 
 }

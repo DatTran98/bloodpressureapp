@@ -61,7 +61,6 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@drawable/user_item_custom"
-            android:divider="@null"
             android:listSelector="@drawable/list_selector"
             android:scrollbars="none" />
 

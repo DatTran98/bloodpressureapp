@@ -112,16 +112,18 @@ public class LoginFragment extends Fragment {
                     JSONObject jsonObj = new JSONObject(json);
                     if (jsonObj != null) {
                         JSONArray jsonArrayRoom = jsonObj.getJSONArray(Constant.OBJECT_USER);
-                        for (int i = 0; i < jsonArrayRoom.length(); i++) {
-                            JSONObject obj = (JSONObject) jsonArrayRoom.get(i);
+//                        for (int i = 0; i < jsonArrayRoom.length(); i++) {
+                        JSONObject obj = (JSONObject) jsonArrayRoom.get(0);
+                        statusLogin = obj.getInt(Constant.JSON_SUCCESS);
+                        if (statusLogin == Constant.SERVER_SUCCESS) {
                             int rule = obj.getInt(Constant.RULE);
                             String fullName = obj.getString(Constant.FULL_NAME);
                             String userId = obj.getString(Constant.USER_ID);
                             InforStaticClass.setUserId(userId);
                             InforStaticClass.setRule(rule);
                             InforStaticClass.setFullName(fullName);
-                            statusLogin = obj.getInt(Constant.JSON_SUCCESS);
                         }
+//                        }
                     }
                 } catch (JSONException e) {
                     Log.d(Constant.ERROR_TAG, e.toString());
