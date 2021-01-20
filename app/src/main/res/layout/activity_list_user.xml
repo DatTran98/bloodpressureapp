@@ -18,23 +18,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/m_5"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/m_30"
+                android:layout_height="@dimen/h_30"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="@dimen/m_20"
+                android:layout_marginLeft="@dimen/m_20"
                 android:src="@mipmap/name_icon" />
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="250dp"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/h_50"
                 android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/m_20"
                 android:background="@drawable/et_custom"
                 android:gravity="center"
                 android:iconifiedByDefault="false"
@@ -48,17 +48,17 @@
         <TextView
             android:id="@android:id/empty"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/h_20"
+            android:layout_marginTop="@dimen/m_5"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="@string/mesage_delete_user"
-            android:textSize="15sp" />
+            android:textSize="@dimen/txt_s_15" />
 
         <ListView
             android:id="@+id/list_users"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/h_0"
             android:layout_weight="1"
             android:background="@drawable/user_item_custom"
             android:listSelector="@drawable/list_selector"
@@ -89,15 +89,15 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="10dp"
+                android:paddingBottom="@dimen/p_10"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                 <ImageView
                     android:id="@+id/activity_main_imv_avatar"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="@dimen/w_80"
+                    android:layout_height="@dimen/h_80"
                     android:contentDescription="@string/todo"
-                    android:paddingTop="10dp"
+                    android:paddingTop="@dimen/p_10"
                     app:srcCompat="@mipmap/blood_pressure_icon_vector" />
 
                 <TextView
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_email"
-                    android:textSize="10sp"
+                    android:textSize="@dimen/txt_s_10"
                     tools:ignore="SmallSp" />
 
             </LinearLayout>
@@ -136,8 +136,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/home" />
             </LinearLayout>
             <!-- Item Info -->
@@ -160,8 +160,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/basic_detail" />
             </LinearLayout>
             <!-- Item message -->
@@ -185,8 +185,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/my_message" />
             </LinearLayout>
 
@@ -211,8 +211,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/news_item" />
             </LinearLayout>
 
@@ -236,8 +236,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/room_item" />
             </LinearLayout>
 
@@ -261,8 +261,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/analyst_item" />
             </LinearLayout>
 
@@ -286,8 +286,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/export" />
 
             </LinearLayout>
@@ -312,8 +312,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/logout" />
             </LinearLayout>
 

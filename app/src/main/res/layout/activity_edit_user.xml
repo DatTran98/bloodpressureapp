@@ -29,8 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="@dimen/m_20"
+            android:layout_marginLeft="@dimen/m_20"
             android:text=""
             android:textColor="@android:color/holo_red_light" />
 
@@ -55,27 +55,27 @@
                 <EditText
                     android:id="@+id/user_id"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="@dimen/h_50"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginRight="@dimen/m_20"
+                    android:layout_marginBottom="@dimen/m_10"
                     android:autofillHints="@string/user_id"
                     android:background="@drawable/et_custom"
                     android:enabled="false"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/user_id"
                     android:inputType="text"
-                    android:maxLength="20"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
+                    android:maxLength="9"
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_15" />
 
                 <EditText
                     android:id="@+id/username"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="@dimen/h_50"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginRight="@dimen/m_20"
+                    android:layout_marginBottom="@dimen/m_10"
                     android:autofillHints="@string/username"
                     android:background="@drawable/et_custom"
                     android:enabled="false"
@@ -83,103 +83,103 @@
                     android:hint="@string/username"
                     android:inputType="text"
                     android:maxLength="20"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_15" />
 
                 <EditText
                     android:id="@+id/full_name"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="@dimen/h_50"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginRight="@dimen/m_20"
+                    android:layout_marginBottom="@dimen/m_10"
                     android:autofillHints="@string/full_name"
                     android:background="@drawable/et_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/full_name"
                     android:inputType="textPersonName"
-                    android:maxLength="20"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
+                    android:maxLength="45"
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_15" />
 
                 <EditText
                     android:id="@+id/age"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="@dimen/h_50"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginRight="@dimen/m_20"
+                    android:layout_marginBottom="@dimen/m_10"
                     android:autofillHints="@string/age"
                     android:background="@drawable/et_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/age"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_15" />
 
                 <EditText
                     android:id="@+id/disease_name"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="@dimen/h_50"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginRight="@dimen/m_20"
+                    android:layout_marginBottom="@dimen/m_10"
                     android:autofillHints=""
                     android:background="@drawable/et_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/disease_name"
                     android:inputType="text"
-                    android:maxLength="20"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
+                    android:maxLength="45"
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_15" />
 
                 <EditText
                     android:id="@+id/tel"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="@dimen/h_50"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginRight="@dimen/m_20"
+                    android:layout_marginBottom="@dimen/m_10"
                     android:autofillHints="@string/tel"
                     android:background="@drawable/et_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/tel"
                     android:inputType="phone"
-                    android:padding="15dp"
-                    android:textSize="15sp" />
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_15" />
 
                 <TextView
                     android:id="@+id/room"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_height="@dimen/h_50"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginRight="@dimen/m_20"
+                    android:layout_marginBottom="@dimen/m_10"
                     android:background="@drawable/et_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/room"
                     android:inputType="text"
                     android:maxLength="20"
-                    android:padding="15dp"
-                    android:textSize="15sp"
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_15"
                     tools:ignore="TextViewEdits" />
 
                 <Button
                     android:id="@+id/btn_save"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/h_50"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/m_20"
                     android:layout_marginTop="30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="@dimen/m_20"
+                    android:layout_marginBottom="@dimen/m_10"
                     android:background="@drawable/btn_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/btn_save"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
-                    android:textSize="25sp"
+                    android:textSize="@dimen/txt_s_25"
                     android:textStyle="bold"
                     tools:ignore="OnClick" />
             </LinearLayout>
@@ -209,15 +209,15 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="10dp"
+                android:paddingBottom="@dimen/p_10"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                 <ImageView
                     android:id="@+id/activity_main_imv_avatar"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="@dimen/w_80"
+                    android:layout_height="@dimen/h_80"
                     android:contentDescription="@string/todo"
-                    android:paddingTop="10dp"
+                    android:paddingTop="@dimen/p_10"
                     app:srcCompat="@mipmap/blood_pressure_icon_vector" />
 
                 <TextView
@@ -232,7 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_email"
-                    android:textSize="10sp"
+                    android:textSize="@dimen/txt_s_10"
                     tools:ignore="SmallSp" />
 
             </LinearLayout>
@@ -256,8 +256,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/home" />
             </LinearLayout>
             <!-- Item Info -->
@@ -280,8 +280,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/basic_detail" />
             </LinearLayout>
             <!-- Item message -->
@@ -305,8 +305,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/my_message" />
             </LinearLayout>
 
@@ -331,8 +331,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/news_item" />
             </LinearLayout>
 
@@ -356,8 +356,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/room_item" />
             </LinearLayout>
 
@@ -381,8 +381,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/analyst_item" />
             </LinearLayout>
 
@@ -406,8 +406,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/export" />
 
             </LinearLayout>
@@ -432,8 +432,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/logout" />
             </LinearLayout>
 

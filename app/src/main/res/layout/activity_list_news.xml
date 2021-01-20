@@ -19,14 +19,14 @@
             android:id="@+id/list_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="@dimen/m_45"
             android:nextFocusDown="@id/btn_add_news"
             android:scrollbars="none" />
 
         <Button
             android:id="@+id/btn_add_news"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/w_50"
+            android:layout_height="@dimen/h_50"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:layout_weight="1"
@@ -57,15 +57,15 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="10dp"
+                android:paddingBottom="@dimen/p_10"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                 <ImageView
                     android:id="@+id/activity_main_imv_avatar"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="@dimen/w_80"
+                    android:layout_height="@dimen/h_80"
                     android:contentDescription="@string/todo"
-                    android:paddingTop="10dp"
+                    android:paddingTop="@dimen/p_10"
                     app:srcCompat="@mipmap/blood_pressure_icon_vector" />
 
                 <TextView
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_email"
-                    android:textSize="10sp"
+                    android:textSize="@dimen/txt_s_10"
                     tools:ignore="SmallSp" />
 
             </LinearLayout>
@@ -104,8 +104,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/home" />
             </LinearLayout>
             <!-- Item Info -->
@@ -128,8 +128,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/basic_detail" />
             </LinearLayout>
             <!-- Item message -->
@@ -153,8 +153,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/my_message" />
             </LinearLayout>
 
@@ -179,8 +179,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/news_item" />
             </LinearLayout>
 
@@ -204,8 +204,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/room_item" />
             </LinearLayout>
 
@@ -229,8 +229,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/analyst_item" />
             </LinearLayout>
 
@@ -254,8 +254,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/export" />
 
             </LinearLayout>
@@ -280,8 +280,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/logout" />
             </LinearLayout>
 

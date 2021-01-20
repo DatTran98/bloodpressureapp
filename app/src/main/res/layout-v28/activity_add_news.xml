@@ -17,8 +17,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="@dimen/h_500"
+            android:layout_marginTop="@dimen/m_20">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -28,35 +28,36 @@
                 <EditText
                     android:id="@+id/title_news"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_height="@dimen/h_60"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginTop="@dimen/m_10"
+                    android:layout_marginRight="@dimen/m_20"
                     android:autofillHints="@string/news_title"
                     android:background="@drawable/et_custom"
                     android:focusable="true"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/news_title"
                     android:inputType="text"
-                    android:maxLength="100"
-                    android:padding="15dp"
-                    android:textSize="20sp" />
+                    android:maxLength="255"
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_20" />
 
                 <EditText
                     android:id="@+id/content_news"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/m_20"
+                    android:layout_marginTop="@dimen/m_10"
+                    android:layout_marginRight="@dimen/m_20"
                     android:autofillHints="@string/news_content"
                     android:background="@drawable/et_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/news_content"
                     android:inputType="textMultiLine"
+                    android:lineHeight="@dimen/txt_s_1"
                     android:maxLines="40"
-                    android:padding="15dp"
-                    android:textSize="20sp"
+                    android:padding="@dimen/p_10"
+                    android:textSize="@dimen/txt_s_20"
                     tools:ignore="LabelFor" />
 
             </LinearLayout>
@@ -68,15 +69,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/m_20"
+            android:layout_marginTop="@dimen/m_10"
+            android:layout_marginRight="@dimen/m_20"
+            android:layout_marginBottom="@dimen/m_10"
             android:background="@drawable/btn_custom"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/create"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/txt_s_20" />
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -102,15 +103,15 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingBottom="10dp"
+                android:paddingBottom="@dimen/p_10"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
                 <ImageView
                     android:id="@+id/activity_main_imv_avatar"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="@dimen/w_80"
+                    android:layout_height="@dimen/h_80"
                     android:contentDescription="@string/todo"
-                    android:paddingTop="10dp"
+                    android:paddingTop="@dimen/p_10"
                     app:srcCompat="@mipmap/blood_pressure_icon_vector" />
 
                 <TextView
@@ -125,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/label_email"
-                    android:textSize="10sp"
+                    android:textSize="@dimen/txt_s_10"
                     tools:ignore="SmallSp" />
 
             </LinearLayout>
@@ -149,8 +150,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/home" />
             </LinearLayout>
             <!-- Item Info -->
@@ -173,8 +174,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/basic_detail" />
             </LinearLayout>
             <!-- Item message -->
@@ -198,8 +199,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/my_message" />
             </LinearLayout>
 
@@ -224,8 +225,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/news_item" />
             </LinearLayout>
 
@@ -249,8 +250,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/room_item" />
             </LinearLayout>
 
@@ -274,8 +275,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/analyst_item" />
             </LinearLayout>
 
@@ -299,8 +300,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/export" />
 
             </LinearLayout>
@@ -325,8 +326,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="@dimen/m_32"
+                    android:layout_marginLeft="@dimen/m_32"
                     android:text="@string/logout" />
             </LinearLayout>
 

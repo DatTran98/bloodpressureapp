@@ -16,15 +16,15 @@
         android:fontFamily="@font/indigo_daisy"
         android:gravity="center"
         android:text="@string/blood_pressure"
-        android:textSize="30sp" />
+        android:textSize="@dimen/txt_s_30" />
 
     <ImageView
         android:id="@+id/img_view"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/w_80"
+        android:layout_height="@dimen/h_80"
         android:layout_below="@id/label_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/m_10"
         android:contentDescription="@string/todo"
         android:src="@mipmap/blood_pressure_icon_vector" />
 
@@ -34,109 +34,109 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/img_view"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="@dimen/m_35"
         android:background="@drawable/list_custom"
         android:gravity="center"
-        android:padding="40dp">
+        android:padding="@dimen/p_40">
 
         <ImageButton
             android:id="@+id/btn_move_list_user"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/w_100"
+            android:layout_height="@dimen/h_100"
             android:background="@mipmap/user_image"
             android:contentDescription="@string/todo"
-            android:radius="5dp"
+            android:radius="@dimen/r_5"
             android:src="@drawable/user_item_custom"
             android:text="@string/move_list_user" />
 
         <TextView
             android:id="@+id/label_move_list_or_detail_user"
-            android:layout_width="120dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/w_120"
+            android:layout_height="@dimen/h_35"
             android:layout_below="@+id/btn_move_list_user"
             android:layout_alignStart="@+id/btn_move_list_user"
             android:layout_alignLeft="@+id/btn_move_list_user"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/m_10"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="@string/move_list_user" />
 
         <ImageButton
             android:id="@+id/btn_move_list_room"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/w_100"
+            android:layout_height="@dimen/h_100"
             android:layout_alignTop="@+id/btn_move_list_user"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginStart="@dimen/m_60"
+            android:layout_marginLeft="@dimen/m_60"
             android:layout_toEndOf="@+id/btn_move_list_user"
             android:layout_toRightOf="@+id/btn_move_list_user"
             android:background="@mipmap/room_image"
             android:contentDescription="@string/todo"
-            android:radius="5dp"
+            android:radius="@dimen/r_5"
             android:src="@drawable/user_item_custom"
             android:text="@string/move_list_room" />
 
         <TextView
             android:id="@+id/label_move_list_room"
-            android:layout_width="120dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/w_120"
+            android:layout_height="@dimen/h_35"
             android:layout_below="@+id/btn_move_list_room"
             android:layout_alignStart="@+id/btn_move_list_room"
             android:layout_alignLeft="@+id/btn_move_list_room"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/m_10"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="@string/move_list_room" />
 
         <ImageButton
             android:id="@+id/btn_move_list_new"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/w_100"
+            android:layout_height="@dimen/h_100"
             android:layout_below="@+id/label_move_list_or_detail_user"
             android:layout_alignStart="@+id/label_move_list_or_detail_user"
             android:layout_alignLeft="@+id/label_move_list_or_detail_user"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="@dimen/m_40"
             android:background="@mipmap/news_image"
             android:contentDescription="@string/todo"
-            android:radius="5dp"
+            android:radius="@dimen/r_5"
             android:src="@drawable/user_item_custom"
             android:text="@string/move_list_news" />
 
         <TextView
             android:id="@+id/label_move_list_new"
-            android:layout_width="120dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/w_120"
+            android:layout_height="@dimen/h_35"
             android:layout_below="@+id/btn_move_list_new"
             android:layout_alignStart="@+id/btn_move_list_new"
             android:layout_alignLeft="@+id/btn_move_list_new"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/m_10"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="@string/move_list_news" />
 
         <ImageButton
             android:id="@+id/btn_move_list_static"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/w_100"
+            android:layout_height="@dimen/h_100"
             android:layout_alignTop="@+id/btn_move_list_new"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginStart="@dimen/m_60"
+            android:layout_marginLeft="@dimen/m_60"
             android:layout_toEndOf="@+id/btn_move_list_new"
             android:layout_toRightOf="@+id/btn_move_list_new"
             android:background="@mipmap/static_image"
             android:contentDescription="@string/todo"
             android:fontFamily="@font/roboto_regular"
-            android:radius="5dp"
+            android:radius="@dimen/r_5"
             android:src="@drawable/user_item_custom" />
 
         <TextView
             android:id="@+id/label_move_static"
-            android:layout_width="120dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/w_120"
+            android:layout_height="@dimen/h_35"
             android:layout_below="@+id/btn_move_list_static"
             android:layout_alignStart="@+id/btn_move_list_static"
             android:layout_alignLeft="@+id/btn_move_list_static"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/m_10"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="@string/move_list_static" />

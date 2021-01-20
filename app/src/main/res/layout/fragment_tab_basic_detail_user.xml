@@ -13,18 +13,18 @@
         android:gravity="center"
         android:text=""
         android:textColor="@color/no_data_color"
-        android:textSize="15sp" />
+        android:textSize="@dimen/txt_s_15" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="@dimen/m_5"
+        android:layout_marginTop="@dimen/m_5"
+        android:layout_marginRight="@dimen/m_5"
         android:background="@drawable/high_light_pressure"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp">
+        android:paddingLeft="@dimen/p_5"
+        android:paddingRight="@dimen/p_5"
+        android:paddingBottom="@dimen/p_5">
 
         <LinearLayout
             android:id="@+id/nearest"
@@ -35,26 +35,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/nearest_check"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
-                android:layout_marginLeft="10dp"
                 android:id="@+id/heart_beat"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
                 android:textColor="#00BCD4"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/result"
-            android:layout_width="180dp"
+            android:layout_width="@dimen/w_180"
             android:layout_height="wrap_content"
             android:layout_below="@id/nearest"
             android:orientation="vertical">
@@ -62,10 +62,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/max_pressure"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
                 android:id="@+id/max_pressure"
@@ -74,11 +74,11 @@
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
                 android:textColor="@android:color/holo_red_dark"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="@dimen/w_200"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/result"
             android:layout_toEndOf="@+id/result"
@@ -89,10 +89,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/min_pressure"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
                 android:id="@+id/min_pressure"
@@ -101,7 +101,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
                 android:textColor="@android:color/holo_green_dark"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -109,22 +109,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="@dimen/m_10"
+        android:layout_marginTop="@dimen/m_10">
 
         <LinearLayout
             android:id="@+id/infor"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/w_200"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/username"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
                 android:id="@+id/username"
@@ -132,11 +132,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="@dimen/w_200"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/infor"
             android:layout_toRightOf="@+id/infor"
@@ -145,10 +145,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/user_id"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
                 android:id="@+id/user_id"
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -165,22 +165,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="@dimen/m_10"
+        android:layout_marginTop="@dimen/m_10">
 
         <LinearLayout
             android:id="@+id/first"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/w_200"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/full_name"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
                 android:id="@+id/full_name"
@@ -188,11 +188,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="@dimen/w_200"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/first"
             android:layout_toRightOf="@+id/first"
@@ -201,10 +201,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/age"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
                 android:id="@+id/age"
@@ -212,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -220,22 +220,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="@dimen/m_10"
+        android:layout_marginTop="@dimen/m_10">
 
         <LinearLayout
             android:id="@+id/second"
-            android:layout_width="200dp"
+            android:layout_width="@dimen/w_200"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/disease_name"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
                 android:id="@+id/disease"
@@ -243,11 +243,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="200dp"
+            android:layout_width="@dimen/w_200"
 
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/second"
@@ -257,10 +257,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/room_name"
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
             <TextView
                 android:id="@+id/room"
@@ -268,7 +268,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="20sp" />
+                android:textSize="@dimen/txt_s_20" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -276,18 +276,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/m_10"
+        android:layout_marginTop="@dimen/m_20"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/tel"
-        android:textSize="20sp" />
+        android:textSize="@dimen/txt_s_20" />
 
     <TextView
         android:id="@+id/tel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/m_10"
         android:fontFamily="@font/roboto_regular"
         android:text=""
-        android:textSize="20sp" />
+        android:textSize="@dimen/txt_s_20" />
 </LinearLayout>
