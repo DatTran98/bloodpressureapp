@@ -6,7 +6,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/blood_pressure_icon_vector"
@@ -17,45 +24,27 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
 
-        <activity
-            android:name=".controllers.AnalysisActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".controllers.MoveToAnotherRoom"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".controllers.EditUserActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".controllers.AddRoomActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".controllers.ListRoomActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".controllers.AnalysisActivity" />
+        <activity android:name=".controllers.MoveToAnotherRoom" />
+        <activity android:name=".controllers.EditUserActivity" />
+        <activity android:name=".controllers.AddRoomActivity" />
+        <activity android:name=".controllers.ListRoomActivity" />
         <activity
             android:name=".controllers.AddNewsActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".controllers.ListNewsActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".controllers.ListUserActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".controllers.DetailUserActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+             />
+        <activity android:name=".controllers.ListNewsActivity" />
+        <activity android:name=".controllers.ListUserActivity" />
+        <activity android:name=".controllers.DetailUserActivity" />
         <activity
             android:name=".controllers.MenuManagerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".controllers.MainActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".controllers.ExportActivity"
+            android:launchMode="singleTop" />
         <activity
-            android:name=".controllers.MainActivity2"
-            android:label="@string/title_activity_main">
-<!--            android:theme="@style/AppTheme.NoActionBar"-->
-<!--            >-->
+            android:name=".controllers.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

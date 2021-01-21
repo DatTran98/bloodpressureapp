@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="250dp"
-    android:orientation="vertical"
-    android:layout_marginBottom="10dp"
     android:id="@+id/pressure_item"
-    android:background="@drawable/user_item_custom">
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/h_200"
+    android:layout_marginBottom="@dimen/m_10"
+    android:background="@drawable/user_item_custom"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/take_care"
+        android:layout_width="@dimen/w_30"
+        android:layout_height="@dimen/h_30"
+        android:visibility="gone"
+        android:src="@mipmap/take_care_icon"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/m_20"
         android:fontFamily="@font/roboto_regular"
         android:gravity="left"
         android:text=""
+        android:layout_below="@+id/take_care"
         tools:ignore="RtlHardcoded" />
 
     <TextView
@@ -24,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/date"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/m_5"
+        android:layout_marginLeft="@dimen/m_5"
+        android:layout_marginTop="@dimen/m_10"
         android:layout_toEndOf="@id/date"
         android:layout_toRightOf="@id/date"
         android:fontFamily="@font/roboto_regular"
@@ -36,22 +45,32 @@
         tools:ignore="RtlHardcoded" />
 
     <TextView
-        android:id="@+id/min_pressure"
+        android:id="@+id/heart_beat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/date"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/m_5"
         android:fontFamily="@font/roboto_regular"
         android:text=""
-        android:textColor="#130f40" />
+        android:textColor="#00BCD4" />
+
+    <TextView
+        android:id="@+id/min_pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/heart_beat"
+        android:layout_marginTop="@dimen/m_5"
+        android:fontFamily="@font/roboto_regular"
+        android:text=""
+        android:textColor="@android:color/holo_green_dark" />
 
     <TextView
         android:id="@+id/max_pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/min_pressure"
+        android:layout_marginBottom="@dimen/m_5"
         android:fontFamily="@font/roboto_regular"
-        android:layout_marginBottom="5dp"
         android:text=""
-        android:textColor="#130f40" />
+        android:textColor="@android:color/holo_red_dark" />
 </RelativeLayout>

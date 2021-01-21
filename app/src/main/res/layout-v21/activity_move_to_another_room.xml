@@ -1,84 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawable"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".controllers.MoveToAnotherRoom">
+    android:background="#dff9fb">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/title_custom">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".controllers.MoveToAnotherRoom">
 
-        <ImageView
-            android:id="@+id/img_view"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/todo"
-            android:src="@mipmap/blood_pressure_icon_vector" />
 
         <TextView
-            android:id="@+id/title_detail"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@id/img_view"
-            android:background="@drawable/title_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/h_40"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/m_10"
+            android:layout_marginTop="@dimen/m_10"
             android:fontFamily="@font/roboto_regular"
-            android:gravity="center"
-            android:text="@string/move_to_room_title"
-            android:textSize="25sp" />
+            android:text="@string/choose_room"
+            android:textSize="@dimen/txt_s_25" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/room_id_edit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/h_50"
+            android:layout_marginLeft="@dimen/m_20"
+            android:layout_marginRight="@dimen/m_20"
+            android:layout_marginBottom="@dimen/m_10"
+            android:background="@drawable/et_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="@string/room_id"
+            android:inputType="text"
+            android:maxLength="20"
+            android:padding="@dimen/p_10"
+            android:textSize="@dimen/txt_s_15"
+            tools:ignore="TextViewEdits" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/choose_room"
-        android:textSize="25sp" />
+        <Spinner
+            android:id="@+id/spinner_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:gravity="right"
+            tools:ignore="RtlHardcoded" />
 
-    <TextView
-        android:id="@+id/room_id_edit"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/et_custom"
-        android:fontFamily="@font/roboto_regular"
-        android:hint="@string/room_id"
-        android:inputType="text"
-        android:maxLength="20"
-        android:padding="15dp"
-        android:textSize="15sp"
-        tools:ignore="TextViewEdits" />
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginLeft="@dimen/m_20"
+            android:layout_marginTop="@dimen/m_100"
+            android:layout_marginRight="@dimen/m_20"
+            android:layout_marginBottom="@dimen/m_10"
+            android:background="@drawable/btn_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/btn_save"
+            android:textSize="@dimen/txt_s_20" />
 
-    <Spinner
-        android:id="@+id/spinner_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:gravity="right"
-        tools:ignore="RtlHardcoded" />
-
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/btn_custom"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/btn_save"
-        android:textSize="20sp" />
-
-</LinearLayout>
+    </LinearLayout>
+    <include
+        android:id="@+id/nav_view"
+        layout="@layout/navigation_layout" />
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,8 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.hust.bloddpressure.R;
-import com.hust.bloddpressure.controllers.ManageMenuFragment;
-import com.hust.bloddpressure.model.base.impl.TblUserImpl;
 import com.hust.bloddpressure.model.entities.UserInfor;
 
 /**
@@ -124,65 +121,6 @@ public class Common {
     }
 
     /**
-     * Kiểm tra tồn tại user name trường hợp đăng ký, edit thông tin user
-     *
-     * @param userid   id của user cần kiểm tra
-     * @param username tên đăng nhập cần kiểm tra
-     * @return true nếu tồn tại, false nếu không tồn tại
-     */
-    public static boolean checkExistUserName(int userid, String username) throws ClassNotFoundException, SQLException {
-        boolean result = false;
-        TblUserImpl tblUserImpl = new TblUserImpl();
-        try {
-            String fullName = tblUserImpl.getUserFullNameByUserIdAndUserName(userid, username);
-            if (fullName != null) {
-                result = true;
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            Logger.getLogger(Common.class.getName()).log(Level.SEVERE, null, e);
-        }
-
-        return result;
-
-    }
-
-    /**
-     * Check đăng nhập khi user thực hiện đăng nhập
-     *
-     * @param username tên đăng nhập người dùng nhập vào
-     * @param password mật khẩu người dùng nhập vào
-     * @return 0 nếu đăng nhập thất bại, 1 nếu là admin, 2 nếu là user
-     * @throws ClassNotFoundException
-     * @throws SQLException
-     */
-    public static int checkLogin(String username, String password) throws ClassNotFoundException, SQLException {
-        int resultRule = 0;
-        // Khởi tạo chuỗi salt
-        String salt = null;
-        // Khởi tạo một đối tượng TblUserDaoImpl
-        TblUserImpl userImpl = new TblUserImpl();
-        // Lấy đối tượng tblUser với giá trị tên được nhập
-        UserInfor user = userImpl.getUserByUsername(username);
-        String userameDB = user.getUsername();
-        // Nếu đối tượng tblUser tồn tại
-        if (userameDB != null && !userameDB.isEmpty()) {
-            // Thực hiện lấy chuỗi salt
-            salt = user.getSalt();
-            // Thực hiện lấy password
-            String passwordDB = user.getPassword();
-            // Thực hiện mã hóa sha1 password + salt
-            String passwordEncode = Common.encrypt(password, salt);
-            // So sánh pass nhập vào và pass trong DB
-            boolean comparePass = Common.compareString(passwordDB, passwordEncode);
-            if (comparePass) {
-                // Lấy giá trị rule
-                resultRule = user.getRule();
-            }
-        }
-        return resultRule;
-    }
-
-    /**
      * Phương thức so sánh 2 chuỗi
      *
      * @param string1 chuỗi thứ nhất
@@ -203,9 +141,6 @@ public class Common {
      * @param username Tên đăng nhập
      * @param password Mật khẩu
      * @return errorList Trả về một danh sách lỗi
-     * @throws SQLException
-     * @throws NoSuchAlgorithmException
-     * @throws ClassNotFoundException
      */
     public static String validateLogin(String username, String password) {
         String error = "";
@@ -220,17 +155,6 @@ public class Common {
         } else if (checkLength(password, Constant.MIN_LENGTH, Constant.MAX_LENGTH))
             error += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.PASSWORD_NAME + " <= " + Constant.MAX_LENGTH;
         return error;
-    }
-
-    public static void main(String[] args) {
-        try {
-            int rule = checkLogin("admin", "12345");
-            System.out.println(rule);
-        } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
-//						e.printStackTrace();
-        }
-//		System.out.println(encrypt("12345", "sdfg"));
     }
 
     public static int convertToInt(String toString, int i) {
@@ -255,24 +179,19 @@ public class Common {
                 noteError += Constant.EMPTY_MESSAGE + Constant.DISEASE_NAME_NAME;
             } else if (checkEmpty(userInfor.getTel())) {
                 noteError += Constant.EMPTY_MESSAGE + Constant.TEL_NAME;
-            } else if (checkEmpty(userInfor.getRoom())) {
-                noteError += Constant.EMPTY_MESSAGE + Constant.ROOM_NAME_NAME;
             } else if (checkLength(userInfor.getUserId(), Constant.MIN_LENGTH, Constant.ID_MAX_LENGTH)) {
-                noteError += Constant.NOTE + " <= " + Constant.MIN_LENGTH + " <= " + Constant.ID_MAX_LENGTH;
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.USER_ID_NAME + " <= " + Constant.ID_MAX_LENGTH;
             } else if (checkLength(userInfor.getFullName(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
                 noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.FULL_NAME_NAME + " <= " + Constant.MAX_LENGTH;
-            } else if (checkLength(userInfor.getUsername(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.USERNAME_NAME + " <= " + Constant.MAX_LENGTH;
-            } else if (checkLength(userInfor.getPassword(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
-                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.PASSWORD_NAME + " <= " + Constant.MAX_LENGTH;
             } else if (checkMinAge(userInfor.getAge(), Constant.MIN_AGE)) {
                 noteError += Constant.NOTE + Constant.AGE_NAME + " >= " + Constant.MIN_AGE;
             } else if (checkLength(userInfor.getDiseaseName(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
                 noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.DISEASE_NAME_NAME + " <= " + Constant.MAX_LENGTH;
             } else if (checkLength(userInfor.getTel(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
                 noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.TEL_NAME + " <= " + Constant.MAX_LENGTH;
-            } else if (userInfor.getRoomId() == -1) {
-                noteError += Constant.NOTE + Constant.ROOM_NOT_EXIST;
+            } else if (userInfor.getAge() < 0) {
+//                noteError += Constant.NOTE + Constant.ROOM_NOT_EXIST;
+                userInfor.setRoomId(Constant.INT_VALUE_DEFAULT);
             }
             // check room?
         } else if (Constant.MODE_ADD == mode) {
@@ -290,10 +209,8 @@ public class Common {
                 noteError += Constant.EMPTY_MESSAGE + Constant.DISEASE_NAME_NAME;
             } else if (checkEmpty(userInfor.getTel())) {
                 noteError += Constant.EMPTY_MESSAGE + Constant.TEL_NAME;
-            } else if (checkEmpty(userInfor.getRoom())) {
-                noteError += Constant.EMPTY_MESSAGE + Constant.ROOM_NAME_NAME;
             } else if (checkLength(userInfor.getUserId(), Constant.MIN_LENGTH, Constant.ID_MAX_LENGTH)) {
-                noteError += Constant.NOTE + " <= " + Constant.MIN_LENGTH + " <= " + Constant.ID_MAX_LENGTH;
+                noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.USER_ID_NAME + " <= " + Constant.ID_MAX_LENGTH;
             } else if (checkLength(userInfor.getFullName(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
                 noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.FULL_NAME_NAME + " <= " + Constant.MAX_LENGTH;
             } else if (checkLength(userInfor.getUsername(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
@@ -307,7 +224,7 @@ public class Common {
             } else if (checkLength(userInfor.getTel(), Constant.MIN_LENGTH, Constant.MAX_LENGTH)) {
                 noteError += Constant.NOTE + Constant.MIN_LENGTH + " <= " + Constant.TEL_NAME + " <= " + Constant.MAX_LENGTH;
             } else if (userInfor.getRoomId() == -1) {
-                noteError += Constant.NOTE + Constant.ROOM_NOT_EXIST;
+                userInfor.setRoomId(Constant.INT_VALUE_DEFAULT);
             }
         }
         return noteError;

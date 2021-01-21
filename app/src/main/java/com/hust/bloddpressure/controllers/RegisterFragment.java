@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,16 +45,16 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class RegisterFragment extends Fragment {
-    EditText textUserId, textFullName, textUsername, textTel, textAge, textDisease, textPass;
-    TextView selectRoomId, message;
-    AppCompatSpinner spinnerRoom;
-    Button btnRegister;
-    ImageButton switchToLogin;
-    SpinnerRoomAdapter spinnerRoomAdapter;
-    List<Room> listRoom;
-    ProgressDialog pDialog;
+    private EditText textUserId, textFullName, textUsername, textTel, textAge, textDisease, textPass;
+    private TextView selectRoomId, message;
+    private AppCompatSpinner spinnerRoom;
+    private Button btnRegister;
+    private ImageButton switchToLogin;
+    private SpinnerRoomAdapter spinnerRoomAdapter;
+    private List<Room> listRoom;
+    private ProgressDialog pDialog;
     private int success;
-
+    private LinearLayout title;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,18 +73,25 @@ public class RegisterFragment extends Fragment {
         findViewByIdForView(view);
         // Set data  dropdown for and set text when item selected
         setDataForDropdown();
+        // Set text view
+        textUserId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            title.setVisibility(View.GONE);
+            }
+        });
         // Set listen event for button
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                title.setVisibility(View.VISIBLE);
                 UserInfor userInfor;
                 userInfor = getUserInformationForm();
                 String errorMessage = Common.validateUser(userInfor, Constant.MODE_ADD);
                 if (!Common.checkEmpty(errorMessage)) {
                     message.setText(errorMessage);
                 } else {
-                    // THUC HIEN KET NOI DB
-                    // THUC HIEN INSERT USER MOI VAO DB TAI DAY
+                    // Do add user
                     AddUser addUser = new AddUser(userInfor);
                     addUser.execute();
                 }
@@ -110,6 +118,7 @@ public class RegisterFragment extends Fragment {
         textTel = view.findViewById(R.id.tel);
         selectRoomId = view.findViewById(R.id.room_id_add);
         spinnerRoom = view.findViewById(R.id.spinner_room);
+        title = view.findViewById(R.id.title_register);
     }
 
     private void doSwitchLoginView() {
@@ -167,18 +176,18 @@ public class RegisterFragment extends Fragment {
         protected Object doInBackground(Object[] params) {
             // Tạo danh sách tham số gửi đến máy chủ
             List<NameValuePair> args = new ArrayList<NameValuePair>();
-            args.add(new BasicNameValuePair("user_id", userInfor.getUserId()));
-            args.add(new BasicNameValuePair("full_name", userInfor.getFullName()));
-            args.add(new BasicNameValuePair("user_name", userInfor.getUsername()));
-            args.add(new BasicNameValuePair("password", userInfor.getPassword()));
-            args.add(new BasicNameValuePair("age", userInfor.getAge() + Constant.EMPTY));
-            args.add(new BasicNameValuePair("disease_name", userInfor.getDiseaseName()));
-            args.add(new BasicNameValuePair("tel", userInfor.getTel()));
-            args.add(new BasicNameValuePair("room_id", userInfor.getRoomId() + Constant.EMPTY));
-            args.add(new BasicNameValuePair("salt", Common.createSalt()));
-            args.add(new BasicNameValuePair("action", Constant.ACTION_ADD));
+            args.add(new BasicNameValuePair(Constant.USER_ID, userInfor.getUserId()));
+            args.add(new BasicNameValuePair(Constant.FULL_NAME, userInfor.getFullName()));
+            args.add(new BasicNameValuePair(Constant.USERNAME, userInfor.getUsername()));
+            args.add(new BasicNameValuePair(Constant.PASSWORD, userInfor.getPassword()));
+            args.add(new BasicNameValuePair(Constant.AGE, userInfor.getAge() + Constant.EMPTY));
+            args.add(new BasicNameValuePair(Constant.DISEASE_NAME, userInfor.getDiseaseName()));
+            args.add(new BasicNameValuePair(Constant.TEL, userInfor.getTel()));
+            args.add(new BasicNameValuePair(Constant.ROOM_ID, userInfor.getRoomId() + Constant.EMPTY));
+            args.add(new BasicNameValuePair(Constant.SALT, Common.createSalt()));
+            args.add(new BasicNameValuePair(Constant.ACTION, Constant.ACTION_ADD));
             MyService sh = new MyService();
-            // Lấy đối tượng JSON
+            // Get JSON object
             String json = sh.callService(Constant.URL_REGISTER_USER, MyService.POST, args);
             if (json != null) {
                 try {
@@ -206,7 +215,9 @@ public class RegisterFragment extends Fragment {
                 pDialog.dismiss();
             if (success == 1) {
                 message.setText(Constant.MESSAGE_ADD_SUCCESS);
-            } else if (success == 2) {
+            } else if (success == -1) {
+                message.setText(Constant.MESSAGE_EXIST_ID);
+            }else if (success == -2) {
                 message.setText(Constant.MESSAGE_EXIST_USERNAME);
             } else {
                 message.setText(Constant.MESSAGE_ADD_FAIL);
@@ -253,6 +264,9 @@ public class RegisterFragment extends Fragment {
             getData();
         }
 
+        /**
+         * Get data set for drop down is spinner
+         */
         private void getData() {
             if (listRoom.size() == 1) {
                 listRoom.get(0).setRoomName(Constant.MESAGE_NO_DATA);

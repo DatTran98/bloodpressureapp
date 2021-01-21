@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/back_ground"
+        android:orientation="vertical">
+
+        <!-- Header -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_header_height"
+            android:background="@color/colorPrimary"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="@dimen/p_10"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+            <ImageView
+                android:id="@+id/activity_main_imv_avatar"
+                android:layout_width="@dimen/w_80"
+                android:layout_height="@dimen/h_80"
+                android:contentDescription="@string/todo"
+                android:paddingTop="@dimen/p_10"
+                app:srcCompat="@mipmap/blood_pressure_icon_vector" />
+
+            <TextView
+                android:id="@+id/activity_main_tv_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/author_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <TextView
+                android:id="@+id/activity_main_tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_email"
+                android:textSize="@dimen/txt_s_10"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
+        <!-- Item message -->
+        <LinearLayout
+            android:id="@+id/nav_message"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_item_height"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:layout_width="@dimen/navigation_item_icon_size"
+                android:layout_height="@dimen/navigation_item_icon_size"
+                android:contentDescription="@string/todo"
+                android:src="@mipmap/message_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m_32"
+                android:layout_marginLeft="@dimen/m_32"
+                android:text="@string/my_message" />
+        </LinearLayout>
+        <!-- Item room -->
+        <LinearLayout
+            android:id="@+id/nav_room"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_item_height"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:layout_width="@dimen/navigation_item_icon_size"
+                android:layout_height="@dimen/navigation_item_icon_size"
+                android:contentDescription="@string/todo"
+                android:src="@mipmap/room_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m_32"
+                android:layout_marginLeft="@dimen/m_32"
+                android:text="@string/room_item" />
+        </LinearLayout>
+        <!-- Item export -->
+        <LinearLayout
+            android:id="@+id/nav_setting"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_item_height"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:layout_width="@dimen/navigation_item_icon_size"
+                android:layout_height="@dimen/navigation_item_icon_size"
+                android:contentDescription="@string/todo"
+                android:src="@mipmap/btn_setting" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m_32"
+                android:layout_marginLeft="@dimen/m_32"
+                android:text="@string/label_setting_pressure" />
+
+        </LinearLayout>
+        <!-- Item export -->
+        <LinearLayout
+            android:id="@+id/nav_export"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_item_height"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:layout_width="@dimen/navigation_item_icon_size"
+                android:layout_height="@dimen/navigation_item_icon_size"
+                android:contentDescription="@string/todo"
+                android:src="@mipmap/export_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m_32"
+                android:layout_marginLeft="@dimen/m_32"
+                android:text="@string/export" />
+
+        </LinearLayout>
+        <!-- Item Info -->
+        <LinearLayout
+            android:id="@+id/nav_about"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_item_height"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:layout_width="@dimen/navigation_item_icon_size"
+                android:layout_height="@dimen/navigation_item_icon_size"
+                android:contentDescription="@string/todo"
+                android:src="@mipmap/about_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m_32"
+                android:layout_marginLeft="@dimen/m_32"
+                android:text="@string/about" />
+        </LinearLayout>
+        <!-- Item Help -->
+        <LinearLayout
+            android:id="@+id/nav_help"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_item_height"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:layout_width="@dimen/navigation_item_icon_size"
+                android:layout_height="@dimen/navigation_item_icon_size"
+                android:contentDescription="@string/todo"
+                android:src="@mipmap/btn_help" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m_32"
+                android:layout_marginLeft="@dimen/m_32"
+                android:text="@string/help" />
+
+        </LinearLayout>
+
+        <!-- Item logout -->
+        <LinearLayout
+            android:id="@+id/nav_logout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_item_height"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:layout_width="@dimen/navigation_item_icon_size"
+                android:layout_height="@dimen/navigation_item_icon_size"
+                android:contentDescription="@string/todo"
+                android:src="@mipmap/logout_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/m_32"
+                android:layout_marginLeft="@dimen/m_32"
+                android:text="@string/logout" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</com.google.android.material.navigation.NavigationView>

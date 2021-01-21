@@ -10,7 +10,7 @@
     <FrameLayout
         android:id="@+id/manage_menu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/h_0"
         android:layout_weight="1" />
 
 

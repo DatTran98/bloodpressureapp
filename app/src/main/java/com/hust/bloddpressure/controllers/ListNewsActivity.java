@@ -1,12 +1,18 @@
 package com.hust.bloddpressure.controllers;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -30,12 +36,24 @@ public class ListNewsActivity extends AppCompatActivity {
     ListView listViewNews;
     private int rule;
     ProgressDialog pDialog;
-
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_news);
+//        toolbar = findViewById(R.id.tool_bar6);
+//        toolbar.setTitle(Constant.EMPTY);
+//        setSupportActionBar(toolbar);
         // check rule
+        new NavigationSetting(ListNewsActivity.this);
+        drawerLayout = findViewById(R.id.drawable);
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(R.string.title_activity_news);
         rule = InforStaticClass.getRule();
         if (rule == Constant.USER_RULE) {
             findViewById(R.id.btn_add_news).setVisibility(View.INVISIBLE);
@@ -53,6 +71,61 @@ public class ListNewsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        switch (item.getItemId()) {
+            case R.id.home:
+                Intent intent = new Intent(this, MenuManagerActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.user:
+                Intent intent1;
+                if (Constant.USER_RULE == InforStaticClass.getRule()) {
+                    intent1 = new Intent(this, DetailUserActivity.class);
+                } else {
+                    intent1 = new Intent(this, ListUserActivity.class);
+                }
+                startActivity(intent1);
+                return true;
+            case R.id.analyst:
+                Intent intent2 = new Intent(this, AnalysisActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.news:
+                Intent intent3 = new Intent(this, ListNewsActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.web:
+                return true;
+            case R.id.reset:
+//                Intent intent1 = new Intent(this, this.getClass());
+//                startActivity(intent1);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     /**
      * Class do back ground get list news
      */

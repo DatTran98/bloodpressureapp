@@ -49,34 +49,22 @@ public class Constant {
     public static final String ACTION_SORT = "sort";
     public static final String ACTION_SEARCH = "search";
     // CONSTANT SET UP FOR URL
-    public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
-    public static final String URL_LOCAL = "http://10.0.2.2:88/bloodpressure/";
-    public static final String URL_LIST_ROOM = URL_LOCAL + "listroom_api.php";
-    public static final String URL_DELETE_ROOM = URL_LOCAL + "deleteroom_api.php";
-    public static final String URL_LIST_NEWS = URL_LOCAL + "new_api.php";
-    public static final String URL_ADD_ROOM = URL_LOCAL + "listroom_api.php";
-    public static final String URL_ADD_NEWS = URL_LOCAL + "new_api.php";
-    public static final String URL_LIST_PRESSURE = URL_LOCAL + "pressure_api.php";
-    public static final String URL_LIST_USER = URL_LOCAL + "user_api.php";
-    public static final String URL_LOGIN = URL_LOCAL + "login_api.php";
-    public static final String URL_REGISTER_USER = URL_LOCAL + "register_api.php";
-    public static final String URL_EDIT_USER = URL_LOCAL + "register_api.php";
-    public static final String URL_DELETE_USER = URL_LOCAL + "delete_user_api.php";
-    public static final String URL_LIST_TYPE_PREDICT = URL_LOCAL + "list_type_predict_api.php";
-
-//    public static final String URL_LIST_ROOM = URL + "listroom_api.php";
-//    public static final String URL_DELETE_ROOM = URL + "deleteroom_api.php";
-//    public static final String URL_LIST_NEWS = URL + "new_api.php";
-//    public static final String URL_ADD_ROOM = URL + "listroom_api.php";
-//    public static final String URL_ADD_NEWS = URL + "new_api.php";
-//    public static final String URL_LIST_PRESSURE = URL + "pressure_api.php";
-//    public static final String URL_LIST_USER = URL + "user_api.php";
-//    public static final String URL_LOGIN = URL + "login_api.php";
-//    public static final String URL_REGISTER_USER = URL + "register_api.php";
-//    public static final String URL_EDIT_USER = URL + "register_api.php";
-//    public static final String URL_DELETE_USER = URL + "delete_user_api.php";
-//public static final String URL_LIST_TYPE_PREDICT = URL + "list_type_predict_api.php";
-
+//    public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
+    public static final String URL = "http://10.0.2.2:88/bloodpressure/";
+//    public static final String URL = "http://10.0.2.2/bloodpressure/";
+    public static final String URL_LIST_ROOM = URL + "list_room_api.php";
+    public static final String URL_DELETE_ROOM = URL + "delete_room_api.php";
+    public static final String URL_LIST_NEWS = URL + "new_api.php";
+    public static final String URL_ADD_ROOM = URL + "list_room_api.php";
+    public static final String URL_ADD_NEWS = URL + "new_api.php";
+    public static final String URL_LIST_PRESSURE = URL + "list_pressure_api.php";
+    public static final String URL_LIST_USER = URL + "user_api.php";
+    public static final String URL_LOGIN = URL + "login_api.php";
+    public static final String URL_REGISTER_USER = URL + "register_api.php";
+    public static final String URL_EDIT_USER = URL + "update_user_api.php";
+    public static final String URL_DELETE_USER = URL + "delete_user_api.php";
+    public static final String URL_LIST_TYPE_PREDICT = URL + "list_type_predict_api.php";
+    public static final String URL_LIST_USER_EXPORT = URL + "list_user_export_api.php";
 
     // SET UP FOR DIALOG
     public static final String CONFIRM_TITLE = "Xác nhận";
@@ -92,11 +80,11 @@ public class Constant {
     public static final String MESSAGE_NORMAL = "Chỉ số huyết áp bình thường \n Hãy kiểm tra lại thường xuyên";
     public static final String MESSAGE_LOGIN_FAILED = "Sai tên đăng nhập hoặc mật khẩu";
     public static final String MESSAGE_EXIST_USERNAME = "Tên đăng nhập đã tồn tại";
-
+    public static final String MESSAGE_SERVER_FAILED = "Lỗi máy chủ, vui lòng quay lại sau";
     // MESSAGE Validate
     public static final String MESAGE_NO_DATA = "Không có dữ liệu";
-    public static final String MESSAGE_ADD_SUCCESS = "Tạo thành công";
-    public static final String MESSAGE_ADD_FAIL = "Thêm thất bại.";
+    public static final String MESSAGE_ADD_SUCCESS = "Đăng ký thành công";
+    public static final String MESSAGE_ADD_FAIL = "Đăng ký thất bại.";
     public static final String CHOOSE_ROOM = "Chọn phòng";
     public static final String ROOM_CHOOSE_MESS = "Hãy chọn phòng";
     public static final String MESSAGE_EDIT_SUCCESS = "Chỉnh sửa thành công";
@@ -110,6 +98,7 @@ public class Constant {
     public static final String AGE_NAME = "số tuổi";
     public static final String DISEASE_NAME_NAME = "tên bệnh";
     public static final String TEL_NAME = "số điện thoại";
+    public static final String HEART_BEAT_NAME = "Nhịp tim \n";
     public static final String ROOM_NAME_NAME = "/chọn phòng";
     public static final String ROOM_NOT_EXIST = "phòng không tồn tại";
 
@@ -130,7 +119,10 @@ public class Constant {
     public static final String OBJECT_JSON_PRESSURE = "pressure";
     public static final String OBJECT_USER = "user";
     public static final String OBJECT_JSON_LIST_PREDICT = "predict";
-
+    public static final String OBJECT_JSON_LIST_USER_EXPORT = "list_user_export";
+    public static final int SERVER_ERROR = -1;
+    public static final int SERVER_SUCCESS = 1;
+    public static final int SERVER_FAIL = 0;
     // NAME FOR ENTITY OBJECT ATTRIBUTED
     public static final String ROOM_ID = "room_id";
     public static final String ROOM_NAME = "room_name";
@@ -159,10 +151,20 @@ public class Constant {
     public static final int VALUE_MIN_PREDICT = 2;
     public static final String FLOW = "flow_from";
     public static final String FROM_NAV = "from_nav";
+    public static final String SALT = "salt";
+    public static final String HEART_BEAT = "heart_beat";
+    public static final String STANDARD_MAX = "standard_max";
+    public static final String STANDARD_MIN = "standard_min";
+    public static final String OPT_USER = "opt_user";
+    public static final String OPT_PRESSURE = "opt_pressure";
+    public static final String SYSTOLIC_MAX = "systolic_max";
+    public static final String SYSTOLIC_MIN = "systolic_min";
+    public static final String DIASTOLIC_MAX = "diastolic_max";
+    public static final String DIASTOLIC_MIN = "diastolic_min";
 
-    public static final String PREDICT_NORMAL = "Các kết quả đo cho kết luận huyết áp bình thường \nLần kiểm tra gần nhất";
-    public static final String PREDICT_MAX = "Dự đoán bạn có nguy cơ cao huyết áp qua các lần kiểm tra \nLần kiểm tra gần nhất";
-    public static final String PREDICT_MIN = "Dự đoán bạn có nguy cơ huyết áp thấp qua các lần kiểm tra\n Lần kiểm tra gần nhất";
+    public static final String PREDICT_NORMAL = "Các kết quả đo cho kết luận huyết áp bình thường";
+    public static final String PREDICT_MAX = "Dự đoán bạn có nguy cơ cao huyết áp qua các lần kiểm tra";
+    public static final String PREDICT_MIN = "Dự đoán bạn có nguy cơ huyết áp thấp qua các lần kiểm tra";
     public static final String THANKS_READING = "Cám ơn bạn đã đọc tin";
     public static final String PREDICT_CONTENT = "Phỏng đoán:\n Đỏ - Cao huyết áp\n Vàng - Huyết áp thấp\n Xanh - Bình thuòng";
     public static final String PREDICT_MAX_NAME = "Phỏng đoán cao huyết áp";
@@ -177,7 +179,20 @@ public class Constant {
     public static final String NO_NEWS = "Không có bản tin nào";
     public static final String COMBACK_LATER = "Vui lòng quay lại sau";
     public static final String EDIT_USER_DELETED = "Người dùng không tồn tại hoặc đã bị xóa";
+    public static final String MESSAGE_EXIST_ID = "Mã người dùng đã tồn tại";
+    public static final String SAVED = "Đã lưu thành công";
+    public static final String ERROR_SAVE = "Lưu thất bại";
     public static final String STATIC_NAME = "Phân tích dữ liệu";
+    public static final String DEVERLOPING = "Chức năng này đang phát triển";
+    public static final String HAVE = "Có ";
+    public static final String CHAR = "/";
+    public static final String PEOPLE = " người ";
+    public static final String NUMBER_GOT = "Chỉ số đo: ";
+    public static final String MMHG = " mmHg";
+    public static final String AGE_LEVEL = " Độ tuổi ";
+    public static final String HEART_BEAT_DIGIT = " nhịp/phút";
+    public static final String LABEL_CHART_HEART = "Chỉ số nhịp tim";
+    public static final String HELLO = "Xin chào ";
 
 
 }

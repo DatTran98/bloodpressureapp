@@ -39,11 +39,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class TabBasicDetailUserFragment extends Fragment {
-    TextView textViewFullName, textViewUserId, textViewAge, textViewUserName, textViewTel, textViewDisease, textViewRoom, textViewPressureMax, textViewPressureMin, textViewPredict;
-    ArrayList<UserInfor> listUserInfor;
+    private TextView textViewFullName, textViewUserId, textViewAge, textViewUserName, textViewTel, textViewDisease, textViewRoom, textViewPressureMax, textViewPressureMin, textViewPredict, textViewHeartbeat;
+    private ArrayList<UserInfor> listUserInfor;
     private int rule;
-    ProgressDialog pDialog;
-    TextView txtMessage;
+    private ProgressDialog pDialog;
+    private TextView txtMessage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,8 +81,9 @@ public class TabBasicDetailUserFragment extends Fragment {
         textViewTel = view.findViewById(R.id.tel);
         textViewDisease = view.findViewById(R.id.disease);
         textViewRoom = view.findViewById(R.id.room);
-        textViewPressureMax = view.findViewById(R.id.max_pressure);
-        textViewPressureMin = view.findViewById(R.id.min_pressure);
+        textViewPressureMax = getActivity().findViewById(R.id.max_pressure);
+        textViewPressureMin = getActivity().findViewById(R.id.min_pressure);
+        textViewHeartbeat = getActivity().findViewById(R.id.heart_beat);
     }
 
     class GetDetailUser extends AsyncTask {
@@ -108,10 +109,12 @@ public class TabBasicDetailUserFragment extends Fragment {
                             JSONObject obj = (JSONObject) jsonArrayUser.get(i);
                             int pressureMax = Constant.INT_VALUE_DEFAULT;
                             int pressureMin = Constant.INT_VALUE_DEFAULT;
+                            int heartBeat = Constant.INT_VALUE_DEFAULT;
                             if (pressure.length() != 0) {
                                 JSONObject obj1 = (JSONObject) pressure.get(i);
                                 pressureMax = obj1.getInt(Constant.PRESSURE_MAX);
                                 pressureMin = obj1.getInt(Constant.PRESSURE_MIN);
+                                heartBeat = obj1.getInt(Constant.HEART_BEAT);
                             }
                             int roomId = obj.getInt(Constant.ROOM_ID);
                             int age = obj.getInt(Constant.AGE);
@@ -123,7 +126,7 @@ public class TabBasicDetailUserFragment extends Fragment {
                             String username = obj.getString(Constant.USERNAME);
                             int predictType = obj.getInt(Constant.PREDICT_TYPE);
 
-                            UserInfor userInfor = new UserInfor(userId, roomId, age, rule, pressureMin, pressureMax, predictType, fullName, tel, room, diseaseName, username);
+                            UserInfor userInfor = new UserInfor(userId, roomId, age, rule, pressureMin, pressureMax, predictType, heartBeat, fullName, tel, room, diseaseName, username);
                             listUserInfor.add(userInfor);
                         }
                     }
@@ -155,7 +158,7 @@ public class TabBasicDetailUserFragment extends Fragment {
         @SuppressLint("SetTextI18n")
         private void getData() {
             if (listUserInfor.size() != 0) {
-                txtMessage.setText(R.string.basic_detail);
+                txtMessage.setText(R.string.basic_detail_mess);
                 UserInfor userInfor = listUserInfor.get(0);
                 // Set value for text view display
                 textViewUserId.setText(userId);
@@ -165,8 +168,9 @@ public class TabBasicDetailUserFragment extends Fragment {
                 textViewTel.setText(userInfor.getTel() + "");
                 textViewDisease.setText(userInfor.getDiseaseName());
                 textViewRoom.setText(userInfor.getRoom());
-                textViewPressureMax.setText(userInfor.getPressureMax() + " mmHg");
-                textViewPressureMin.setText(userInfor.getPressureMin() + " mmHg");
+                textViewPressureMax.setText(userInfor.getPressureMax() + Constant.MMHG);
+                textViewPressureMin.setText(userInfor.getPressureMin() + Constant.MMHG);
+                textViewHeartbeat.setText(userInfor.getHeartBeat() + Constant.HEART_BEAT_DIGIT);
                 if (userInfor.getPredictType() == Constant.VALUE_NORMAL_PREDICT) {
                     textViewPredict.setText(Constant.PREDICT_NORMAL);
                 } else if (userInfor.getPredictType() == Constant.VALUE_MAX_PREDICT) {

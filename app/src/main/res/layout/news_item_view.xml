@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
+    android:layout_marginBottom="@dimen/m_10"
     android:background="#dff9fb"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="@dimen/p_20">
 
     <TextView
         android:id="@+id/news_id"
@@ -21,7 +21,7 @@
         android:fontFamily="@font/roboto_regular"
         android:gravity="center"
         android:layout_gravity="center"
-        android:padding="10dp"
+        android:padding="@dimen/p_10"
         android:text=""
         android:textStyle="bold" />
 
@@ -31,6 +31,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/view_new_item_custom"
         android:fontFamily="@font/roboto_regular"
-        android:padding="15dp"
+        android:padding="@dimen/p_15"
         android:text="" />
 </LinearLayout>

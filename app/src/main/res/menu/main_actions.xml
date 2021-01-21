@@ -2,24 +2,35 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/user"
+        android:icon="@mipmap/user_image"
+        android:title="@string/basic_detail_mess"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/analyst"
+        android:icon="@mipmap/analyst_icon"
+        android:title="@string/analyst_item"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/home"
         android:icon="@mipmap/btn_home"
         android:title="@string/home"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/news"
+        android:icon="@mipmap/news_icon"
+        android:title="@string/move_list_news"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/web"
+        android:icon="@mipmap/internet_icon"
+        android:title="@string/access_web"
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/reset"
         android:icon="@mipmap/btn_reset"
         android:title="@string/reset"
-        app:showAsAction="ifRoom|withText" />
-    <item
-        android:id="@+id/about"
-        android:icon="@mipmap/btn_about"
-        android:title="@string/about"
-        app:showAsAction="ifRoom|withText" />
-    <item
-        android:id="@+id/help"
-        android:icon="@mipmap/btn_help"
-        android:title="@string/help"
-        app:showAsAction="ifRoom|withText" />
-
+        app:showAsAction="withText" />
 </menu>

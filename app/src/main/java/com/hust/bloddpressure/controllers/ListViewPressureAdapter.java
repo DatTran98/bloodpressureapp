@@ -44,12 +44,17 @@ public class ListViewPressureAdapter extends BaseAdapter {
         BloodPressureInfor bloodPressureInfor = (BloodPressureInfor) getItem(i);
         int pressMin = bloodPressureInfor.getPressureMin();
         int pressMax = bloodPressureInfor.getPressureMax();
+        int heartBeat = bloodPressureInfor.getHeartBeat();
+        int standardMax = bloodPressureInfor.getStandardMax();
+        int standardMin = bloodPressureInfor.getStandardMin();
+        ((TextView) pressureView.findViewById(R.id.heart_beat)).setText(String.format("  Nhịp tim:   %d nhịp/phút", heartBeat));
         ((TextView) pressureView.findViewById(R.id.min_pressure)).setText(String.format("  Huyết áp tâm trương:   %d mmHg", pressMin));
         ((TextView) pressureView.findViewById(R.id.max_pressure)).setText(String.format("  Huyết áp tâm thu:   %d mmHg", pressMax));
         ((TextView) pressureView.findViewById(R.id.date)).setText(String.format("   Ngày đo:    %s", new SimpleDateFormat("yyyy-MM-dd").format(bloodPressureInfor.getTime())));
         ((TextView) pressureView.findViewById(R.id.id_pressure)).setText(String.format("Mã đo: %d   ", bloodPressureInfor.getBloodPressureId()));
-        if ((pressMax >= 140) || (pressMin >= 90) || (pressMax <= 100)) {
+        if ((pressMax >= standardMax) || (pressMin <= standardMin) || (pressMax <= 100)) {
             pressureView.findViewById(R.id.pressure_item).setBackgroundResource(R.drawable.view_item_custom_warring);
+            pressureView.findViewById(R.id.take_care).setVisibility(View.VISIBLE);
         }
         return pressureView;
     }
