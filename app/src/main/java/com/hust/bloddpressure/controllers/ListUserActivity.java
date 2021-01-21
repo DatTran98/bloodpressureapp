@@ -50,6 +50,7 @@ public class ListUserActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +75,7 @@ public class ListUserActivity extends AppCompatActivity {
         getListUser.execute();
 
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -121,6 +123,8 @@ public class ListUserActivity extends AppCompatActivity {
                 startActivity(intent3);
                 return true;
             case R.id.web:
+                Intent intent4 = new Intent(this, WebActivity.class);
+                startActivity(intent4);
                 return true;
             case R.id.reset:
 //                Intent intent1 = new Intent(this, this.getClass());
@@ -129,6 +133,7 @@ public class ListUserActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void setQueryTextChange() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -332,6 +337,7 @@ public class ListUserActivity extends AppCompatActivity {
 
     /**
      * Do fill list view user when text search change
+     *
      * @param charText text got from text view
      */
     public void filterItem(String charText) {

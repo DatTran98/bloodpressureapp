@@ -107,6 +107,7 @@
     <string name="search">OK</string>
     <string name="label_setting_pressure">Thiết lập chỉ số đo</string>
     <string name="access_web">Truy cập trang web</string>
+    <string name="go">Đi tới</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
