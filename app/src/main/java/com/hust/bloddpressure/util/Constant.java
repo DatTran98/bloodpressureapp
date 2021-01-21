@@ -192,7 +192,7 @@ public class Constant {
     public static final String AGE_LEVEL = " Độ tuổi ";
     public static final String HEART_BEAT_DIGIT = " nhịp/phút";
     public static final String LABEL_CHART_HEART = "Chỉ số nhịp tim";
-
+    public static final String HELLO = "Xin chào ";
 
 
 }

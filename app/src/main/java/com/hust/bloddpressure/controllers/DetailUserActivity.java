@@ -9,10 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -23,11 +23,12 @@ import com.hust.bloddpressure.model.entities.InforStaticClass;
 import com.hust.bloddpressure.util.Constant;
 
 public class DetailUserActivity extends AppCompatActivity {
-    private TextView textViewIdUser, textViewUsername, textViewFullName, textViewAge, textViewDisease, textViewTel, textViewRoom, textViewMessage;
+    private TextView textViewIdUser, textViewMessage;
     private int tabMode;
     private Button btnMoveRoom, btnEdit, btnHis, btnBasic;
     private String userId;
     private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
 
     @SuppressLint("SetTextI18n")
@@ -35,14 +36,16 @@ public class DetailUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_user);
-        getIdElementView();
+        findViewById();
+//        toolbar = findViewById(R.id.tool_bar);
+//        toolbar.setTitle(Constant.EMPTY);
+//        setSupportActionBar(toolbar);
         new NavigationSetting(DetailUserActivity.this);
         drawerLayout = findViewById(R.id.drawable);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.detail_infor_title);
         // Get id from another activity
         Bundle bundle = getIntent().getExtras();
         int rule = InforStaticClass.getRule();
@@ -151,19 +154,30 @@ public class DetailUserActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MenuManagerActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.reset:
-                Intent intent1 = new Intent(this, this.getClass());
+            case R.id.user:
+                Intent intent1;
+                if (Constant.USER_RULE == InforStaticClass.getRule()) {
+                    intent1 = new Intent(this, DetailUserActivity.class);
+                } else {
+                    intent1 = new Intent(this, ListUserActivity.class);
+                }
                 startActivity(intent1);
                 return true;
-            case R.id.about:
-                // Create about activity
-                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
+            case R.id.analyst:
+                Intent intent2 = new Intent(this, AnalysisActivity.class);
+                startActivity(intent2);
                 return true;
-            case R.id.help:
-                // Create help activity
-                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
+            case R.id.news:
+                Intent intent3 = new Intent(this, ListNewsActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.web:
+                return true;
+            case R.id.reset:
+//                Intent intent1 = new Intent(this, this.getClass());
+//                startActivity(intent1);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -189,41 +203,14 @@ public class DetailUserActivity extends AppCompatActivity {
     /**
      * find view view in layout view group
      */
-    private void getIdElementView() {
+    private void findViewById() {
+        drawerLayout = findViewById(R.id.drawable);
         btnHis = findViewById(R.id.btn_history_pressure);
         btnBasic = findViewById(R.id.btn_basic_detail);
         textViewMessage = findViewById(R.id.message);
         textViewIdUser = findViewById(R.id.user_id_main);
-        textViewUsername = findViewById(R.id.username);
-        textViewFullName = findViewById(R.id.full_name);
-        textViewAge = findViewById(R.id.age);
-        textViewDisease = findViewById(R.id.disease);
-        textViewTel = findViewById(R.id.tel);
-        textViewRoom = findViewById(R.id.room);
         btnEdit = findViewById(R.id.btn_edit_user);
         btnMoveRoom = findViewById(R.id.btn_move_to_another_room);
     }
 
-    /**
-     * Set cac gia tri lấy từ view vào bundle
-     *
-     * @param bundle
-     */
-    private void setValuesForBundle(Bundle bundle) {
-        String userId = textViewIdUser.getText().toString();
-        String username = textViewUsername.getText().toString();
-        String fullName = textViewFullName.getText().toString();
-        String age = textViewAge.getText().toString();
-        String disease = textViewDisease.getText().toString();
-        String tel = textViewTel.getText().toString();
-        String room = textViewRoom.getText().toString();
-
-        bundle.putString("userId", userId);
-        bundle.putString("username", username);
-        bundle.putString("fullName", fullName);
-        bundle.putString("age", age);
-        bundle.putString("tel", tel);
-        bundle.putString("room", room);
-        bundle.putString("disease", disease);
-    }
 }

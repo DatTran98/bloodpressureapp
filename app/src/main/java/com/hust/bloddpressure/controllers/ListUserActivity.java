@@ -19,10 +19,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.MyService;
+import com.hust.bloddpressure.model.entities.InforStaticClass;
 import com.hust.bloddpressure.model.entities.UserInfor;
 import com.hust.bloddpressure.util.Constant;
 
@@ -47,6 +49,7 @@ public class ListUserActivity extends AppCompatActivity {
     private SearchView searchView;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,9 @@ public class ListUserActivity extends AppCompatActivity {
         listViewUsers = findViewById(R.id.list_users);
         searchView = findViewById(R.id.searchView);
         setQueryTextChange();
+//        toolbar = findViewById(R.id.tool_bar);
+//        toolbar.setTitle(Constant.EMPTY);
+//        setSupportActionBar(toolbar);
         new NavigationSetting(ListUserActivity.this);
         drawerLayout = findViewById(R.id.drawable);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -97,19 +103,30 @@ public class ListUserActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MenuManagerActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.reset:
-                Intent intent1 = new Intent(this, this.getClass());
+            case R.id.user:
+                Intent intent1;
+                if (Constant.USER_RULE == InforStaticClass.getRule()) {
+                    intent1 = new Intent(this, DetailUserActivity.class);
+                } else {
+                    intent1 = new Intent(this, ListUserActivity.class);
+                }
                 startActivity(intent1);
                 return true;
-            case R.id.about:
-                // Create about activity
-                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
+            case R.id.analyst:
+                Intent intent2 = new Intent(this, AnalysisActivity.class);
+                startActivity(intent2);
                 return true;
-            case R.id.help:
-                // Create help activity
-                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
+            case R.id.news:
+                Intent intent3 = new Intent(this, ListNewsActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.web:
+                return true;
+            case R.id.reset:
+//                Intent intent1 = new Intent(this, this.getClass());
+//                startActivity(intent1);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
     private void setQueryTextChange() {

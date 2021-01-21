@@ -19,10 +19,12 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.MyService;
+import com.hust.bloddpressure.model.entities.InforStaticClass;
 import com.hust.bloddpressure.model.entities.UserInfor;
 import com.hust.bloddpressure.util.Constant;
 
@@ -46,6 +48,7 @@ import java.util.List;
  */
 public class ExportActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
     private ImageButton btnExport;
     private RadioGroup radioOptUser, radioOptPressure;
@@ -70,6 +73,9 @@ public class ExportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
+//        toolbar = findViewById(R.id.tool_bar5);
+//        toolbar.setTitle(Constant.EMPTY);
+//        setSupportActionBar(toolbar);
         // init navigation
         new NavigationSetting(ExportActivity.this);
         // Set action for action bar
@@ -159,21 +165,33 @@ public class ExportActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MenuManagerActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.reset:
-                Intent intent1 = new Intent(this, this.getClass());
+            case R.id.user:
+                Intent intent1;
+                if (Constant.USER_RULE == InforStaticClass.getRule()) {
+                    intent1 = new Intent(this, DetailUserActivity.class);
+                } else {
+                    intent1 = new Intent(this, ListUserActivity.class);
+                }
                 startActivity(intent1);
                 return true;
-            case R.id.about:
-                // Create about activity
-                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
+            case R.id.analyst:
+                Intent intent2 = new Intent(this, AnalysisActivity.class);
+                startActivity(intent2);
                 return true;
-            case R.id.help:
-                // Create help activity
-                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
+            case R.id.news:
+                Intent intent3 = new Intent(this, ListNewsActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.web:
+                return true;
+            case R.id.reset:
+//                Intent intent1 = new Intent(this, this.getClass());
+//                startActivity(intent1);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+
 
     class GetAllUserExport extends AsyncTask {
         private int optionUser;

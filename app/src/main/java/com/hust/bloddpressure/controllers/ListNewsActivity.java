@@ -2,6 +2,7 @@ package com.hust.bloddpressure.controllers;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
@@ -37,11 +38,14 @@ public class ListNewsActivity extends AppCompatActivity {
     ProgressDialog pDialog;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
-
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_news);
+//        toolbar = findViewById(R.id.tool_bar6);
+//        toolbar.setTitle(Constant.EMPTY);
+//        setSupportActionBar(toolbar);
         // check rule
         new NavigationSetting(ListNewsActivity.this);
         drawerLayout = findViewById(R.id.drawable);
@@ -96,19 +100,30 @@ public class ListNewsActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, MenuManagerActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.reset:
-                Intent intent1 = new Intent(this, this.getClass());
+            case R.id.user:
+                Intent intent1;
+                if (Constant.USER_RULE == InforStaticClass.getRule()) {
+                    intent1 = new Intent(this, DetailUserActivity.class);
+                } else {
+                    intent1 = new Intent(this, ListUserActivity.class);
+                }
                 startActivity(intent1);
                 return true;
-            case R.id.about:
-                // Create about activity
-                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
+            case R.id.analyst:
+                Intent intent2 = new Intent(this, AnalysisActivity.class);
+                startActivity(intent2);
                 return true;
-            case R.id.help:
-                // Create help activity
-                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
+            case R.id.news:
+                Intent intent3 = new Intent(this, ListNewsActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.web:
+                return true;
+            case R.id.reset:
+//                Intent intent1 = new Intent(this, this.getClass());
+//                startActivity(intent1);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
     /**
