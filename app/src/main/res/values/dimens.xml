@@ -1,10 +1,78 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="empty_icon_width">60dp</dimen>
-    <dimen name="empty_icon_height">60dp</dimen>
-    <dimen name="navigation_header_height">130dp</dimen>
-    <dimen name="navigation_item_height">48dp</dimen>
-    <dimen name="navigation_item_icon_size">24dp</dimen>
+<!--    <dimen name="activity_horizontal_margin">16dp</dimen>-->
+<!--    <dimen name="activity_vertical_margin">16dp</dimen>-->
+<!--    <dimen name="fab_margin">16dp</dimen>-->
+<!--    <dimen name="empty_icon_width">60dp</dimen>-->
+<!--    <dimen name="empty_icon_height">60dp</dimen>-->
+<!--    <dimen name="navigation_header_height">130dp</dimen>-->
+<!--    <dimen name="navigation_item_height">48dp</dimen>-->
+<!--    <dimen name="navigation_item_icon_size">24dp</dimen>-->
+
+<!--    <dimen name="w_35">35dp</dimen>-->
+<!--    <dimen name="w_50">50dp</dimen>-->
+<!--    <dimen name="w_60">60dp</dimen>-->
+<!--    <dimen name="w_30">30dp</dimen>-->
+<!--    <dimen name="w_40">40dp</dimen>-->
+<!--    <dimen name="w_70">70dp</dimen>-->
+<!--    <dimen name="w_80">80dp</dimen>-->
+<!--    <dimen name="w_100">100dp</dimen>-->
+<!--    <dimen name="w_180">180dp</dimen>-->
+<!--    <dimen name="w_200">200dp</dimen>-->
+<!--    <dimen name="w_120">120dp</dimen>-->
+<!--    <dimen name="w_350">350dp</dimen>-->
+<!--    <dimen name="w_380">380dp</dimen>-->
+
+
+
+<!--    <dimen name="h_0">0dp</dimen>-->
+<!--    <dimen name="h_20">20dp</dimen>-->
+<!--    <dimen name="h_30">30dp</dimen>-->
+<!--    <dimen name="h_40">40dp</dimen>-->
+<!--    <dimen name="h_50">50dp</dimen>-->
+<!--    <dimen name="h_60">60dp</dimen>-->
+<!--    <dimen name="h_70">70dp</dimen>-->
+<!--    <dimen name="h_80">80dp</dimen>-->
+<!--    <dimen name="h_35">35dp</dimen>-->
+<!--    <dimen name="h_100">100dp</dimen>-->
+<!--    <dimen name="h_180">180dp</dimen>-->
+<!--    <dimen name="h_200">200dp</dimen>-->
+<!--    <dimen name="h_250">250dp</dimen>-->
+<!--    <dimen name="h_300">300dp</dimen>-->
+<!--    <dimen name="h_500">500dp</dimen>-->
+
+<!--    <dimen name="max_w_400">400dp</dimen>-->
+<!--    <dimen name="min_w_200">200dp</dimen>-->
+
+<!--    <dimen name="m_5">5dp</dimen>-->
+<!--    <dimen name="m_10">10dp</dimen>-->
+<!--    <dimen name="m_20">20dp</dimen>-->
+<!--    <dimen name="m_25">25dp</dimen>-->
+<!--    <dimen name="m_30">30dp</dimen>-->
+<!--    <dimen name="m_32">32dp</dimen>-->
+<!--    <dimen name="m_35">35dp</dimen>-->
+<!--    <dimen name="m_40">40dp</dimen>-->
+<!--    <dimen name="m_45">45dp</dimen>-->
+<!--    <dimen name="m_60">60dp</dimen>-->
+<!--    <dimen name="m_62">62dp</dimen>-->
+<!--    <dimen name="m_65">65dp</dimen>-->
+<!--    <dimen name="m_100">100dp</dimen>-->
+<!--    <dimen name="m_120">120dp</dimen>-->
+<!--    <dimen name="m_300">300dp</dimen>-->
+
+<!--    <dimen name="p_10">10dp</dimen>-->
+<!--    <dimen name="p_20">20dp</dimen>-->
+<!--    <dimen name="p_40">40dp</dimen>-->
+<!--    <dimen name="p_5">5dp</dimen>-->
+<!--    <dimen name="p_15">15dp</dimen>-->
+<!--    <dimen name="r_5">5dp</dimen>-->
+
+<!--    <dimen name="txt_s_1">1sp</dimen>-->
+<!--    <dimen name="txt_s_10">10sp</dimen>-->
+<!--    <dimen name="txt_s_30">30sp</dimen>-->
+<!--    <dimen name="txt_s_15">15sp</dimen>-->
+<!--    <dimen name="txt_s_20">20sp</dimen>-->
+<!--    <dimen name="txt_s_25">25sp</dimen>-->
+<!--    <dimen name="txt_s_50">50sp</dimen>-->
+
+    <dimen name="r_2">2</dimen>
 </resources>

@@ -9,7 +9,7 @@
     <ListView
         android:id="@+id/list_result_pressure"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/h_0"
         android:layout_weight="1"
         android:divider="@null"
         android:scrollbars="none" />

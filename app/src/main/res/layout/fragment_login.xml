@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/tv_subtitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="@dimen/m_25"
+        android:layout_marginLeft="@dimen/m_25"
+        android:layout_marginBottom="@dimen/m_10"
         android:fontFamily="@font/indigo_daisy"
         android:text="@string/app_name"
-        android:textSize="50sp" />
+        android:textSize="@dimen/txt_s_50" />
 
     <TextView
         android:id="@+id/tv_subtitle"
@@ -26,17 +26,17 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/et_username"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginStart="@dimen/m_25"
+        android:layout_marginLeft="@dimen/m_25"
+        android:layout_marginBottom="@dimen/m_120"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/tag"
-        android:textSize="17sp" />
+        android:textSize="@dimen/txt_s_20" />
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/w_80"
+        android:layout_height="@dimen/h_80"
         android:layout_above="@id/et_username"
         android:layout_centerHorizontal="true"
         android:background="@mipmap/blood_pressure_icon_vector"
@@ -50,61 +50,61 @@
         android:layout_below="@id/img"
         android:gravity="center"
         android:textColor="@color/no_data_color"
-        android:textSize="15sp" />
+        android:textSize="@dimen/txt_s_15" />
 
     <EditText
         android:id="@+id/et_username"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/h_50"
         android:layout_above="@id/et_password"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/m_20"
+        android:layout_marginTop="@dimen/m_20"
+        android:layout_marginRight="@dimen/m_20"
         android:autofillHints="@string/username"
         android:background="@drawable/et_custom"
         android:fontFamily="@font/roboto_regular"
         android:hint="@string/username"
         android:inputType="text"
-        android:padding="15dp"
-        android:textSize="15sp" />
+        android:padding="@dimen/p_15"
+        android:textSize="@dimen/txt_s_15" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/h_50"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/m_20"
+        android:layout_marginTop="@dimen/m_10"
+        android:layout_marginRight="@dimen/m_20"
         android:autofillHints="@string/password"
         android:background="@drawable/et_custom"
         android:fontFamily="@font/roboto_regular"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:padding="15dp"
-        android:textSize="15sp" />
+        android:padding="@dimen/p_15"
+        android:textSize="@dimen/txt_s_15" />
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/h_50"
         android:layout_below="@id/et_password"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/m_20"
+        android:layout_marginTop="@dimen/m_20"
+        android:layout_marginRight="@dimen/m_20"
         android:background="@drawable/btn_custom"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/login"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="25sp"
+        android:textSize="@dimen/txt_s_20"
         android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/btn_do_register"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/w_40"
+        android:layout_height="@dimen/h_40"
         android:layout_above="@id/label_register"
         android:layout_centerHorizontal="true"
         android:contentDescription="@string/todo"
@@ -116,10 +116,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/m_20"
         android:background="#FFFFFF"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/click_for_register"
-        android:textSize="15sp" />
+        android:textSize="@dimen/txt_s_15" />
 
 </RelativeLayout>

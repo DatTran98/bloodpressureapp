@@ -5,8 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -23,8 +25,9 @@ import java.util.List;
 public class NavigationSetting {
     private DrawerLayout drawerLayout;
     private final Activity activityNav;
-    private  List<Integer> listViewId;
-    private View navBasic, navMess, navHome, navRoom, navNews, navAnalyst, navExport, navLogout;
+    private List<Integer> listViewId;
+    private View navAbout, navMess, navRoom, navExport, navLogout, navHelp, navSetting;
+    private TextView navName;
 
     public NavigationSetting(Activity activity) {
         this.activityNav = activity;
@@ -36,27 +39,29 @@ public class NavigationSetting {
      */
     private void initNav() {
         findViewByIdView();
-        findViewByIdView();
         listViewId = getListViewId();
         // Set action for menu navigation when click
         setClickNavigationItem();
         // set Display with rule user
         setDisplayRule();
     }
+
     /**
      * Find view by id from id view for any navigation view
      */
     private void findViewByIdView() {
+        navName = activityNav.findViewById(R.id.activity_main_tv_user_name);
         drawerLayout = activityNav.findViewById(R.id.drawable);
-        navBasic = activityNav.findViewById(R.id.nav_basic);
         navMess = activityNav.findViewById(R.id.nav_message);
-        navHome = activityNav.findViewById(R.id.nav_home);
         navRoom = activityNav.findViewById(R.id.nav_room);
-        navNews = activityNav.findViewById(R.id.nav_news);
-        navAnalyst = activityNav.findViewById(R.id.nav_analyst);
+        navAbout = activityNav.findViewById(R.id.nav_about);
+        navHelp = activityNav.findViewById(R.id.nav_help);
         navExport = activityNav.findViewById(R.id.nav_export);
         navLogout = activityNav.findViewById(R.id.nav_logout);
+        navSetting = activityNav.findViewById(R.id.nav_setting);
+
     }
+
     /**
      * Get list Id for each view
      *
@@ -64,12 +69,10 @@ public class NavigationSetting {
      */
     private List<Integer> getListViewId() {
         List<Integer> listId = new ArrayList<>();
-        listId.add(navBasic.getId());
+        listId.add(navAbout.getId());
         listId.add(navMess.getId());
-        listId.add(navHome.getId());
         listId.add(navRoom.getId());
-        listId.add(navNews.getId());
-        listId.add(navAnalyst.getId());
+        listId.add(navHelp.getId());
         listId.add(navExport.getId());
         listId.add(navLogout.getId());
         return listId;
@@ -79,25 +82,16 @@ public class NavigationSetting {
      * Method do action when choose navigation menu
      */
     private void setClickNavigationItem() {
-        navHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeBackGroundExceptView(view);
-                Intent intent = new Intent(activityNav, MenuManagerActivity.class);
-                activityNav.startActivity(intent);
-            }
-        });
-
-        navBasic.setOnTouchListener(new View.OnTouchListener() {
+        navAbout.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                changeBackGroundExceptView(v);
-                Intent intent = new Intent(activityNav, DetailUserActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString(Constant.FLOW, Constant.FROM_NAV);
-                intent.putExtras(bundle);
-                activityNav.startActivity(intent);
+//                changeBackGroundExceptView(v);
+//                Intent intent = new Intent(activityNav, DetailUserActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString(Constant.FLOW, Constant.FROM_NAV);
+//                intent.putExtras(bundle);
+//                activityNav.startActivity(intent);
                 return true;
             }
         });
@@ -120,26 +114,6 @@ public class NavigationSetting {
                 return true;
             }
         });
-        navNews.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                changeBackGroundExceptView(v);
-                Intent intent = new Intent(activityNav, ListNewsActivity.class);
-                activityNav.startActivity(intent);
-                return true;
-            }
-        });
-        navAnalyst.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                changeBackGroundExceptView(v);
-                Intent intent = new Intent(activityNav, AnalysisActivity.class);
-                activityNav.startActivity(intent);
-                return true;
-            }
-        });
         navExport.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -147,6 +121,16 @@ public class NavigationSetting {
                 changeBackGroundExceptView(v);
                 Intent intent = new Intent(activityNav, ExportActivity.class);
                 activityNav.startActivity(intent);
+                return true;
+            }
+        });
+        navHelp.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                changeBackGroundExceptView(v);
+//                Intent intent = new Intent(activityNav, ExportActivity.class);
+//                activityNav.startActivity(intent);
                 return true;
             }
         });
@@ -193,15 +177,17 @@ public class NavigationSetting {
         }
 
     }
+
     /**
      * Set display navigation by rule
      */
     private void setDisplayRule() {
         if (InforStaticClass.getRule() == Constant.USER_RULE) {
+            navName.setText(Constant.HELLO + InforStaticClass.getFullName());
             navExport.setVisibility(View.GONE);
             navRoom.setVisibility(View.GONE);
         } else {
-            navBasic.setVisibility(View.GONE);
+            navSetting.setVisibility(View.GONE);
         }
     }
 

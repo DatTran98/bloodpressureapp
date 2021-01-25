@@ -3,6 +3,7 @@ package com.hust.bloddpressure.controllers;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
@@ -79,7 +80,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private int gotData;
-
+    private Toolbar toolbar;
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,9 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
             setContentView(R.layout.activity_analysis);
             initViewUser();
         }
+//        toolbar = findViewById(R.id.tool_bar3);
+//        toolbar.setTitle(Constant.EMPTY);
+//        setSupportActionBar(toolbar);
         new NavigationSetting(AnalysisActivity.this);
         drawerLayout = findViewById(R.id.drawable);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -133,6 +137,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         return super.onCreateOptionsMenu(menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawerToggle.onOptionsItemSelected(item)) {
@@ -143,23 +148,30 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
                 Intent intent = new Intent(this, MenuManagerActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.reset:
-                if (rule == Constant.ADMIN_RULE) {
-                    initViewManager();
+            case R.id.user:
+                Intent intent1;
+                if (Constant.USER_RULE == InforStaticClass.getRule()) {
+                    intent1 = new Intent(this, DetailUserActivity.class);
                 } else {
-                    setContentView(R.layout.activity_analysis);
-                    initViewUser();
+                    intent1 = new Intent(this, ListUserActivity.class);
                 }
+                startActivity(intent1);
                 return true;
-            case R.id.about:
-                // Create about activity
-                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
+            case R.id.analyst:
+                Intent intent2 = new Intent(this, AnalysisActivity.class);
+                startActivity(intent2);
                 return true;
-            case R.id.help:
-                // Create help activity
-                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
+            case R.id.news:
+                Intent intent3 = new Intent(this, ListNewsActivity.class);
+                startActivity(intent3);
+                return true;
+            case R.id.web:
+                return true;
+            case R.id.reset:
+//                Intent intent1 = new Intent(this, this.getClass());
+//                startActivity(intent1);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

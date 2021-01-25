@@ -5,16 +5,16 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/user_item_custom"
-    android:maxWidth="400dp"
-    android:minWidth="200dp"
+    android:maxWidth="@dimen/max_w_400"
+    android:minWidth="@dimen/min_w_200"
     android:orientation="horizontal"
-    android:padding="20dp">
+    android:padding="@dimen/p_20">
 
     <LinearLayout
         android:id="@+id/information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minWidth="200dp"
+        android:minWidth="@dimen/min_w_200"
         android:orientation="vertical">
 
         <TextView
@@ -50,19 +50,19 @@
 
         <Button
             android:id="@+id/btn_delete"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="@dimen/w_40"
+            android:layout_height="@dimen/h_40"
+            android:layout_marginStart="@dimen/m_20"
+            android:layout_marginLeft="@dimen/m_20"
             android:background="@mipmap/btn_delete" />
 
         <Button
             android:id="@+id/btn_cancel"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
+            android:layout_width="@dimen/w_35"
+            android:layout_height="@dimen/h_35"
+            android:layout_marginStart="@dimen/m_10"
+            android:layout_marginLeft="@dimen/m_10"
+            android:layout_marginTop="@dimen/m_5"
             android:layout_toEndOf="@id/btn_delete"
             android:layout_toRightOf="@id/btn_delete"
             android:background="@mipmap/btn_cancel" />
