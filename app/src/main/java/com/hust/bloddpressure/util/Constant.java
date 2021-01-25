@@ -49,8 +49,8 @@ public class Constant {
     public static final String ACTION_SORT = "sort";
     public static final String ACTION_SEARCH = "search";
     // CONSTANT SET UP FOR URL
-//    public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
-    public static final String URL = "http://10.0.2.2:88/bloodpressure/";
+    public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
+//    public static final String URL = "http://10.0.2.2:88/bloodpressure/";
 //    public static final String URL = "http://10.0.2.2/bloodpressure/";
     public static final String URL_LIST_ROOM = URL + "list_room_api.php";
     public static final String URL_DELETE_ROOM = URL + "delete_room_api.php";

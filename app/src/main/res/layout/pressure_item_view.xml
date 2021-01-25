@@ -20,7 +20,6 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_regular"
         android:gravity="left"
         android:text=""

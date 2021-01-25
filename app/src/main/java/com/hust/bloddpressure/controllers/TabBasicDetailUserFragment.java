@@ -81,9 +81,9 @@ public class TabBasicDetailUserFragment extends Fragment {
         textViewTel = view.findViewById(R.id.tel);
         textViewDisease = view.findViewById(R.id.disease);
         textViewRoom = view.findViewById(R.id.room);
-        textViewPressureMax = view.findViewById(R.id.max_pressure);
-        textViewPressureMin = view.findViewById(R.id.min_pressure);
-        textViewHeartbeat = view.findViewById(R.id.heart_beat);
+        textViewPressureMax = getActivity().findViewById(R.id.max_pressure);
+        textViewPressureMin = getActivity().findViewById(R.id.min_pressure);
+        textViewHeartbeat = getActivity().findViewById(R.id.heart_beat);
     }
 
     class GetDetailUser extends AsyncTask {
@@ -170,7 +170,7 @@ public class TabBasicDetailUserFragment extends Fragment {
                 textViewRoom.setText(userInfor.getRoom());
                 textViewPressureMax.setText(userInfor.getPressureMax() + Constant.MMHG);
                 textViewPressureMin.setText(userInfor.getPressureMin() + Constant.MMHG);
-                textViewHeartbeat.setText(Constant.HEART_BEAT_NAME + userInfor.getHeartBeat() + Constant.HEART_BEAT_DIGIT);
+                textViewHeartbeat.setText(userInfor.getHeartBeat() + Constant.HEART_BEAT_DIGIT);
                 if (userInfor.getPredictType() == Constant.VALUE_NORMAL_PREDICT) {
                     textViewPredict.setText(Constant.PREDICT_NORMAL);
                 } else if (userInfor.getPredictType() == Constant.VALUE_MAX_PREDICT) {
@@ -178,6 +178,12 @@ public class TabBasicDetailUserFragment extends Fragment {
                 } else {
                     textViewPredict.setText(Constant.PREDICT_MIN);
                 }
+//                TextView textMaxPress = getActivity().findViewById(R.id.max_pressure);
+//                TextView textMinPress = getActivity().findViewById(R.id.min_pressure);
+//                TextView textHeartBeat = getActivity().findViewById(R.id.heart_beat);
+//                textMaxPress.setText(userInfor.getPressureMax() + Constant.MMHG);
+//                textMinPress.setText(userInfor.getPressureMin() + Constant.MMHG);
+//                textHeartBeat.setText(userInfor.getHeartBeat() + Constant.MMHG);
 
             } else {
                 setMessageNoData();
