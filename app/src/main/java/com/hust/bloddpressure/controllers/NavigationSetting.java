@@ -2,6 +2,8 @@ package com.hust.bloddpressure.controllers;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -17,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.entities.InforStaticClass;
+import com.hust.bloddpressure.util.Common;
 import com.hust.bloddpressure.util.Constant;
 
 import java.util.ArrayList;
@@ -75,6 +78,7 @@ public class NavigationSetting {
         listId.add(navHelp.getId());
         listId.add(navExport.getId());
         listId.add(navLogout.getId());
+        listId.add(navSetting.getId());
         return listId;
     }
 
@@ -86,12 +90,9 @@ public class NavigationSetting {
             @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-//                changeBackGroundExceptView(v);
-//                Intent intent = new Intent(activityNav, DetailUserActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString(Constant.FLOW, Constant.FROM_NAV);
-//                intent.putExtras(bundle);
-//                activityNav.startActivity(intent);
+                changeBackGroundExceptView(v);
+                Intent intent = new Intent(activityNav, AboutActivity.class);
+                activityNav.startActivity(intent);
                 return true;
             }
         });
@@ -124,13 +125,35 @@ public class NavigationSetting {
                 return true;
             }
         });
+        navSetting.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                changeBackGroundExceptView(v);
+                Intent intent = new Intent(activityNav, SettingStandardPressureActivity.class);
+                activityNav.startActivity(intent);
+                return true;
+            }
+        });
         navHelp.setOnTouchListener(new View.OnTouchListener() {
             @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 changeBackGroundExceptView(v);
-//                Intent intent = new Intent(activityNav, ExportActivity.class);
-//                activityNav.startActivity(intent);
+                //Create interface dialog
+                AlertDialog.Builder confirm = new AlertDialog.Builder(activityNav);
+                // Set information for dialog
+                confirm.setTitle(Constant.CONTACT);
+                confirm.setMessage(Constant.MESSAGE_CONTACT);
+                confirm.setPositiveButton(Constant.YES, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                //Create dialog
+                AlertDialog dialogConfirm = confirm.create();
+                dialogConfirm.show();
                 return true;
             }
         });

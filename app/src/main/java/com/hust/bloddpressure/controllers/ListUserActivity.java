@@ -68,7 +68,8 @@ public class ListUserActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.list_user_title);
+//        getSupportActionBar().setTitle(R.string.list_user_title);
+        getSupportActionBar().setTitle(Constant.EMPTY);
         listUsers = new ArrayList<>();
         listUsersSource = new ArrayList<>();
         GetListUser getListUser = new GetListUser();
@@ -122,13 +123,9 @@ public class ListUserActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                Intent intent4 = new Intent(this, WebActivity.class);
-                startActivity(intent4);
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                GetListUser getListUser = new GetListUser();
+                getListUser.execute();
                 return true;
         }
         return super.onOptionsItemSelected(item);

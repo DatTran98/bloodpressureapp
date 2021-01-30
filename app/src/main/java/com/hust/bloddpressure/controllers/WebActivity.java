@@ -37,7 +37,7 @@ public class WebActivity extends AppCompatActivity {
     private void goUrl() {
         String url = addressBar.getText().toString().trim();
         if(url.isEmpty())  {
-            url = "https://www.vinmec.com/";
+            url = "https://www.vinmec.com";
         }
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);

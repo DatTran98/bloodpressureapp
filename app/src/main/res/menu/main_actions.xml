@@ -22,11 +22,6 @@
         android:icon="@mipmap/news_icon"
         android:title="@string/move_list_news"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/web"
-        android:icon="@mipmap/internet_icon"
-        android:title="@string/access_web"
-        app:showAsAction="always" />
 
     <item
         android:id="@+id/reset"

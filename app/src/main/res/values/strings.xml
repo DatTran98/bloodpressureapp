@@ -93,10 +93,9 @@
     <string name="all">Tất cả</string>
     <string name="a_10">10 bản ghi gần nhất</string>
     <string name="a_50">50 bản ghi gần nhất</string>
-    <string name="export_user_des">Lưu ý: file dữ liệu được xuất ra sẽ có tên theo format: {0}_user_{1}_pressure_{2}\n
+    <string name="export_user_des">Lưu ý: file dữ liệu được xuất ra sẽ có tên theo format: {0}_user_{1}\n
         Với {0} - all/50/10 \n\t\t\t
-        {1} - all/10/7/3 \n\t\t\t
-        {2} - ngày xuất file</string>
+        {1} - ngày xuất file</string>
     <string name="a_3_time">3 lần đo gần nhất</string>
     <string name="one_file">Chỉ xuất 1 file</string>
     <string name="a_7_time">7 lần đo gần nhất</string>
@@ -108,6 +107,11 @@
     <string name="label_setting_pressure">Thiết lập chỉ số đo</string>
     <string name="access_web">Truy cập trang web</string>
     <string name="go">Đi tới</string>
+    <string name="update">Cập nhật</string>
+    <string name="standard_min">Ngưỡng tâm trương giới hạn</string>
+    <string name="standard_max">Ngưỡng tâm thu giới hạn</string>
+    <string name="setting_number_standard">Thiết lập ngưỡng an toàn</string>
+    <string name="updating">Dữ liệu chưa được cập nhật</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

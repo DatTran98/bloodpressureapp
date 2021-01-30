@@ -53,7 +53,7 @@
             android:layout_height="@dimen/h_100"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/m_10"
-            card_view:cardCornerRadius="5dp">
+            card_view:cardCornerRadius="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -190,16 +190,16 @@
 
             <Button
                 android:id="@+id/btn_edit_user"
-                android:layout_width="@dimen/w_60"
-                android:layout_height="@dimen/h_60"
+                android:layout_width="@dimen/w_40"
+                android:layout_height="@dimen/h_40"
                 android:background="@mipmap/btn_edit"
                 android:textSize="@dimen/txt_s_10"
                 tools:ignore="SmallSp" />
 
             <Button
                 android:id="@+id/btn_move_to_another_room"
-                android:layout_width="@dimen/w_60"
-                android:layout_height="@dimen/h_60"
+                android:layout_width="@dimen/w_40"
+                android:layout_height="@dimen/h_40"
                 android:layout_marginStart="@dimen/m_40"
                 android:layout_marginLeft="@dimen/m_40"
                 android:layout_toEndOf="@id/btn_edit_user"
@@ -209,9 +209,7 @@
                 tools:ignore="SmallSp" />
         </RelativeLayout>
 
-<!--        <include-->
-<!--            android:id="@+id/tool_bar"-->
-<!--            layout="@layout/toolbar_layout" />-->
+
     </LinearLayout>
 
     <include

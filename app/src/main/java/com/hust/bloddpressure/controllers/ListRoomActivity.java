@@ -59,7 +59,8 @@ public class ListRoomActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.title_activity_rooms);
+//        getSupportActionBar().setTitle(R.string.title_activity_rooms);
+        getSupportActionBar().setTitle(Constant.EMPTY);
         rule = InforStaticClass.getRule();
 
         if (rule == Constant.USER_RULE) {
@@ -117,11 +118,10 @@ public class ListRoomActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                // Get list room from DB
+                GetListRoom getListRoom = new GetListRoom();
+                getListRoom.execute();
                 return true;
         }
         return super.onOptionsItemSelected(item);

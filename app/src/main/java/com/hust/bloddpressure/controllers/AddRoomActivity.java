@@ -16,12 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.MyService;
 import com.hust.bloddpressure.model.entities.InforStaticClass;
 import com.hust.bloddpressure.model.entities.Room;
+import com.hust.bloddpressure.util.Common;
 import com.hust.bloddpressure.util.Constant;
 
 import org.apache.http.NameValuePair;
@@ -40,6 +42,8 @@ public class AddRoomActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
+    private TextView message;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,18 +58,24 @@ public class AddRoomActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.title_add_room);
+        getSupportActionBar().setTitle(Constant.EMPTY);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int roomId = Integer.parseInt(textRoomId.getText().toString());
+                int roomId = Common.convertToInt(textRoomId.getText().toString(), Constant.INT_VALUE_DEFAULT);
                 String roomName = textRoomName.getText().toString();
                 Room room = new Room(roomId, roomName);
-                AddNewRoom addNewRoom = new AddNewRoom(room);
-                addNewRoom.execute();
+                String mess = Common.validateAddRoom(room);
+                if (Common.checkEmpty(mess)) {
+                    AddNewRoom addNewRoom = new AddNewRoom(room);
+                    addNewRoom.execute();
+                } else {
+                    message.setText(mess);
+                }
             }
         });
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -113,20 +123,20 @@ public class AddRoomActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
+
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                Common.showToast(AddRoomActivity.this, Constant.NOT_THING_TO_LOAD);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void getViewById() {
 
         btnCreate = findViewById(R.id.btn_create_room);
         textRoomId = findViewById(R.id.room_id);
         textRoomName = findViewById(R.id.room_name);
+        message = findViewById(R.id.message);
     }
 
     class AddNewRoom extends AsyncTask {
@@ -151,11 +161,17 @@ public class AddRoomActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(json);
                     int success = jsonObject.getInt("success");
                     if (success == 1) {
+                        message.setText(Constant.MESSAGE_ADD_SUCCESS);
+
                     } else {
+                        message.setText(Constant.MESSAGE_ADD_FAIL);
                     }
                 } catch (JSONException e) {
                     Log.d("Error...", e.toString());
+                    message.setText(Constant.MESSAGE_ADD_FAIL);
                 }
+            } else {
+                message.setText(Constant.MESSAGE_ADD_FAIL);
             }
             return null;
         }

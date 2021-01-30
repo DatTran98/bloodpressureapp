@@ -81,7 +81,12 @@ public class ManageMenuFragment extends Fragment {
         view.findViewById(R.id.btn_move_list_room).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ListRoomActivity.class);
+                Intent intent;
+                if (ruleId == Constant.USER_RULE) {
+                    intent = new Intent(getActivity(), SettingStandardPressureActivity.class);
+                } else {
+                    intent = new Intent(getActivity(), ListRoomActivity.class);
+                }
                 startActivity(intent);
             }
         });

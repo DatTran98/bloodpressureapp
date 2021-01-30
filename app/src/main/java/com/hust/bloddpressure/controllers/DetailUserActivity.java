@@ -36,16 +36,7 @@ public class DetailUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_user);
-<<<<<<< HEAD
-        getIdElementView();
-//        new NavigationSetting(DetailUserActivity.this);
-        drawerLayout = findViewById(R.id.drawable);
-//        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawerLayout.addDrawerListener(drawerToggle);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeButtonEnabled(true);
-//        getSupportActionBar().setTitle(R.string.detail_infor_title);
-=======
+
         findViewById();
 //        toolbar = findViewById(R.id.tool_bar);
 //        toolbar.setTitle(Constant.EMPTY);
@@ -56,7 +47,7 @@ public class DetailUserActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
->>>>>>> 1d2daf2f5a4d734a1b47d9400b681e057a4d5496
+        getSupportActionBar().setTitle(Constant.EMPTY);
         // Get id from another activity
         Bundle bundle = getIntent().getExtras();
         int rule = InforStaticClass.getRule();
@@ -136,52 +127,6 @@ public class DetailUserActivity extends AppCompatActivity {
         });
     }
 
-<<<<<<< HEAD
-//    @Override
-//    protected void onPostCreate(Bundle savedInstanceState) {
-//        super.onPostCreate(savedInstanceState);
-//        // Sync the toggle state after onRestoreInstanceState has occurred.
-//        drawerToggle.syncState();
-//    }
-//
-//    @Override
-//    public void onConfigurationChanged(Configuration newConfig) {
-//        super.onConfigurationChanged(newConfig);
-//        drawerToggle.onConfigurationChanged(newConfig);
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_actions, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        if (drawerToggle.onOptionsItemSelected(item)) {
-//            return true;
-//        }
-//        switch (item.getItemId()) {
-//            case R.id.home:
-//                Intent intent = new Intent(this, MenuManagerActivity.class);
-//                startActivity(intent);
-//                return true;
-//            case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
-//                return true;
-//            case R.id.about:
-//                // Create about activity
-//                Toast.makeText(this, "About button selected", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.help:
-//                // Create help activity
-//                Toast.makeText(this, "Help button selected", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-=======
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -228,16 +173,16 @@ public class DetailUserActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                if (Constant.MODE_BASIC == tabMode) {
+                    btnBasic.callOnClick();
+                } else {
+                    btnHis.callOnClick();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
->>>>>>> 1d2daf2f5a4d734a1b47d9400b681e057a4d5496
 
     private Bundle getIdUserMain() {
         Bundle bundle = new Bundle();

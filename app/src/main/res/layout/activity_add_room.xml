@@ -26,6 +26,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/no_data_color"
+                    android:textSize="@dimen/txt_s_15" />
+
                 <EditText
                     android:id="@+id/room_id"
                     android:layout_width="match_parent"
@@ -78,9 +86,9 @@
             android:text="@string/create"
             android:textSize="@dimen/txt_s_20" />
 
-<!--        <include-->
-<!--            android:id="@+id/tool_bar2"-->
-<!--            layout="@layout/toolbar_layout" />-->
+        <!--        <include-->
+        <!--            android:id="@+id/tool_bar2"-->
+        <!--            layout="@layout/toolbar_layout" />-->
     </LinearLayout>
 
     <include

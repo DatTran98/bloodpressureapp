@@ -14,12 +14,11 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-
         <ListView
             android:id="@+id/list_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/m_45"
+            android:layout_marginTop="@dimen/m_25"
             android:nextFocusDown="@id/btn_add_news"
             android:scrollbars="none" />
 
