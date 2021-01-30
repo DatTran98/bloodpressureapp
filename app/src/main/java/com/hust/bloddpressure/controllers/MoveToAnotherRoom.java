@@ -36,8 +36,6 @@ public class MoveToAnotherRoom extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawable);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle(R.string.move_to_room_title);
         // Get user id from bundle
 

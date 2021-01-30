@@ -65,7 +65,8 @@ public class EditUserActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.edit_user);
+//        getSupportActionBar().setTitle(R.string.edit_user);
+        getSupportActionBar().setTitle(Constant.EMPTY);
         // Get data  set for view
         getAndSetDataToView();
         // when click button save
@@ -131,11 +132,8 @@ public class EditUserActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                getAndSetDataToView();
                 return true;
         }
         return super.onOptionsItemSelected(item);

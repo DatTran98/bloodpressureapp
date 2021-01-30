@@ -18,13 +18,21 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="@dimen/h_500"
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/m_20">
+            android:layout_marginTop="@dimen/m_20"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/no_data_color"
+                    android:textSize="@dimen/txt_s_15" />
 
                 <EditText
                     android:id="@+id/title_news"
@@ -54,7 +62,7 @@
                     android:background="@drawable/et_custom"
                     android:fontFamily="@font/roboto_regular"
                     android:hint="@string/news_content"
-                    android:inputType="text"
+                    android:inputType="textMultiLine"
                     android:lineHeight="@dimen/txt_s_1"
                     android:maxLines="40"
                     android:padding="@dimen/p_10"
@@ -80,9 +88,9 @@
             android:textColor="@color/white"
             android:textSize="@dimen/txt_s_20" />
 
-<!--        <include-->
-<!--            android:id="@+id/tool_bar1"-->
-<!--            layout="@layout/toolbar_layout" />-->
+        <!--        <include-->
+        <!--            android:id="@+id/tool_bar1"-->
+        <!--            layout="@layout/toolbar_layout" />-->
     </LinearLayout>
 
     <include

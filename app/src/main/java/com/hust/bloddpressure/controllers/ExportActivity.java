@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ import com.hust.bloddpressure.R;
 import com.hust.bloddpressure.model.MyService;
 import com.hust.bloddpressure.model.entities.InforStaticClass;
 import com.hust.bloddpressure.model.entities.UserInfor;
+import com.hust.bloddpressure.util.Common;
 import com.hust.bloddpressure.util.Constant;
 
 import org.apache.http.NameValuePair;
@@ -55,7 +57,6 @@ public class ExportActivity extends AppCompatActivity {
     private int optionUser = 0;
     private int optionPressure = 0;
     private ProgressDialog pDialog;
-    private ArrayList<UserInfor> listUserInfo;
     private ArrayList<UserInfor> listUserInfoExport;
     private String simpleFileName = Constant.EMPTY;
     // Delimiter used in CSV file
@@ -84,17 +85,18 @@ public class ExportActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.export);
+//        getSupportActionBar().setTitle(R.string.export);
+        getSupportActionBar().setTitle(Constant.EMPTY);
         btnExport = findViewById(R.id.btn_export);
         radioOptUser = findViewById(R.id.radio_user);
-        radioOptPressure = findViewById(R.id.radio_pressure);
+//        radioOptPressure = findViewById(R.id.radio_pressure);
         btnExport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int selectedUser = radioOptUser.getCheckedRadioButtonId();
-                int selectedPressure = radioOptPressure.getCheckedRadioButtonId();
+//                int selectedPressure = radioOptPressure.getCheckedRadioButtonId();
                 String optUser = Constant.EMPTY;
-                String optPressure = Constant.EMPTY;
+//                String optPressure = Constant.EMPTY;
                 Date date = new Date();
                 String optTime = new SimpleDateFormat("yyyy-MM-dd").format(date);
                 switch (selectedUser) {
@@ -110,28 +112,29 @@ public class ExportActivity extends AppCompatActivity {
                         optUser += "all";
                         break;
                 }
-                switch (selectedPressure) {
-                    case R.id.radio_a_10:
-                        optionPressure = 10;
-                        optPressure += 10;
-                        break;
-                    case R.id.radio_a_7:
-                        optionPressure = 7;
-                        optPressure += 7;
-                        break;
-                    case R.id.radio_a_3:
-                        optionPressure = 3;
-                        optPressure += 3;
-                        break;
-                    default:
-                        optPressure += "all";
-                        break;
-                }
-                String fileName = optUser + "_" + "user_" + optPressure + "_" + "pressure_" + optTime + FILE_NAME_EXTENSION;
+//                switch (selectedPressure) {
+//                    case R.id.radio_a_10:
+//                        optionPressure = 10;
+//                        optPressure += 10;
+//                        break;
+//                    case R.id.radio_a_7:
+//                        optionPressure = 7;
+//                        optPressure += 7;
+//                        break;
+//                    case R.id.radio_a_3:
+//                        optionPressure = 3;
+//                        optPressure += 3;
+//                        break;
+//                    default:
+//                        optPressure += "all";
+//                        break;
+//                }
+                String fileName = optUser + "_" + "user_" + optTime + FILE_NAME_EXTENSION;
                 simpleFileName = fileName;
-//                GetAllUserExport getAllUserExport = new GetAllUserExport(optionUser, optionPressure);
-//                getAllUserExport.execute();
-                exportCSV();
+                listUserInfoExport = new ArrayList<>();
+                GetAllUserExport getAllUserExport = new GetAllUserExport(optionUser);
+                getAllUserExport.execute();
+//                exportCSV();
             }
         });
     }
@@ -182,11 +185,8 @@ public class ExportActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                Common.showToast(ExportActivity.this, Constant.NOT_THING_TO_LOAD);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -195,11 +195,9 @@ public class ExportActivity extends AppCompatActivity {
 
     class GetAllUserExport extends AsyncTask {
         private int optionUser;
-        private int optionPressure;
 
-        public GetAllUserExport(int optionUser, int optionPressure) {
+        public GetAllUserExport(int optionUser) {
             this.optionUser = optionUser;
-            this.optionPressure = optionPressure;
         }
 
         @Override
@@ -207,7 +205,6 @@ public class ExportActivity extends AppCompatActivity {
             MyService jsonParser = new MyService();
             List<NameValuePair> args = new ArrayList<NameValuePair>();
             args.add(new BasicNameValuePair(Constant.OPT_USER, optionUser + Constant.EMPTY));
-            args.add(new BasicNameValuePair(Constant.OPT_PRESSURE, optionPressure + Constant.EMPTY));
             String json = jsonParser.callService(Constant.URL_LIST_USER_EXPORT, MyService.GET, args);
             if (json != null) {
                 try {
@@ -222,10 +219,10 @@ public class ExportActivity extends AppCompatActivity {
                             int age = obj.getInt(Constant.AGE);
 
                             int predictType = obj.getInt(Constant.PREDICT_TYPE);
-                            int systolicMax = obj.getInt(Constant.SYSTOLIC_MAX);
-                            int systolicMin = obj.getInt(Constant.SYSTOLIC_MIN);
-                            int diastolicMax = obj.getInt(Constant.DIASTOLIC_MAX);
-                            int diastolicMin = obj.getInt(Constant.DIASTOLIC_MIN);
+                            int systolicMax = obj.getInt(Constant.STANDARD_MAX);
+//                            int systolicMin = obj.getInt(Constant.SYSTOLIC_MIN);
+//                            int diastolicMax = obj.getInt(Constant.DIASTOLIC_MAX);
+                            int diastolicMin = obj.getInt(Constant.STANDARD_MIN);
                             int pressureId = obj.getInt(Constant.PRESSURE_ID);
                             int pressureMax = obj.getInt(Constant.PRESSURE_MAX);
                             int pressureMin = obj.getInt(Constant.PRESSURE_MIN);
@@ -237,10 +234,10 @@ public class ExportActivity extends AppCompatActivity {
                             String diseaseName = obj.getString(Constant.DISEASE_NAME);
                             Date date = new SimpleDateFormat(Constant.DATE_FORMAT).parse(obj.getString(Constant.TIME));
 
-                            userInfor = new UserInfor(userId, roomId, age, predictType, systolicMax, systolicMin, diastolicMax,
+                            userInfor = new UserInfor(userId, roomId, age, predictType, systolicMax,
                                     diastolicMin, pressureId, pressureMax, pressureMin, heartBeat, fullName,
                                     tel, room, diseaseName, date);
-                            listUserInfo.add(userInfor);
+                            listUserInfoExport.add(userInfor);
                         }
                     }
                 } catch (JSONException | ParseException e) {
@@ -266,7 +263,7 @@ public class ExportActivity extends AppCompatActivity {
             super.onPostExecute(o);
             if (pDialog.isShowing())
                 pDialog.dismiss();
-//            exportCSV();
+            exportCSV();
         }
     }
 
@@ -277,8 +274,8 @@ public class ExportActivity extends AppCompatActivity {
     private void exportCSV() {
         StringBuilder data = new StringBuilder();
         try {
-            listUserInfoExport = new ArrayList<>();
-            dumyData();
+
+//            dumyData();
             data.append(FILE_HEADER);
             data.append(NEW_LINE_SEPARATOR);
             int index = 0;
@@ -306,9 +303,9 @@ public class ExportActivity extends AppCompatActivity {
                     data.append(Constant.PREDICT_MIN_NAME);
                 }
                 data.append(COMMA_DELIMITER);
-                data.append(userInfor.getDiastolicMin() + "-" + userInfor.getDiastolicMax());
+                data.append(userInfor.getDiastolicMin());
                 data.append(COMMA_DELIMITER);
-                data.append(userInfor.getSystolicMin() + "-" + userInfor.getSystolicMax());
+                data.append(userInfor.getSystolicMin());
                 data.append(COMMA_DELIMITER);
                 data.append(userInfor.getPressureId());
                 data.append(COMMA_DELIMITER);
@@ -322,8 +319,9 @@ public class ExportActivity extends AppCompatActivity {
                 data.append(NEW_LINE_SEPARATOR);
                 index++;
             }
+            String sdcard = Environment.getExternalStorageDirectory().getAbsolutePath();
             // Open Stream to write file.
-            FileOutputStream out = this.openFileOutput(simpleFileName, MODE_PRIVATE);
+            FileOutputStream out = this.openFileOutput(sdcard+simpleFileName, MODE_PRIVATE);
             // Write.
             out.write(data.toString().getBytes(StandardCharsets.UTF_8));
             out.close();
@@ -335,10 +333,10 @@ public class ExportActivity extends AppCompatActivity {
 
     //Don't user this method
     private void dumyData() {
-        for (int i = 0; i < 100; i++) {
-            listUserInfoExport.add(new UserInfor("X12" + i, 0, 23, 1, 75, 56, 139,
-                    89, i + 1, 125, 86, 79, "Trần Bá Đạt",
-                    "09090909", "Không thuộc phòng nào", "Không có bệnh", new Date()));
-        }
+//        for (int i = 0; i < 100; i++) {
+//            listUserInfoExport.add(new UserInfor("X12" + i, 0, 23, 1, 75, 56, 139,
+//                    89, i + 1, 125, 86, 79, "Trần Bá Đạt",
+//                    "09090909", "Không thuộc phòng nào", "Không có bệnh", new Date()));
+//        }
     }
 }

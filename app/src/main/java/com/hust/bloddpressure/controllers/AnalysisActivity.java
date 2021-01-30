@@ -81,6 +81,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
     private ActionBarDrawerToggle drawerToggle;
     private int gotData;
     private Toolbar toolbar;
+
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +115,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.static_title);
+        getSupportActionBar().setTitle(Constant.EMPTY);
 
     }
 
@@ -165,11 +166,12 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                if (rule == Constant.ADMIN_RULE) {
+                    initViewManager();
+                } else {
+                    initViewUser();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -683,7 +685,20 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
         heartChart.setDrawGridBackground(true);
         heartChart.setDrawBarShadow(false);
         heartChart.setHighlightFullBarEnabled(false);
-        heartChart.setOnChartValueSelectedListener(this);
+        heartChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                Toast.makeText(AnalysisActivity.this, Constant.NUMBER_GOT
+                                + e.getY()
+                                + Constant.HEART_BEAT_DIGIT
+                        , Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
 
         YAxis rightAxis = heartChart.getAxisRight();
         rightAxis.setDrawGridLines(false);
@@ -890,7 +905,7 @@ public class AnalysisActivity extends AppCompatActivity implements OnChartValueS
                 initViewMaxChart();
                 initViewMinChart();
                 initViewHeartChart();
-                initTableView();
+//                initTableView();
             } else if (Constant.SERVER_FAIL == gotData) {
                 TextView mess = findViewById(R.id.message_chart);
                 mess.setText(Constant.MESAGE_NO_DATA);

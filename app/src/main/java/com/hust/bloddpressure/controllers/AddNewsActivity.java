@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hust.bloddpressure.R;
@@ -23,6 +24,7 @@ import com.hust.bloddpressure.model.MyService;
 import com.hust.bloddpressure.model.entities.InforStaticClass;
 import com.hust.bloddpressure.model.entities.News;
 import com.hust.bloddpressure.model.entities.Room;
+import com.hust.bloddpressure.util.Common;
 import com.hust.bloddpressure.util.Constant;
 
 import org.apache.http.NameValuePair;
@@ -40,6 +42,8 @@ public class AddNewsActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
+    private TextView message;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,20 +58,25 @@ public class AddNewsActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.add_news_title);
+        getSupportActionBar().setTitle(Constant.EMPTY);
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String newsTitle = textNewsTittle.getText().toString();
                 String newsContent = textNewsContent.getText().toString();
                 News news = new News(newsTitle, newsContent);
-                AddNews addNews = new AddNews(news);
-                addNews.execute();
-                Intent intent = new Intent(AddNewsActivity.this,ListNewsActivity.class);
-                startActivity(intent);
+                String error = Common.validateAddNew(news);
+                if (Common.checkEmpty(error)) {
+                    AddNews addNews = new AddNews(news);
+                    addNews.execute();
+
+                } else {
+                    message.setText(error);
+                }
             }
         });
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -114,26 +123,28 @@ public class AddNewsActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                Common.showToast(AddNewsActivity.this, Constant.NOT_THING_TO_LOAD);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void getViewById() {
 
         btnCreate = findViewById(R.id.btn_create_news);
         textNewsTittle = findViewById(R.id.title_news);
         textNewsContent = findViewById(R.id.content_news);
+        message = findViewById(R.id.message);
     }
+
     class AddNews extends AsyncTask {
         News news;
+
         public AddNews(News news) {
             this.news = news;
         }
+
         @Override
         protected Object doInBackground(Object[] params) {
             // Tạo danh sách tham số gửi đến máy chủ
@@ -149,14 +160,20 @@ public class AddNewsActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(json);
                     int success = jsonObject.getInt("success");
                     if (success == 1) {
+                        message.setText(Constant.SUCCESS);
                     } else {
+                        message.setText(Constant.FAIL);
                     }
                 } catch (JSONException e) {
                     Log.d("Error...", e.toString());
+                    message.setText(Constant.FAIL);
                 }
+            } else {
+                message.setText(Constant.FAIL);
             }
             return null;
         }
+
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(AddNewsActivity.this);
@@ -164,11 +181,14 @@ public class AddNewsActivity extends AppCompatActivity {
             pDialog.setCancelable(false);
             pDialog.show();
         }
+
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             if (pDialog.isShowing())
                 pDialog.dismiss();
+            Intent intent = new Intent(AddNewsActivity.this, ListNewsActivity.class);
+            startActivity(intent);
         }
     }
 }

@@ -178,6 +178,12 @@ public class TabBasicDetailUserFragment extends Fragment {
                 } else {
                     textViewPredict.setText(Constant.PREDICT_MIN);
                 }
+//                TextView textMaxPress = getActivity().findViewById(R.id.max_pressure);
+//                TextView textMinPress = getActivity().findViewById(R.id.min_pressure);
+//                TextView textHeartBeat = getActivity().findViewById(R.id.heart_beat);
+//                textMaxPress.setText(userInfor.getPressureMax() + Constant.MMHG);
+//                textMinPress.setText(userInfor.getPressureMin() + Constant.MMHG);
+//                textHeartBeat.setText(userInfor.getHeartBeat() + Constant.MMHG);
 
             } else {
                 setMessageNoData();

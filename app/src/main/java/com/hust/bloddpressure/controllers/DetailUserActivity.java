@@ -36,6 +36,7 @@ public class DetailUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_user);
+
         findViewById();
 //        toolbar = findViewById(R.id.tool_bar);
 //        toolbar.setTitle(Constant.EMPTY);
@@ -46,6 +47,7 @@ public class DetailUserActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(Constant.EMPTY);
         // Get id from another activity
         Bundle bundle = getIntent().getExtras();
         int rule = InforStaticClass.getRule();
@@ -171,11 +173,12 @@ public class DetailUserActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                if (Constant.MODE_BASIC == tabMode) {
+                    btnBasic.callOnClick();
+                } else {
+                    btnHis.callOnClick();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);

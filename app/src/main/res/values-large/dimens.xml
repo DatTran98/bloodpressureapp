@@ -197,4 +197,5 @@
     <dimen name="txt_s_50">
         50sp
     </dimen>
+    <dimen name="r_2">2</dimen>
 </resources>

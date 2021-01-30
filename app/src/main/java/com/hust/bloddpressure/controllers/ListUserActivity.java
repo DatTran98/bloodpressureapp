@@ -50,6 +50,7 @@ public class ListUserActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,13 +68,15 @@ public class ListUserActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle(R.string.list_user_title);
+//        getSupportActionBar().setTitle(R.string.list_user_title);
+        getSupportActionBar().setTitle(Constant.EMPTY);
         listUsers = new ArrayList<>();
         listUsersSource = new ArrayList<>();
         GetListUser getListUser = new GetListUser();
         getListUser.execute();
 
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -120,15 +123,14 @@ public class ListUserActivity extends AppCompatActivity {
                 Intent intent3 = new Intent(this, ListNewsActivity.class);
                 startActivity(intent3);
                 return true;
-            case R.id.web:
-                return true;
             case R.id.reset:
-//                Intent intent1 = new Intent(this, this.getClass());
-//                startActivity(intent1);
+                GetListUser getListUser = new GetListUser();
+                getListUser.execute();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void setQueryTextChange() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -332,6 +334,7 @@ public class ListUserActivity extends AppCompatActivity {
 
     /**
      * Do fill list view user when text search change
+     *
      * @param charText text got from text view
      */
     public void filterItem(String charText) {

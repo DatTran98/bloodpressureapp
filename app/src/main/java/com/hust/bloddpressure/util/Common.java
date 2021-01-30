@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.hust.bloddpressure.R;
+import com.hust.bloddpressure.model.entities.News;
+import com.hust.bloddpressure.model.entities.Room;
 import com.hust.bloddpressure.model.entities.UserInfor;
 
 /**
@@ -86,23 +88,23 @@ public class Common {
         // Trả về salt vừa tạo được
         return salt;
     }
-
-    /**
-     * Xử lý các toán tử wildcard để tránh injection
-     *
-     * @param wildcarString chuỗi chứa các ký tự wildcard
-     * @return chuỗi đã mã hóa các ký tự wicard
-     */
-    public static String replaceWildCard(String wildcarString) {
-        String encode = wildcarString;
-        if (wildcarString != null && !"".equals(wildcarString)) {
-            encode = encode.replace("\\", "\\\\");
-            encode = encode.replace("%", "\\%");
-            encode = encode.replace("_", "\\_");
-
-        }
-        return encode;
-    }
+//
+//    /**
+//     * Xử lý các toán tử wildcard để tránh injection
+//     *
+//     * @param wildcarString chuỗi chứa các ký tự wildcard
+//     * @return chuỗi đã mã hóa các ký tự wicard
+//     */
+//    public static String replaceWildCard(String wildcarString) {
+//        String encode = wildcarString;
+//        if (wildcarString != null && !"".equals(wildcarString)) {
+//            encode = encode.replace("\\", "\\\\");
+//            encode = encode.replace("%", "\\%");
+//            encode = encode.replace("_", "\\_");
+//
+//        }
+//        return encode;
+//    }
 
     /**
      * Check độ dài một chuỗi trong khoảng min đến max
@@ -119,21 +121,21 @@ public class Common {
             return false;
         }
     }
-
-    /**
-     * Phương thức so sánh 2 chuỗi
-     *
-     * @param string1 chuỗi thứ nhất
-     * @param string2 chuỗi thứ 2
-     * @return trả về true nếu 2 chuỗi bằng nhau, false nếu khác nhau
-     */
-    private static boolean compareString(String string1, String string2) {
-        boolean check = false;
-        if (string1.equals(string2)) {
-            check = true;
-        }
-        return check;
-    }
+//
+//    /**
+//     * Phương thức so sánh 2 chuỗi
+//     *
+//     * @param string1 chuỗi thứ nhất
+//     * @param string2 chuỗi thứ 2
+//     * @return trả về true nếu 2 chuỗi bằng nhau, false nếu khác nhau
+//     */
+//    private static boolean compareString(String string1, String string2) {
+//        boolean check = false;
+//        if (string1.equals(string2)) {
+//            check = true;
+//        }
+//        return check;
+//    }
 
     /**
      * Phương thức validate phần Login
@@ -160,7 +162,6 @@ public class Common {
     public static int convertToInt(String toString, int i) {
         int parse = 0;
         try {
-
             parse = Integer.parseInt(toString);
         } catch (NumberFormatException e) {
             parse = i;
@@ -241,25 +242,49 @@ public class Common {
         Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * Set fragment for content view
-     *
-     * @param idFrameContent  id của frame cần set
-     * @param fragmentRequire fragment cần set vào layout
-     */
-    public static void setFragmentByManagerFragment(int idFrameContent, Fragment fragmentRequire, AppCompatActivity activity) {
-        FragmentManager fragmentManager = activity.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(idFrameContent, fragmentRequire);
-        fragmentTransaction.commit();
+    public static String validateAddRoom(Room room) {
+        String noteError = "";
+        int roomId = room.getRoomId();
+        String roomName = room.getRoomName();
+        if (roomId == 0) {
+            noteError += Constant.EMPTY_MESSAGE + Constant.ROOM_ID_NAME;
+        } else if (checkEmpty(roomName)) {
+            noteError += Constant.EMPTY_MESSAGE + Constant.ROOM_N_NAME;
+        }
+        return noteError;
     }
 
-    public static void backNormal(int position, View item, View viewChoose) {
-        if (position % 2 == 0) {
-            item.setBackgroundResource(R.drawable.view_item_custom_odd);
-        } else {
-            item.setBackgroundResource(R.drawable.view_item_custom_even);
+    public static String validateAddNew(News news) {
+        String noteError = "";
+         String title = news.getTitleNew();
+        String content = news.getContentNew();
+        if (checkEmpty(title)) {
+            noteError += Constant.EMPTY_MESSAGE + Constant.TITLE_NAME;
+        } else if (checkEmpty(content)) {
+            noteError += Constant.EMPTY_MESSAGE + Constant.CONTENT_NAME;
         }
-        viewChoose.setVisibility(View.INVISIBLE);
+        return noteError;
     }
+//
+//    /**
+//     * Set fragment for content view
+//     *
+//     * @param idFrameContent  id của frame cần set
+//     * @param fragmentRequire fragment cần set vào layout
+//     */
+//    public static void setFragmentByManagerFragment(int idFrameContent, Fragment fragmentRequire, AppCompatActivity activity) {
+//        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(idFrameContent, fragmentRequire);
+//        fragmentTransaction.commit();
+//    }
+//
+//    public static void backNormal(int position, View item, View viewChoose) {
+//        if (position % 2 == 0) {
+//            item.setBackgroundResource(R.drawable.view_item_custom_odd);
+//        } else {
+//            item.setBackgroundResource(R.drawable.view_item_custom_even);
+//        }
+//        viewChoose.setVisibility(View.INVISIBLE);
+//    }
 }

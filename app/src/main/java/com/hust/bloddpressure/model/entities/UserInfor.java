@@ -42,17 +42,16 @@ public class UserInfor implements Serializable {
     public UserInfor() {
     }
 
-    public UserInfor(String userId, int roomId, int age, int predictType, int systolicMax, int systolicMin
-            , int diastolicMax, int diastolicMin, int pressureId, int pressureMax, int pressureMin, int heartBeat, String fullName, String tel, String room, String diseaseName, Date date) {
+    public UserInfor(String userId, int roomId, int age, int predictType, int systolicMax, int diastolicMin, int pressureId, int pressureMax, int pressureMin, int heartBeat, String fullName, String tel, String room, String diseaseName, Date date) {
         this.userId = userId;
         this.roomId = roomId;
         this.age = age;
         this.pressureMin = pressureMin;
         this.pressureMax = pressureMax;
         this.predictType = predictType;
-        this.diastolicMax = diastolicMax;
+//        this.diastolicMax = diastolicMax;
         this.systolicMax = systolicMax;
-        this.systolicMin = systolicMin;
+//        this.systolicMin = systolicMin;
         this.diastolicMin = diastolicMin;
         this.pressureId = pressureId;
         this.heartBeat = heartBeat;

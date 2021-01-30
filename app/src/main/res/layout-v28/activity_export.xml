@@ -70,90 +70,16 @@
                         android:layout_height="wrap_content"
                         android:text="@string/a_10" />
                 </RadioGroup>
-
-            </LinearLayout>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/m_10"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ScrollView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="vertical">
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/m_10"
-                    android:background="@drawable/user_item_custom"
-                    android:orientation="vertical"
-                    android:padding="@dimen/p_10">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/export_pressure"
-                        android:textColor="@color/no_data_color"
-                        android:textSize="@dimen/txt_s_20"
-                        android:textStyle="italic" />
-
-                    <RadioGroup
-                        android:id="@+id/radio_pressure"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/radio_all_pressure"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:text="@string/all" />
-
-                        <RadioButton
-                            android:id="@+id/radio_a_10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/a_10_time" />
-
-                        <RadioButton
-                            android:id="@+id/radio_a_7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/a_7_time" />
-
-                        <RadioButton
-                            android:id="@+id/radio_a_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/a_3_time" />
-                    </RadioGroup>
-
-                    <!--                    <CheckBox-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:text="@string/one_file"-->
-                    <!--                        android:textColor="@color/no_data_color"-->
-                    <!--                        android:textStyle="bold" />-->
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/m_10"
-                        android:text="@string/export_user_des"
-                        android:textColor="@color/cardview_dark_background"
-                        android:textSize="@dimen/txt_s_15"
-                        android:textStyle="italic"
-                        tools:ignore="PrivateResource" />
-
-                </LinearLayout>
-            </ScrollView>
-
+                    android:layout_marginTop="@dimen/m_10"
+                    android:text="@string/export_user_des"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="@dimen/txt_s_15"
+                    android:textStyle="italic"
+                    tools:ignore="PrivateResource" />
+            </LinearLayout>
             <ImageButton
                 android:id="@+id/btn_export"
                 android:layout_width="@dimen/w_70"
@@ -164,7 +90,99 @@
                 android:contentDescription="@string/todo"
                 android:src="@drawable/user_item_custom"
                 tools:ignore="RtlHardcoded" />
+
         </FrameLayout>
+
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="@dimen/m_10"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <ScrollView-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:scrollbars="vertical">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/m_10"-->
+<!--                    android:background="@drawable/user_item_custom"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="@dimen/p_10">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="@string/export_pressure"-->
+<!--                        android:textColor="@color/no_data_color"-->
+<!--                        android:textSize="@dimen/txt_s_20"-->
+<!--                        android:textStyle="italic" />-->
+
+<!--                    <RadioGroup-->
+<!--                        android:id="@+id/radio_pressure"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content">-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/radio_all_pressure"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:checked="true"-->
+<!--                            android:text="@string/all" />-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/radio_a_10"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/a_10_time" />-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/radio_a_7"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/a_7_time" />-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/radio_a_3"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/a_3_time" />-->
+<!--                    </RadioGroup>-->
+
+<!--                    &lt;!&ndash;                    <CheckBox&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:text="@string/one_file"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:textColor="@color/no_data_color"&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        android:textStyle="bold" />&ndash;&gt;-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/m_10"-->
+<!--                        android:text="@string/export_user_des"-->
+<!--                        android:textColor="@color/cardview_dark_background"-->
+<!--                        android:textSize="@dimen/txt_s_15"-->
+<!--                        android:textStyle="italic"-->
+<!--                        tools:ignore="PrivateResource" />-->
+
+<!--                </LinearLayout>-->
+<!--            </ScrollView>-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/btn_export"-->
+<!--                android:layout_width="@dimen/w_70"-->
+<!--                android:layout_height="@dimen/h_70"-->
+<!--                android:layout_gravity="top|right"-->
+<!--                android:layout_marginRight="@dimen/m_10"-->
+<!--                android:background="@mipmap/export_icon"-->
+<!--                android:contentDescription="@string/todo"-->
+<!--                android:src="@drawable/user_item_custom"-->
+<!--                tools:ignore="RtlHardcoded" />-->
+<!--        </FrameLayout>-->
 <!--        <include-->
 <!--            android:id="@+id/tool_bar5"-->
 <!--            layout="@layout/toolbar_layout" />-->

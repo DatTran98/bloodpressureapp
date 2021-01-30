@@ -38,7 +38,7 @@
 <!--                android:layout_marginTop="@dimen/m_10"-->
 <!--                android:fontFamily="@font/roboto_regular"-->
 <!--                android:text="@string/nearest_check"-->
-<!--                android:textSize="@dimen/txt_s_20" />-->
+<!--                android:textSize="@dimen/txt_s_15" />-->
 
 <!--            <TextView-->
 <!--                android:id="@+id/heart_beat"-->
@@ -48,7 +48,7 @@
 <!--                android:fontFamily="@font/roboto_regular"-->
 <!--                android:text=""-->
 <!--                android:textColor="#00BCD4"-->
-<!--                android:textSize="@dimen/txt_s_20" />-->
+<!--                android:textSize="@dimen/txt_s_15" />-->
 
 <!--        </LinearLayout>-->
 
@@ -65,7 +65,7 @@
 <!--                android:layout_marginTop="@dimen/m_10"-->
 <!--                android:fontFamily="@font/roboto_regular"-->
 <!--                android:text="@string/max_pressure"-->
-<!--                android:textSize="@dimen/txt_s_20" />-->
+<!--                android:textSize="@dimen/txt_s_15" />-->
 
 <!--            <TextView-->
 <!--                android:id="@+id/max_pressure"-->
@@ -74,7 +74,7 @@
 <!--                android:fontFamily="@font/roboto_regular"-->
 <!--                android:text=""-->
 <!--                android:textColor="@android:color/holo_red_dark"-->
-<!--                android:textSize="@dimen/txt_s_20" />-->
+<!--                android:textSize="@dimen/txt_s_15" />-->
 <!--        </LinearLayout>-->
 
 <!--        <LinearLayout-->
@@ -92,7 +92,7 @@
 <!--                android:layout_marginTop="@dimen/m_10"-->
 <!--                android:fontFamily="@font/roboto_regular"-->
 <!--                android:text="@string/min_pressure"-->
-<!--                android:textSize="@dimen/txt_s_20" />-->
+<!--                android:textSize="@dimen/txt_s_15" />-->
 
 <!--            <TextView-->
 <!--                android:id="@+id/min_pressure"-->
@@ -101,10 +101,11 @@
 <!--                android:fontFamily="@font/roboto_regular"-->
 <!--                android:text=""-->
 <!--                android:textColor="@android:color/holo_green_dark"-->
-<!--                android:textSize="@dimen/txt_s_20" />-->
+<!--                android:textSize="@dimen/txt_s_15" />-->
 
 <!--        </LinearLayout>-->
 <!--    </RelativeLayout>-->
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -124,7 +125,7 @@
                 android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/username"
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
             <TextView
                 android:id="@+id/username"
@@ -132,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
         </LinearLayout>
 
         <LinearLayout
@@ -148,7 +149,7 @@
                 android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/user_id"
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
             <TextView
                 android:id="@+id/user_id"
@@ -156,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -180,7 +181,7 @@
                 android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/full_name"
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
             <TextView
                 android:id="@+id/full_name"
@@ -188,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
         </LinearLayout>
 
         <LinearLayout
@@ -204,7 +205,7 @@
                 android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/age"
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
             <TextView
                 android:id="@+id/age"
@@ -212,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -235,7 +236,7 @@
                 android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/disease_name"
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
             <TextView
                 android:id="@+id/disease"
@@ -243,7 +244,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
         </LinearLayout>
 
         <LinearLayout
@@ -260,7 +261,7 @@
                 android:layout_marginTop="@dimen/m_10"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/room_name"
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
             <TextView
                 android:id="@+id/room"
@@ -268,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text=""
-                android:textSize="@dimen/txt_s_20" />
+                android:textSize="@dimen/txt_s_15" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -280,7 +281,7 @@
         android:layout_marginTop="@dimen/m_20"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/tel"
-        android:textSize="@dimen/txt_s_20" />
+        android:textSize="@dimen/txt_s_15" />
 
     <TextView
         android:id="@+id/tel"
@@ -289,5 +290,5 @@
         android:layout_marginLeft="@dimen/m_10"
         android:fontFamily="@font/roboto_regular"
         android:text=""
-        android:textSize="@dimen/txt_s_20" />
+        android:textSize="@dimen/txt_s_15" />
 </LinearLayout>

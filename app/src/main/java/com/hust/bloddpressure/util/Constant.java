@@ -49,8 +49,8 @@ public class Constant {
     public static final String ACTION_SORT = "sort";
     public static final String ACTION_SEARCH = "search";
     // CONSTANT SET UP FOR URL
-//    public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
-    public static final String URL = "http://10.0.2.2:88/bloodpressure/";
+    public static final String URL = "http://datn20201.000webhostapp.com/bloodpressure/";
+//        public static final String URL = "http://10.0.2.2:88/bloodpressure/";
 //    public static final String URL = "http://10.0.2.2/bloodpressure/";
     public static final String URL_LIST_ROOM = URL + "list_room_api.php";
     public static final String URL_DELETE_ROOM = URL + "delete_room_api.php";
@@ -65,7 +65,8 @@ public class Constant {
     public static final String URL_DELETE_USER = URL + "delete_user_api.php";
     public static final String URL_LIST_TYPE_PREDICT = URL + "list_type_predict_api.php";
     public static final String URL_LIST_USER_EXPORT = URL + "list_user_export_api.php";
-
+    public static final String URL_UPDATE_STANDARD_PRESSURE = URL + "standard_setting_api.php";
+    public static final String URL_DELETE_NEWS = URL + "delete_news_api.php";
     // SET UP FOR DIALOG
     public static final String CONFIRM_TITLE = "Xác nhận";
     public static final String YES = "Đồng ý";
@@ -73,10 +74,11 @@ public class Constant {
     public static final String DELETED_ROOM = "Đã xóa thông tin phòng ";
     public static final String DELETED_USER = "Đã xóa thông tin bệnh nhân ";
     public static final String CONFIRM_ROOM = "Bạn có chắc chắn xóa phòng này không?";
+    public static final String CONFIRM_NEWS = "Bạn có chắc chắn xóa tin này không?";
     public static final String CONFIRM_USER = "Bạn có chắc chắn xóa người dùng này không?";
     public static final String DETAIL = "Chi tiết";
-    public static final String MESSAGE_WARING_MAX = "Lần kiểm tra này có nguy cơ cao huyết áp\n Huyết áp tâp thu lớn hơn hoặc bằng 140 mmHg hoặc\n Huyết áp tâm trương lớn hơn hoặc bằng 90 mmHg\n Hãy liên hệ bác sĩ";
-    public static final String MESSAGE_WARING_MIN = "Lần kiểm tra này có nguy cơ huyết áp thâp\n Huyết áp tâp thu nhỏ hơn hoặc bằng 100 mmHg\n Hãy liên hệ bác sĩ";
+    public static final String MESSAGE_WARING_MAX = "Lần kiểm tra này có nguy cơ cao huyết áp\n Huyết áp tâp thu lớn hơn ngưỡng tiêu chuẩn \n Hãy liên hệ bác sĩ";
+    public static final String MESSAGE_WARING_MIN = "Lần kiểm tra này có nguy cơ huyết áp thâp\n Huyết áp tâp trương nhỏ hơn hoặc ngưỡng tiêu chuẩn\n Hãy liên hệ bác sĩ";
     public static final String MESSAGE_NORMAL = "Chỉ số huyết áp bình thường \n Hãy kiểm tra lại thường xuyên";
     public static final String MESSAGE_LOGIN_FAILED = "Sai tên đăng nhập hoặc mật khẩu";
     public static final String MESSAGE_EXIST_USERNAME = "Tên đăng nhập đã tồn tại";
@@ -101,6 +103,10 @@ public class Constant {
     public static final String HEART_BEAT_NAME = "Nhịp tim \n";
     public static final String ROOM_NAME_NAME = "/chọn phòng";
     public static final String ROOM_NOT_EXIST = "phòng không tồn tại";
+    public static final String ROOM_ID_NAME = "mã phòng";
+    public static final String ROOM_N_NAME = "tên phòng";
+    public static final String TITLE_NAME = "tiêu đề tin";
+    public static final String CONTENT_NAME = "nội dung tin";
 
     // SET UP FOR JSON
     public static final String LOG_JSON = "JSON Data";
@@ -183,7 +189,7 @@ public class Constant {
     public static final String SAVED = "Đã lưu thành công";
     public static final String ERROR_SAVE = "Lưu thất bại";
     public static final String STATIC_NAME = "Phân tích dữ liệu";
-    public static final String DEVERLOPING = "Chức năng này đang phát triển";
+    public static final String DEVERLOPING = "Chức năng này đang được cập nhật";
     public static final String HAVE = "Có ";
     public static final String CHAR = "/";
     public static final String PEOPLE = " người ";
@@ -195,4 +201,18 @@ public class Constant {
     public static final String HELLO = "Xin chào ";
 
 
+    public static final String NOT_THING_TO_LOAD = "Không có dữ liệu cần load";
+    public static final String UPDATING = "Updating...";
+    public static final String MESSAGE_UPDATE_FAIL = "Cập nhật thất bại...";
+    public static final String MESSAGE_UPDATE_SUCCESS = "Cập nhật thành công...";
+
+    public static final String SUCCESS = "Thành Công";
+    public static final String FAIL = "Thất Bại";
+
+    public static final String OBJECT_JSON_STANDARD = "standard_pressure";
+
+    public static final String CONTACT = "Liên hệ với chúng tôi";
+    public static final String MESSAGE_CONTACT = " Hotline: 012343222\n Gmail:bloodpressure@gmail.com\n Địa chỉ: DHBKHN ";
+    public static final String RASING = "Chức năng đang được nâng cấp";
+    public static final String DELETED_SUCCESS = "Xóa thành công";
 }

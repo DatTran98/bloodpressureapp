@@ -14,6 +14,7 @@
         android:normalScreens="true"
         android:smallScreens="true"
         android:xlargeScreens="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/blood_pressure_icon_vector"
@@ -23,15 +24,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-
+        <activity android:name=".controllers.AboutActivity"></activity>
+        <activity android:name=".controllers.SettingStandardPressureActivity" />
+        <activity android:name=".controllers.WebActivity" />
         <activity android:name=".controllers.AnalysisActivity" />
         <activity android:name=".controllers.MoveToAnotherRoom" />
         <activity android:name=".controllers.EditUserActivity" />
         <activity android:name=".controllers.AddRoomActivity" />
         <activity android:name=".controllers.ListRoomActivity" />
-        <activity
-            android:name=".controllers.AddNewsActivity"
-             />
+        <activity android:name=".controllers.AddNewsActivity" />
         <activity android:name=".controllers.ListNewsActivity" />
         <activity android:name=".controllers.ListUserActivity" />
         <activity android:name=".controllers.DetailUserActivity" />
@@ -47,6 +48,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

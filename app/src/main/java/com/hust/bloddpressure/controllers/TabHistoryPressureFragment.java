@@ -116,10 +116,12 @@ public class TabHistoryPressureFragment extends Fragment {
                         listPressure.add(bloodPressureInfor);
                     }
                 } catch (JSONException | ParseException e) {
-                    e.printStackTrace();
+                    txtMessage.setTextColor(ContextCompat.getColor(getContext(), R.color.no_data_color));
+                    txtMessage.setText(Constant.MESSAGE_SERVER_FAILED);
                 }
             } else {
                 Log.e(Constant.LOG_JSON, Constant.MSG_JSON);
+                txtMessage.setText(Constant.MESSAGE_SERVER_FAILED);
             }
             return null;
         }
@@ -162,9 +164,11 @@ public class TabHistoryPressureFragment extends Fragment {
                         confirm.setTitle(Constant.DETAIL);
                         int pressMax = listPressure.get(position).getPressureMax();
                         int pressMin = listPressure.get(position).getPressureMin();
-                        if ((pressMax >= 140) || (pressMin >= 90)) {
+                        int standardMax = listPressure.get(position).getStandardMax();
+                        int standardMin = listPressure.get(position).getStandardMin();
+                        if ((pressMax >= standardMax) || (pressMin >= 90)) {
                             confirm.setMessage(Constant.MESSAGE_WARING_MAX);
-                        } else if (pressMax <= 100) {
+                        } else if (pressMax <= 100 || pressMin < standardMin) {
                             confirm.setMessage(Constant.MESSAGE_WARING_MIN);
                         } else {
                             confirm.setMessage(Constant.MESSAGE_NORMAL);
